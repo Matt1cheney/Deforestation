@@ -2,19 +2,26 @@
   "name": "reforestation",
   "version": "0.1.0",
   "private": true,
+  "main": "server.js",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.13"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "install": "cd client && npm install",
+    "client": "cd client && npm run start",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build",
+    "eject": "react-scripts eject",
+    "seed": "node scripts/seedDB.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -32,7 +39,8 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^7.0.0",
+    "concurrently": "^4.1.0",
+    "if-env": "^1.0.4",
     "pre-commit": "^1.2.2"
   }
 }
