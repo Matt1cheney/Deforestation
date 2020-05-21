@@ -1,0 +1,32 @@
+div.sideMenuDropdown > button {
+  width: 100%;
+  display: none;
+}
+
+div.dropdown-menu.show {
+  width: 100%;
+}
+
+a.sideMenuItems {
+  width: 100%;
+}
+
+.sideMenu {
+  margin-top: .5em;
+  background-color: rgb(238, 234, 234);
+  padding: 1em .25em 1em .25em;
+  min-height: 100vh;
+}
+
+@media screen and (max-width: 767px) {
+
+  div.sideMenuDropdown > button {
+    width: 100%;
+    display: block;
+  }
+
+  .sideMenu {
+    display:none
+  }
+
+}
