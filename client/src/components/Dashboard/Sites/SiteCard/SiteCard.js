@@ -4,10 +4,10 @@ import Button from "react-bootstrap/Button";
 import "../style.css";
 
 
-const RegionCard = ( {region} ) => {
+const SiteCard = ( {site} ) => {
   
 
-  const {name, coordinator, description} = region;
+  const {} = site;
 
   return (
     <Card>
@@ -24,4 +24,4 @@ const RegionCard = ( {region} ) => {
   )
 }
 
-export default RegionCard;
+export default SiteCard;

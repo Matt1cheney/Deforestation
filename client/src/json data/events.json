@@ -1,0 +1,29 @@
+[
+  {
+    "site": "Windy Hills",
+    "date": "June 23rd, 2020",
+    "start_time": "10am",
+    "end_time": "2pm",
+    "coordinator": "Bill Smith",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "planters": ["Dan Delong", "Joe Field", "Amanda Adams", "Nancy Meyers"]
+  },
+  {
+    "site": "Windy Hills",
+    "date": "June 23rd, 2020",
+    "start_time": "10am",
+    "end_time": "2pm",
+    "coordinator": "Bill Smith",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "planters": ["Dan Delong", "Joe Field", "Amanda Adams", "Nancy Meyers"]
+  },
+  {
+    "site": "Windy Hills",
+    "date": "June 23rd, 2020",
+    "start_time": "10am",
+    "end_time": "2pm",
+    "coordinator": "Bill Smith",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "planters": ["Dan Delong", "Joe Field", "Amanda Adams", "Nancy Meyers"]
+  }
+]

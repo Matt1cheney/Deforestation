@@ -17,7 +17,7 @@ const NavComp = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
             <NavDropdown title="Get Involved" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Volunteer</NavDropdown.Item>
+              <NavDropdown.Item href="/volunteer">Volunteer</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Seedlings</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Landowner</NavDropdown.Item>
             </NavDropdown>

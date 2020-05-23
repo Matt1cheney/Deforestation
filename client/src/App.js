@@ -4,6 +4,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from "./components/Navbar/Navbar";
 import Dashboard from "./components/Dashboard/Dashboard";
+import Volunteer from './components/GetInvolved/VolunteerForm/volunteer';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
     <Router>
       <Switch>
         <Route path="/dashboard" component={Dashboard}/>
+        <Route path="/volunteer" component={Volunteer}/>
       </Switch>
     </Router>
     </>
