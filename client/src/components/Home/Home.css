@@ -1,0 +1,23 @@
+.style {
+    background-image: url('../../images/Home.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.title h1{
+    position: absolute;
+    bottom: 50vh;
+    left: 20vh;
+    font-size: 35px;
+    color: #FFFF;
+    font-family: 'Bebas Neue', cursive;
+      
+}
+
+.middle {
+    text-align: center;
+    padding: 15px;
+}

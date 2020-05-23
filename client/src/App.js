@@ -4,7 +4,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from "./components/Navbar/Navbar";
 import Dashboard from "./components/Dashboard/Dashboard";
-import Home from "./views/Home/Home";
+import Home from "./components/Home/Home";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
     <Navbar />
     <Router>
       <Switch>
-        <Route path="/" component={ Home } />
+        <Route exact path="/" component={ Home } />
         <Route path="/dashboard" component={Dashboard}/>
       </Switch>
     </Router>
