@@ -12,7 +12,7 @@ const Dashboard = () => {
     <>
       <Router>
         <Row>
-          <Col s={12} md={3}>
+          <Col s={12} md={3} className="sideMenuCol">
             <SideMenu />
           </Col>
           <Col s={12} md={9}>

@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from "./components/Navbar/Navbar";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Home from "./components/Home/Home";
+import Volunteer from './components/GetInvolved/VolunteerForm/volunteer';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={ Home } />
         <Route path="/dashboard" component={Dashboard}/>
+        <Route path="/volunteer" component={Volunteer}/>
       </Switch>
     </Router>
     </>

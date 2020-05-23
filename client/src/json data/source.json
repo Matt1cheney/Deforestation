@@ -1,0 +1,65 @@
+[
+  {
+    "name": "Fletchers Farm",
+    "region": "New Hampshire",
+    "owner": "Drew Sheldon",
+    "address": {
+      "street": "5 Orchard Dr.",
+      "city": "Milford",
+      "state": "New Hampshire",
+      "zip": "03055"
+    },
+    "coordinator": "Bob Smith",
+    "seedlings": [
+      {
+        "count": "300",
+        "tree_type": ["ash", "maple", "pine", "oak"],
+        "target_age": "1 year",
+        "available": "June 2020",
+        "site": "Windy Hills"
+      }
+    ]
+  },
+  {
+    "name": "Fletchers Farm",
+    "region": "New Hampshire",
+    "owner": "Drew Sheldon",
+    "address": {
+      "street": "5 Orchard Dr.",
+      "city": "Milford",
+      "state": "New Hampshire",
+      "zip": "03055"
+    },
+    "coordinator": "Bob Smith",
+    "seedlings": [
+      {
+        "count": "300",
+        "tree_type": ["ash", "maple", "pine", "oak"],
+        "target_age": "1 year",
+        "available": "June 2020",
+        "site": "Windy Hills"
+      }
+    ]
+  },
+  {
+    "name": "Fletchers Farm",
+    "region": "New Hampshire",
+    "owner": "Drew Sheldon",
+    "address": {
+      "street": "5 Orchard Dr.",
+      "city": "Milford",
+      "state": "New Hampshire",
+      "zip": "03055"
+    },
+    "coordinator": "Bob Smith",
+    "seedlings": [
+      {
+        "count": "300",
+        "tree_type": ["ash", "maple", "pine", "oak"],
+        "target_age": "1 year",
+        "available": "June 2020",
+        "site": "Windy Hills"
+      }
+    ]
+  }
+]
