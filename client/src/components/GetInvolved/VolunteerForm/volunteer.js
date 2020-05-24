@@ -4,10 +4,14 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import "../style.css";
+import Navbar from "../../Navbar/Navbar";
+
 
 
 const Volunteer = () => {
   return (
+    <>
+    <Navbar />
     <Container className="volunteerForm">
       <Form>
         <Form.Row>
@@ -27,6 +31,7 @@ const Volunteer = () => {
         <Button variant="primary" type="submit">Submit</Button>
       </Form>
     </Container>
+    </>
   )
 }
 

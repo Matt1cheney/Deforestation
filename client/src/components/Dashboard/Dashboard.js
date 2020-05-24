@@ -4,12 +4,15 @@ import Col from "react-bootstrap/Col";
 import SideMenu from "./SideMenu/SideMenu";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import RegionDisplay from "./Regions/RegionDisplay/RegionDisplay";
+import Navbar from "../Navbar/Navbar";
+
 
 
 const Dashboard = () => {
 
   return (
     <>
+    <Navbar />
       <Router>
         <Row>
           <Col s={12} md={3} className="sideMenuCol">
