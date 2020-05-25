@@ -8,6 +8,7 @@ import RegionDisplay from "./Regions/RegionDisplay/RegionDisplay";
 import SiteDisplay from "./Sites/SiteDisplay/SiteDisplay";
 import EventDisplay from "./Events/EventDisplay/EventDisplay";
 import SourceDisplay from "./Seedlings/SourceDisplay/SourceDisplay";
+import RegionForm from "./Regions/NewRegionForm/RegionForm";
 import "./assets/style.css";
 import Navbar from "../Navbar/Navbar";
 
@@ -21,10 +22,10 @@ const Dashboard = () => {
       <Router>
         <Container fluid>
         <Row>
-          <Col sm={12} md={3} className="sideMenuCol">
+          <Col xs={12} md={3} className="sideMenuCol">
             <SideMenu />
           </Col>
-          <Col sm={12} md={9} className="dashboardContentView">
+          <Col xs={12} md={9} className="dashboardContentView">
             <Switch>
               <Route exact path="/dashboard/regions">
                 <RegionDisplay />
@@ -37,6 +38,9 @@ const Dashboard = () => {
               </Route>
               <Route exact path="/dashboard/source">
                 <SourceDisplay />
+              </Route>
+              <Route exact path="/dashboard/newRegion">
+                <RegionForm />
               </Route>
             </Switch>
           </Col>
