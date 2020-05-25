@@ -13,13 +13,13 @@ a.sideMenuItems {
 
 .sideMenu {
   margin-top: .5em;
-  background-color: rgb(238, 234, 234);
+  background-color: #f8f9fa;
   padding: 1em .25em 1em 1em;
   min-height: 100vh;
 }
 
 .sideMenuCol {
-  background-color: rgb(238, 234, 234);
+  background-color: #f8f9fa;
 }
 
 @media screen and (max-width: 767px) {
