@@ -1,34 +1,41 @@
 .style {
-    background-image: url('../../images/Home.jpeg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 100vw;
-    height: 100vh;
+  background-image: url("../../images/Home.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
 }
 
-.title h1{
-    text-indent: 30px;
-    width: 30%;
-    position: absolute;
-    bottom: 50vh;
-    left: 18vh;
-    font-size: 35px;
-    color: #FFFF;
-    font-family: 'Bebas Neue', cursive;
-      
+.title h1 {
+  text-indent: 30px;
+  width: 30%;
+  position: absolute;
+  bottom: 50vh;
+  left: 18vh;
+  font-size: 35px;
+  color: #ffff;
+  font-family: "Bebas Neue", cursive;
 }
 
 .middle {
-    text-align: center;
-    padding: 15px;
+  text-align: center;
+  padding: 15px;
 }
 
-.middle h1{
-    padding: 40px;
-    font-family: 'Playfair Display SC', serif;
-    font-size: 60px;
-    text-decoration: underline;
+.middle h1 {
+  padding: 40px;
+  font-family: "Playfair Display SC", serif;
+  font-size: 60px;
 }
 
+.bottom h1 {
+  padding: 40px;
+  font-family: "Playfair Display SC", serif;
+  font-size: 60px;
+  text-align: center;
+}
 
+.volParagraph {
+  padding: 35px;
+}

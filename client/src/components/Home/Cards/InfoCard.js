@@ -8,26 +8,27 @@ import Road from "../../../images/Road.jpeg";
 
 import "./Photo.css";
 
-
-
-
 export class InfoCard extends React.Component {
-    render() {
-        return (
-            <Container>
-            <Row>
-              <Col xs={6} md={6}>
-                <a href="/getinfo"><Image src={City}  />
-                <p className="centered">About Us</p></a>
-              </Col>
-              <Col xs={6} md={6}>
-                <a href="/getinfo"><Image src={Road} />
-                <p className="centered">Reforestation</p></a>
-              </Col>
-            </Row>
-          </Container>
-        )
-    }
+  render() {
+    return (
+      <Container>
+        <Row>
+          <Col xs={6} md={6}>
+            <a href="/getinfo">
+              <Image src={City} />
+              <p className="centered">About Us</p>
+            </a>
+          </Col>
+          <Col xs={6} md={6}>
+            <a href="/getinfo">
+              <Image src={Road} />
+              <p className="centered">Reforestation</p>
+            </a>
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
 }
 
 export default InfoCard;
