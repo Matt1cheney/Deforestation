@@ -14,13 +14,13 @@ export class InfoCard extends React.Component {
       <Container>
         <Row>
           <Col xs={6} md={6}>
-            <a href="/getinfo">
+            <a href="/information">
               <Image src={City} />
               <p className="centered">About Us</p>
             </a>
           </Col>
           <Col xs={6} md={6}>
-            <a href="/getinfo">
+            <a href="/information">
               <Image src={Road} />
               <p className="centered">Reforestation</p>
             </a>

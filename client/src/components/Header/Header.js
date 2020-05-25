@@ -20,30 +20,30 @@ export default class Header extends React.Component {
             />
 
             <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+              <Dropdown.Item href="/volunteer">Volunteer</Dropdown.Item>
+              <Dropdown.Item href="#/action-2">Seedlings</Dropdown.Item>
+              <Dropdown.Item href="#/action-3">Landowner</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
           <h1>ReforestNation</h1>
           <Dropdown as={ButtonGroup}>
-            <Button variant="success">Get Information</Button>
+            <Button variant="success" href="/information">Get Information</Button>
             <Dropdown.Toggle
               split
               variant="success"
               id="dropdown-split-basic"
             />
             <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+              <Dropdown.Item href="#/action-1">About Us</Dropdown.Item>
+              <Dropdown.Item href="/reforestation">Reforestation</Dropdown.Item>
+              <Dropdown.Item href="#/action-3">Contact</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </div>
         <div className="right">
-          <button className="log">
-            <a href="/dashboard"></a>Log In
-          </button>
+          <a href="/dashboard">
+            <button className="log">Log In</button>
+          </a>
         </div>
       </>
     );
