@@ -6,31 +6,72 @@ import Button from "react-bootstrap/Button";
 import "../style.css";
 
 
+export default class Volunteer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      email: '',
+      phone: ''
+    }
+  }
 
-const Volunteer = () => {
-  return (
-    <>
-    <Container className="volunteerForm">
-      <Form>
-        <Form.Row>
-          <Col>
-            <Form.Label>First Name</Form.Label>
-            <Form.Control placeholder="Enter first name" />
-          </Col>
-          <Col>
-            <Form.Label>Last Name</Form.Label>
-            <Form.Control placeholder="Enter last name" />
-          </Col>
-        </Form.Row>
-        <Form.Group controlId="formGroupEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
-        </Form.Group>
-        <Button variant="primary" type="submit">Submit</Button>
-      </Form>
-    </Container>
-    </>
-  )
+  onNameChange(event) {
+    this.setState({name: event.target.value})
+  }
+
+  onEmailChange(event) {
+    this.setState({email: event.target.value})
+  }
+
+  onPhoneChange(event) {
+    this.setState({phone: event.target.value})
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+
+    fetch("/api/persons", {
+      method: "POST",
+      body: JSON.stringify(this.state),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(response => {
+      if (response.status === 'success'){
+        alert("Message Sent."); 
+        this.resetForm()
+      } else if(response.status === 'fail'){
+        alert("Message failed to send.")
+      }
+    })
+    .catch(err => console.log(err.message)) 
+  }
+
+  render() {
+    return (
+      <Container className="volunteerForm">
+        <Form onSubmit={this.handleSubmit.bind(this)}>
+          <Form.Row>
+            <Col>
+              <Form.Label>Full Name</Form.Label>
+              <Form.Control placeholder="Enter full name" value={this.state.name} onChange={this.onNameChange.bind(this)} />
+            </Col>
+            <Col>
+              <Form.Label>Phone</Form.Label>
+              <Form.Control placeholder="Enter phone number" value={this.state.phone} onChange={this.onPhoneChange.bind(this)}/>
+            </Col>
+          </Form.Row>
+          <Form.Group controlId="formGroupEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control type="email" placeholder="Enter email" value={this.state.email} onChange={this.onEmailChange.bind(this)}/>
+          </Form.Group>
+          <Button variant="primary" type="submit">Submit</Button>
+        </Form>
+      </Container>
+    );
+  }
 }
-
-export default Volunteer;

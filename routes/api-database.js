@@ -1,5 +1,5 @@
 const router = require("express").Router()
-const mongoose = require("mongoose")
+const sendMail = require("./api-mail")
 const PersonModel = require("../model/Person")
 const RegionModel = require("../model/Region")
 const SiteModel = require("../model/Site")
@@ -9,9 +9,15 @@ const EventModel = require("../model/Event")
 //--------------------------- Person Controller -------------------------
 
 async function createPerson(req, res) {
-    console.log(req.body)
+    // console.log(req.body)
     let newPerson = new PersonModel(req.body);
     let savedPerson = await newPerson.save();
+
+    console.log("Email:", savedPerson.email)
+
+    if (savedPerson.role == "Volunteer") 
+        await sendMail(savedPerson.email, savedPerson.notes)
+
     res.json(savedPerson);
 }
 
@@ -404,6 +410,11 @@ router.get("/api/event/:id", findEvent);
 router.put("/api/event/:id", updateEvent);
 router.delete("/api/event/:id", deleteEvent);
 
-// Export router
+//----------------------- Additional (Non Database) Routes -----------------------
 
+router.post("/api/addVolunteer", (req, res) => {
+
+})
+
+// Export router
 module.exports = router;
