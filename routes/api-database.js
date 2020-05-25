@@ -1,10 +1,10 @@
 const router = require("express").Router()
 const mongoose = require("mongoose")
-const PersonModel = require("../model/nosql/Person")
-const RegionModel = require("../model/nosql/Region")
-const SiteModel = require("../model/nosql/Site")
-const SourceModel = require("../model/nosql/Source")
-const EventModel = require("../model/nosql/Event")
+const PersonModel = require("../model/Person")
+const RegionModel = require("../model/Region")
+const SiteModel = require("../model/Site")
+const SourceModel = require("../model/Source")
+const EventModel = require("../model/Event")
 
 //--------------------------- Person Controller -------------------------
 
