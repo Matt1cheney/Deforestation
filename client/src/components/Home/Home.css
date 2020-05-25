@@ -24,6 +24,13 @@
     padding: 15px;
 }
 
+.middle h1{
+    padding: 40px;
+    font-family: 'Playfair Display SC', serif;
+    font-size: 60px;
+    text-decoration: underline;
+}
+
 #Nav {
     background-color: transparent;
     color: #FFF
@@ -33,4 +40,13 @@
 }
 .navbar-light .navbar-nav .nav-link {
     color: #FFFF;
+}
+
+.bottom {
+    text-align: center;
+    padding: 15px;
+}
+
+.volParagraph p{
+ padding: 30px;
 }
