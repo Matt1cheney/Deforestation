@@ -1,0 +1,114 @@
+{
+  "US-AK": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 100
+      },
+      {
+        "year": 2016,
+        "value": 90.5
+      },
+      {
+        "year": 2017,
+        "value": 101
+      },
+      {
+        "year": 2018,
+        "value": 120.7
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 150
+      },
+      {
+        "year": 2016,
+        "value": 790.5
+      },
+      {
+        "year": 2017,
+        "value": 501
+      },
+      {
+        "year": 2018,
+        "value": 1233
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 500
+      },
+      {
+        "year": 2016,
+        "value": 690.5
+      },
+      {
+        "year": 2017,
+        "value": 701
+      },
+      {
+        "year": 2018,
+        "value": 820.7
+      }
+    ]
+  },
+  "US-WA": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 110
+      },
+      {
+        "year": 2016,
+        "value": 190.5
+      },
+      {
+        "year": 2017,
+        "value": 141
+      },
+      {
+        "year": 2018,
+        "value": 170.7
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 250
+      },
+      {
+        "year": 2016,
+        "value": 720.5
+      },
+      {
+        "year": 2017,
+        "value": 901
+      },
+      {
+        "year": 2018,
+        "value": 1533
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 700
+      },
+      {
+        "year": 2016,
+        "value": 390.5
+      },
+      {
+        "year": 2017,
+        "value": 601
+      },
+      {
+        "year": 2018,
+        "value": 890.7
+      }
+    ]
+  }
+}

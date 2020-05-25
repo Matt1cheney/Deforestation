@@ -8,6 +8,8 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
+    "nodemailer": "^6.4.6",
+    "nodemon": "^2.0.4",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.9.13"
@@ -15,7 +17,7 @@
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
-    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "start:dev": "concurrently \"nodemon server.js\" \"npm run client\"",
     "install": "cd client && npm install",
     "client": "cd client && npm run start",
     "build": "cd client && npm run build",
