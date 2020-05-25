@@ -16,7 +16,6 @@ const Home = () => {
       <>
        <div className="style">
          <div className="title">
-      <Navbar />
            <h1>Reforestation is one of the biggest and cheapest ways to help 
              combat global warming.
            </h1>

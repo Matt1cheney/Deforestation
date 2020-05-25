@@ -1,11 +1,11 @@
 import React from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import events from "../../../../jsonData/events.json";
-import EventCard from "../EventCard/EventCard";
+import sources from "../../../../jsonData/source.json";
+import SourceCard from "../SourceCard/SourceCard";
 
 
-function EventDisplay() {
+function SourceDisplay() {
 
   const admin = true;
   const coordinator = false;
@@ -13,13 +13,13 @@ function EventDisplay() {
   return (
 
     <Row>
-      {events.map((event, index) => (
+      {sources.map((source, index) => (
         <Col sm={12} key={index}>
-          <EventCard event={event} />
+          <SourceCard source={source} />
         </Col>
       ))}
     </Row>
   )
 }
 
-export default EventDisplay;
+export default SourceDisplay;

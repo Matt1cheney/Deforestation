@@ -1,24 +1,30 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import "../style.css";
 
 
-const RegionCard = ( {region} ) => {
-  
+const RegionCard = ({ region }) => {
 
-  const {name, coordinator, description} = region;
+
+  const { name, coordinator, description } = region;
 
   return (
-    <Card>
+    <Card className="dashboardCard">
       <Card.Body>
-        <Card.Title>{name}</Card.Title>
+        <Row>
+          <Col>
+            <Card.Title><h3>{name}</h3></Card.Title>
+          </Col>
+          <Col>
+            {/* <Button className="btn align-right" variant="dark">Edit Region</Button> */}
+            <Button className="btn align-right" variant="dark">Delete Region</Button>
+          </Col>
+        </Row>
         <Card.Subtitle className="mb-2 text-muted">Coordinator: {coordinator}</Card.Subtitle>
         <Card.Text>{description}</Card.Text>
-        <Button className="eventBtn">Events</Button>{" "}
-        <Button className="eventBtn">Sites</Button>{" "}
-        <Button className="eventBtn">Seedlings</Button>{" "}
-        <Button className="eventBtn">Edit Region</Button>
       </Card.Body>
     </Card>
   )

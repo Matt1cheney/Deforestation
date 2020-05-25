@@ -31,22 +31,4 @@
     text-decoration: underline;
 }
 
-#Nav {
-    background-color: transparent;
-    color: #FFF
-}
-.navbar-light .navbar-brand {
-    color: #FFFF
-}
-.navbar-light .navbar-nav .nav-link {
-    color: #FFFF;
-}
 
-.bottom {
-    text-align: center;
-    padding: 15px;
-}
-
-.volParagraph p{
- padding: 30px;
-}
