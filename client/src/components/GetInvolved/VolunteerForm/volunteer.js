@@ -4,8 +4,6 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import "../style.css";
-
-
 export default class Volunteer extends React.Component {
   constructor(props) {
     super(props);
