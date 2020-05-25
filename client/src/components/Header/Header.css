@@ -1,0 +1,32 @@
+.header {
+  display: grid;
+  background-color: transparent;
+  color: white;
+  justify-items: center;
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+.header h1 {
+  padding: 0 45px;
+  font-family: "Prata", serif;
+}
+
+.header .btn {
+  background-color: transparent;
+  border: transparent;
+  align-self: center;
+  font-family: "Montserrat", sans-serif;
+}
+
+.log {
+  float: right;
+  background: transparent;
+  border: none;
+  color: gray;
+  position: absolute;
+  top: 35px;
+  right: 20px;
+  font-family: "Montserrat", sans-serif;
+}
+
