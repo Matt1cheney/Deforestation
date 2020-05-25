@@ -1,0 +1,36 @@
+.header {
+    display: grid;
+    background-color: transparent;
+    color: white;
+    justify-items: center;
+    grid-template-columns: 1fr repeat(3, auto) 1fr;
+    grid-column-gap: 5px;
+
+}
+
+.header .btn {
+    background-color: transparent;
+    border: transparent;
+}
+
+.log {
+    float: right;
+    background: transparent;
+    border: none;
+    color: gray;
+}
+
+ul {
+    display: grid;
+    grid-template-columns: 1fr repeat(3, auto) 1fr;
+    grid-column-gap: 5px;
+    justify-items: center;
+  }
+  
+  btn:nth-child(1) { grid-column-start: 2; }
+  btn:nth-child(4) { margin-left: auto; }
+  
+  /* for demo only */
+  ul { padding: 0; margin: 0; list-style: none; }
+  li { padding: 5px; background: #aaa; }
+  p  { text-align: center; }

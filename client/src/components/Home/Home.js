@@ -1,15 +1,16 @@
 import React from "react";
 import "./Home.css";
 import Photo from "./Cards/Photo";
-import Navbar from "../Navbar/Navbar";
 import InfoCard from "./Cards/InfoCard";
 import InfoBlock from "./Cards/InfoBlock/InfoBlock";
 import Footer from "../../components/Footer/Footer";
+import Header from "../Header/Header";
 
 const Home = () => {
   return (
     <>
       <div className="style">
+    <Header />
         <div className="title">
           <h1>
             Reforestation is one of the biggest and cheapest ways to help combat
