@@ -1,7 +1,6 @@
 import React from "react";
 import "./Home.css";
 import Photo from "./Cards/Photo";
-import Navbar from "../Navbar/Navbar";
 
 
 
@@ -13,7 +12,6 @@ const Home = () => {
       <>
        <div className="style">
          <div className="title">
-      <Navbar />
            <h1>Reforestation is one of the biggest and cheapest ways to help 
              combat global warming.
            </h1>
