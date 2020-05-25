@@ -6,8 +6,10 @@ import Button from "react-bootstrap/Button";
 import "../style.css";
 
 
+
 const Volunteer = () => {
   return (
+    <>
     <Container className="volunteerForm">
       <Form>
         <Form.Row>
@@ -27,6 +29,7 @@ const Volunteer = () => {
         <Button variant="primary" type="submit">Submit</Button>
       </Form>
     </Container>
+    </>
   )
 }
 

@@ -8,17 +8,17 @@ const SideMenu = () => {
 
   return (
     <>
-      <DropdownButton id="dropdown-basic-button" title="Menu" className="sideMenuDropdown">
+      <DropdownButton id="dropdown-basic-button" title="Menu" className="sideMenuDropdown" variant="dark">
         <Dropdown.Item href="/dashboard/regions" className="sideMenuItems">Regions</Dropdown.Item>
-        <Dropdown.Item href="#/action-2" className="sideMenuItems">Events</Dropdown.Item>
-        <Dropdown.Item href="#/action-3" className="sideMenuItems">Sites</Dropdown.Item>
-        <Dropdown.Item href="#/action-3" className="sideMenuItems">Seedlings</Dropdown.Item>
+        <Dropdown.Item href="/dashboard/sites" className="sideMenuItems">Sites</Dropdown.Item>
+        <Dropdown.Item href="/dashboard/events" className="sideMenuItems">Events</Dropdown.Item>
+        <Dropdown.Item href="/dashboard/source" className="sideMenuItems">Source</Dropdown.Item>
       </DropdownButton>
       <div className="sideMenu">
-        <Button href="/dashboard/regions" block>Regions</Button>
-        <Button block>Sites</Button>
-        <Button block>Events</Button>
-        <Button block>Seedlings</Button>
+        <Button href="/dashboard/regions" className="btn" variant="dark" block>Regions</Button>
+        <Button href="/dashboard/sites" className="btn" variant="dark" block>Sites</Button>
+        <Button href="/dashboard/events" className="btn" variant="dark" block>Events</Button>
+        <Button href="/dashboard/source" variant="dark" block>Source</Button>
       </div>
     </>
   )

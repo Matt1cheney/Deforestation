@@ -11,7 +11,7 @@ import Nav from "react-bootstrap/Nav";
 const NavComp = () => {
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" bg="light">
+      <Navbar collapseOnSelect expand="lg" bg="light" >
         <Navbar.Brand href="/">ReforestNation</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -23,7 +23,7 @@ const NavComp = () => {
             </NavDropdown>
             <NavDropdown title="Get Info" id="collasible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">About Us</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Reforestation</NavDropdown.Item>
+              <NavDropdown.Item href="/reforestation">Reforestation</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Contact</NavDropdown.Item>
             </NavDropdown>
           </Nav>

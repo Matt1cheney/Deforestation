@@ -16,31 +16,37 @@
     "status": "pending contract",
     "notes": [
       {
+        "title": "Lorem ipsum",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         "author": "Bill Smith"
       },
       {
+        "title": "Lorem ipsum",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         "author": "Bill Smith"
       },
       {
+        "title": "Lorem ipsum",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         "author": "Bill Smith"
       }
     ],
     "coordinator": "Bill Smith",
-    "profile image": "https://via.placeholder.com/150",
+    "profile_image": "https://via.placeholder.com/200",
     "contract": null,
-    "documents": [],
-    "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
-    "planting_targets": [
+    "documents": [
       {
-        "capactiy": "300",
-        "tree_type": ["ash", "pine", "maple", "oak"],
+        "title": "title",
+        "file": "file"
+      }
+    ],
+    "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+    "planting_targets": {
+        "capacity": "300",
+        "tree_type": ["Ash", "Pine", "Maple", "Oak"],
         "location": "back of property",
         "number_planted": "250"
-      }
-    ]
+      } 
   },
   {
     "name": "Windy Hills",
@@ -72,18 +78,21 @@
       }
     ],
     "coordinator": "Bill Smith",
-    "profile image": "https://via.placeholder.com/150",
+    "profile_image": "https://via.placeholder.com/200",
     "contract": null,
-    "documents": [],
-    "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
-    "planting_targets": [
+    "documents": [
       {
-        "capactiy": "300",
-        "tree_type": ["ash", "pine", "maple", "oak"],
+        "title": "title",
+        "file": "file"
+      }
+    ],
+    "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+    "planting_targets": {
+        "capacity": "300",
+        "tree_type": ["Ash", "Pine", "Maple", "Oak"],
         "location": "back of property",
         "number_planted": "250"
-      }
-    ]
+      } 
   },
   {
     "name": "Windy Hills",
@@ -115,17 +124,20 @@
       }
     ],
     "coordinator": "Bill Smith",
-    "profile image": "https://via.placeholder.com/150",
+    "profile_image": "https://via.placeholder.com/200",
     "contract": null,
-    "documents": [],
-    "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
-    "planting_targets": [
+    "documents": [
       {
-        "capactiy": "300",
-        "tree_type": ["ash", "pine", "maple", "oak"],
+        "title": "title",
+        "file": "file"
+      }
+    ],
+    "images": ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"],
+    "planting_targets": {
+        "capacity": "300",
+        "tree_type": ["Ash", "Pine", "Maple", "Oak"],
         "location": "back of property",
         "number_planted": "250"
-      }
-    ]
+      } 
   }
 ]
