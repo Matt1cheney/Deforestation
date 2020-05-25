@@ -9,12 +9,15 @@ import SiteDisplay from "./Sites/SiteDisplay/SiteDisplay";
 import EventDisplay from "./Events/EventDisplay/EventDisplay";
 import SourceDisplay from "./Seedlings/SourceDisplay/SourceDisplay";
 import "./assets/style.css";
+import Navbar from "../Navbar/Navbar";
+
 
 
 const Dashboard = () => {
 
   return (
     <>
+    <Navbar />
       <Router>
         <Container fluid>
         <Row>

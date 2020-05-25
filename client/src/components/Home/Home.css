@@ -1,0 +1,36 @@
+.style {
+    background-image: url('../../images/Home.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.title h1{
+    text-indent: 30px;
+    width: 30%;
+    position: absolute;
+    bottom: 50vh;
+    left: 18vh;
+    font-size: 35px;
+    color: #FFFF;
+    font-family: 'Bebas Neue', cursive;
+      
+}
+
+.middle {
+    text-align: center;
+    padding: 15px;
+}
+
+#Nav {
+    background-color: transparent;
+    color: #FFF
+}
+.navbar-light .navbar-brand {
+    color: #FFFF
+}
+.navbar-light .navbar-nav .nav-link {
+    color: #FFFF;
+}
