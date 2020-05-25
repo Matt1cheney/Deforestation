@@ -6,7 +6,28 @@
     "end_time": "2pm",
     "coordinator": "Bill Smith",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    "planters": ["Dan Delong", "Joe Field", "Amanda Adams", "Nancy Meyers"]
+    "planters": [
+      {
+        "name": "Dan Delong",
+        "email": "dan@gmail.com",
+        "phone": "(603)554-5392"
+      },
+      {
+        "name": "Joe Field",
+        "email": "joe@gmail.com",
+        "phone": "(603)554-5392"
+      },
+      {
+        "name": "Amanda Adams",
+        "email": "amanda@gmail.com",
+        "phone": "(603)554-5392"
+      },
+      {
+        "name": "Nancy Meyers",
+        "email": "nancy@gmail.com",
+        "phone": "(603)554-5392"
+      }
+    ]
   },
   {
     "site": "Windy Hills",
@@ -15,7 +36,28 @@
     "end_time": "2pm",
     "coordinator": "Bill Smith",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    "planters": ["Dan Delong", "Joe Field", "Amanda Adams", "Nancy Meyers"]
+    "planters": [
+      {
+        "name": "Dan Delong",
+        "email": "dan@gmail.com",
+        "phone": "(603)554-5392"
+      },
+      {
+        "name": "Joe Field",
+        "email": "joe@gmail.com",
+        "phone": "(603)554-5392"
+      },
+      {
+        "name": "Amanda Adams",
+        "email": "amanda@gmail.com",
+        "phone": "(603)554-5392"
+      },
+      {
+        "name": "Nancy Meyers",
+        "email": "nancy@gmail.com",
+        "phone": "(603)554-5392"
+      }
+    ]
   },
   {
     "site": "Windy Hills",
@@ -24,6 +66,27 @@
     "end_time": "2pm",
     "coordinator": "Bill Smith",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    "planters": ["Dan Delong", "Joe Field", "Amanda Adams", "Nancy Meyers"]
+    "planters": [
+      {
+        "name": "Dan Delong",
+        "email": "dan@gmail.com",
+        "phone": "(603)554-5392"
+      },
+      {
+        "name": "Joe Field",
+        "email": "joe@gmail.com",
+        "phone": "(603)554-5392"
+      },
+      {
+        "name": "Amanda Adams",
+        "email": "amanda@gmail.com",
+        "phone": "(603)554-5392"
+      },
+      {
+        "name": "Nancy Meyers",
+        "email": "nancy@gmail.com",
+        "phone": "(603)554-5392"
+      }
+    ]
   }
 ]
