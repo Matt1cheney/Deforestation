@@ -28,7 +28,6 @@ export class Photo extends React.Component {
               <Col xs={6} md={4}>
                 <a href="/volunteer"><Image src={Forest} />
                 <p className="centered">Resources?</p></a>
-
               </Col>
             </Row>
           </Container>
