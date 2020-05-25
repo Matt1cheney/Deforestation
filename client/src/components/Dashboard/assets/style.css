@@ -1,0 +1,37 @@
+.dashboardContentView {
+  overflow: scroll;
+  background-image: url("./treeview.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 100vh;
+  max-height: 100vh;
+}
+
+.dashboardCard {
+  margin-top: 1.5em;
+  margin-bottom: .75em;
+  background-color: rgba(255, 255, 255, 0.94);
+}
+
+.btn {
+  background-color: #356d65;
+  border-color: #356d65;
+}
+
+.btn:focus {
+  background-color: #356d65;
+}
+
+.btn:hover {
+  background-color: #264e48;
+}
+
+.btn:active {
+  background-color: #356d65;
+}
+
+.fas {
+  margin-right: 1em;
+}
