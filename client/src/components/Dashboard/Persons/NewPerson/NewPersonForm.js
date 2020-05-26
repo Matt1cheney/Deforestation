@@ -81,8 +81,7 @@ const PersonForm = () => {
         {["radio"].map((type) => (
           <div key={`inline-${type}`} className="mb-3" >
             <Form.Check inline label="Coordinator" type={type} id={`inline-${type}-Coordinator`} name="role" value="Coordinator" onChange={handleChange} />
-            <Form.Check inline label="Admin" type={type} id={`inline-${type}-Admin`} name="role" value="Admin" onChange={handleChange} />
-            <Form.Check inline label="Volunteer" type={type} id={`inline-${type}-Volunteer`} name="role" value="Volunteer" defaultChecked onChange={handleChange} />
+            <Form.Check inline label="Admin" type={type} id={`inline-${type}-Admin`} name="role" value="Admin" defaultChecked onChange={handleChange} />
           </div>
         ))}
       </Form.Group>
