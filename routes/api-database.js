@@ -22,10 +22,12 @@ async function createPerson(req, res) {
 }
 
 async function getAllPerson(req, res) {    
-    const id = req.params.id;
+    // const id = req.params.id;
 
     try {
-        const data = await PersonModel.find();
+        const data = await PersonModel.find().sort({
+            createdAt: -1,
+        });
         if (!data) 
             res.status(404).json({ message: `Cannot FIND Person with name=${id}. Maybe Person was not found!` });
         else res.json(data);
