@@ -1,0 +1,70 @@
+.grid1 {
+  display: grid;
+  grid-template-columns: 3fr 6fr 1fr 5fr 10fr 2fr;
+  grid-template-rows: 100px auto 15px auto 400px;
+}
+
+.info p {
+  color: black;
+}
+
+.img1 {
+  background: url("../../images/Plant.jpeg");
+  background-size: cover;
+  grid-column: 1 / span 2;
+  grid-row: 2 / span 3;
+}
+
+.img2 {
+  background: url("../../images/Plant.jpeg");
+  background-size: cover;
+  grid-column: 2 / span 2;
+  grid-row: 3 / span 3;
+}
+
+.img3 {
+  background: url("../../images/Plant.jpeg");
+  background-size: cover;
+  grid-column: 5 / span 2;
+  grid-row: 4 / span 2;
+  opacity: 0.6;
+}
+
+.strapline {
+  grid-column: 3 / span 3;
+  grid-row: 2 / span 1;
+}
+
+.cta-wrapper {
+  grid-column: 4 / span 2;
+  grid-row: 4 / span 2;
+  align-self: center;
+}
+
+body {
+  color: #292929;
+  font: 1em/1.7 "Open sans", sans-serif;
+}
+
+blockquote {
+  font: italic 1.1em/2 "Playfair Display", serif;
+  margin: 0 0 2em 0;
+}
+
+.cta h1 {
+  font: bold 6em/1 "Playfair Display", serif;
+  margin: 0 0 20px 0;
+  position: relative;
+}
+
+.button {
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  background: #292929;
+  padding: 0.8em 1.5em;
+}
+
+.button:hover {
+  background: black;
+}

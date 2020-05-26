@@ -1,7 +1,6 @@
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
-import SplitButton from "react-bootstrap/SplitButton";
 import "./Header.css";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 
@@ -25,7 +24,7 @@ export default class Header extends React.Component {
               <Dropdown.Item href="#/action-3">Landowner</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          <h1>ReforestNation</h1>
+         <a href="/"><h1>ReforestNation</h1></a>
           <Dropdown as={ButtonGroup}>
             <Button variant="success" href="/information">Get Information</Button>
             <Dropdown.Toggle
