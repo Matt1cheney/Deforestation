@@ -8,7 +8,10 @@ import RegionDisplay from "./Regions/RegionDisplay/RegionDisplay";
 import SiteDisplay from "./Sites/SiteDisplay/SiteDisplay";
 import EventDisplay from "./Events/EventDisplay/EventDisplay";
 import SourceDisplay from "./Seedlings/SourceDisplay/SourceDisplay";
+import PersonsDisplay from "./Persons/PersonsDisplay/PersonsDisplay";
 import RegionForm from "./Regions/NewRegionForm/RegionForm";
+import SiteForm from "./Sites/NewSiteForm/SiteForm";
+import PersonForm from "./Persons/NewPerson/NewPersonForm";
 import "./assets/style.css";
 import Navbar from "../Navbar/Navbar";
 
@@ -39,8 +42,17 @@ const Dashboard = () => {
               <Route exact path="/dashboard/source">
                 <SourceDisplay />
               </Route>
+              <Route exact path="/dashboard/persons">
+                <PersonsDisplay />
+              </Route>
               <Route exact path="/dashboard/newRegion">
                 <RegionForm />
+              </Route>
+              <Route exact path="/dashboard/newSite">
+                <SiteForm />
+              </Route>
+              <Route exact path="/dashboard/newPerson">
+                <PersonForm />
               </Route>
             </Switch>
           </Col>
