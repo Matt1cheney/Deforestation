@@ -4,7 +4,8 @@ const Schema = mongoose.Schema
 const EventSchema = new Schema({
     site: {
         type: Schema.Types.ObjectId,
-        ref: "Site"
+        ref: "Site",
+        default: null
     },
     startDate: {
         type: Date,
@@ -20,7 +21,11 @@ const EventSchema = new Schema({
         default: null
     },
     description: String,
-    volunteer: [{ type: String }]
+    volunteers: [{
+        type: Schema.Types.ObjectId,
+        ref: "Person",
+        default: null
+    }]
 });
 
 module.exports = mongoose.model("Event", EventSchema, "Events");

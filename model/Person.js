@@ -11,7 +11,10 @@ const PersonSchema = new Schema({
     email: String,
     phone: Number,
     notes: String,
-    role: String
+    role: {
+        type: String,
+        default: "Volunteer"
+    }
 });
 
 module.exports = mongoose.model("Person", PersonSchema, "Persons");
