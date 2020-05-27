@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -8,13 +8,41 @@ import RegionDisplay from "./Regions/RegionDisplay/RegionDisplay";
 import SiteDisplay from "./Sites/SiteDisplay/SiteDisplay";
 import EventDisplay from "./Events/EventDisplay/EventDisplay";
 import SourceDisplay from "./Seedlings/SourceDisplay/SourceDisplay";
+import PersonsDisplay from "./Persons/PersonsDisplay/PersonsDisplay";
 import RegionForm from "./Regions/NewRegionForm/RegionForm";
+import SiteForm from "./Sites/NewSiteForm/SiteForm";
+import PersonForm from "./Persons/NewPerson/NewPersonForm";
+import EventForm from "./Events/NewEvent/NewEventForm";
 import "./assets/style.css";
 import Navbar from "../Navbar/Navbar";
+import API from "../../utils/API";
 
 
 
 const Dashboard = () => {
+
+  const [regionState, setRegionState] = useState({
+    regions: []
+  });
+  const [personsState, setPersonsState] = useState({
+    persons: []
+  });
+  const [sitesState, setSitesState] = useState({
+    sites: []
+  });
+
+  useEffect(() => {
+    
+    async function fetchData() {
+      await API.getRegions().then(res => setRegionState({ ...regionState, regions: res.data }));
+      await API.getPersons().then(res => setPersonsState({ ...personsState, persons: res.data}));
+      await API.getSites().then(res => setSitesState({ ...sitesState, sites: res.data}));
+    }
+    fetchData()
+
+  }, [])
+
+  console.log(sitesState)
 
   return (
     <>
@@ -28,10 +56,10 @@ const Dashboard = () => {
           <Col xs={12} md={9} className="dashboardContentView">
             <Switch>
               <Route exact path="/dashboard/regions">
-                <RegionDisplay />
+                <RegionDisplay regions={regionState.regions}/>
               </Route>
               <Route exact path="/dashboard/sites">
-                <SiteDisplay />
+                <SiteDisplay sites={sitesState.sites}/>
               </Route>
               <Route exact path="/dashboard/events">
                 <EventDisplay />
@@ -39,8 +67,20 @@ const Dashboard = () => {
               <Route exact path="/dashboard/source">
                 <SourceDisplay />
               </Route>
+              <Route exact path="/dashboard/persons">
+                <PersonsDisplay persons={personsState.persons}/>
+              </Route>
               <Route exact path="/dashboard/newRegion">
-                <RegionForm />
+                <RegionForm persons={personsState.persons}/>
+              </Route>
+              <Route exact path="/dashboard/newSite">
+                <SiteForm regions={regionState.regions} persons={personsState.persons}/>
+              </Route>
+              <Route exact path="/dashboard/newPerson">
+                <PersonForm regions={regionState.regions}/>
+              </Route>
+              <Route exact path="/dashboard/newEvent">
+                <EventForm sites={sitesState.sites} persons={personsState.persons}/>
               </Route>
             </Switch>
           </Col>

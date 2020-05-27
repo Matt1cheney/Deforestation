@@ -1,12 +1,12 @@
 import React from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import regions from "../../../../jsonData/regions.json";
+// import regions from "../../../../jsonData/regions.json";
 import RegionCard from "../RegionCard/RegionCard";
 import CreateNew from "../../CreateNew/CreateNew";
 
 
-function RegionDisplay() {
+function RegionDisplay({regions}) {
 
   const admin = true;
 
@@ -16,7 +16,6 @@ function RegionDisplay() {
     path: "/dashboard/newRegion"
   }
 
-  console.log(regions)
   return (
     <>
       { admin &&  <CreateNew obj={createObj} />}
