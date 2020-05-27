@@ -9,7 +9,7 @@ import "../style.css";
 const RegionCard = ({ region }) => {
 
 
-  const { name, coordinator, description } = region;
+  const { name, coordinator, descriptor } = region;
 
   return (
     <Card className="dashboardCard">
@@ -24,7 +24,7 @@ const RegionCard = ({ region }) => {
           </Col>
         </Row>
         <Card.Subtitle className="mb-2 text-muted">Coordinator: {coordinator}</Card.Subtitle>
-        <Card.Text>{description}</Card.Text>
+        <Card.Text>{descriptor}</Card.Text>
       </Card.Body>
     </Card>
   )

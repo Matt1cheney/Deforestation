@@ -8,22 +8,29 @@ const SiteSchema = new Schema({
         ref: "Region",
         default: null
     },
-    owner: String,
-    address: String,
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: "Person",
+        default: null
+    },
+    street: String,
+    city: String,
+    state: String,
+    zip: String,
     latitude: Number,
     longitude: Number,
-    status: Boolean,
-    notes: String,
+    status: String,
+    notes: [{ type: String}],
     coordinator: {
         type: Schema.Types.ObjectId,
-        ref: "Region",
+        ref: "Person",
         default: null
     },
     profileImage: String,
     contract: String,
-    document: String,
+    document: [{ type: String }],
     additionalImages: [{ type: String }],
-    plantingTarget: String 
+    plantingTarget: [{type: String}] 
 });
 
 module.exports = mongoose.model("Site", SiteSchema, "Sites");

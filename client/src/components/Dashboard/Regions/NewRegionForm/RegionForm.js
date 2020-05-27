@@ -2,43 +2,60 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
+import API from "../../../../utils/API";
 
 
 
-const RegionForm = () => {
+const RegionForm = ({ persons }) => {
+
+  const coordinators = persons.filter((data) => {
+    return data.role.toLowerCase() === "coordinator" && data.region === null
+  })
+
   const [formState, setFormState] = useState({
-    region: "",
-    coordinator: "",
-    description: ""
+    name: "",
+    coordinator: null,
+    descriptor: ""
   })
 
   const handleChange = (event) => {
     const { name, value } = event.target
+
+    if( value === "none") {
+      setFormState({
+        ...formState,
+        [name]: null
+      })
+      return
+    }
+
     setFormState({
       ...formState,
       [name]: value
     })
   }
 
+  console.log(formState)
+
   const handleSubmit = (event) => {
     event.preventDefault()
 
-    if(formState.region === "" || formState.coordinator === "" || formState.description === "") {
+    if (formState.name === "" || formState.descriptor === "") {
       alert("Looks like you forgot one!")
       return
     }
 
-    console.log(formState) 
+    API.createRegion(formState).then(res => console.log(res.data)).catch(err => console.log(err))
 
     setFormState({
       ...formState,
-      region: "",
-      coordinator: "",
-      description: ""
+      name: "",
+      coordinator: null,
+      descriptor: ""
     })
   }
 
-
+  console.log(formState)
   return (
     <Container className="formContainer">
       <Form onSubmit={handleSubmit}>
@@ -48,19 +65,19 @@ const RegionForm = () => {
           <Form.Control
             type="text"
             placeholder="Enter region name"
-            name="region"
-            value={formState.region}
+            name="name"
+            value={formState.name}
             onChange={handleChange} />
         </Form.Group>
 
-        <Form.Group controlId="formCoordinator">
+        <Form.Group controlId="exampleForm.ControlSelect1">
           <Form.Label>Coordinator</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter coordinator name"
-            name="coordinator"
-            value={formState.coordinator}
-            onChange={handleChange} />
+          <Form.Control as="select" name="coordinator" onChange={handleChange}>
+            <option>none</option>
+            {coordinators.map((person, index) => (
+              <option key={index} value={person._id}>{person.name}</option>
+            ))}
+          </Form.Control>
         </Form.Group>
 
         <Form.Group controlId="formDescription">
@@ -68,8 +85,8 @@ const RegionForm = () => {
           <Form.Control
             type="text"
             placeholder="Enter brief description"
-            name="description"
-            value={formState.description}
+            name="descriptor"
+            value={formState.descriptor}
             onChange={handleChange} />
         </Form.Group>
         <Button variant="dark" className="btn" type="submit">
