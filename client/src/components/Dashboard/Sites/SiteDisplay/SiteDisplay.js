@@ -1,12 +1,12 @@
 import React from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import sites from "../../../../jsonData/sites.json";
+// import sites from "../../../../jsonData/sites.json";
 import SiteCard from "../SiteCard/SiteCard";
 import CreateNew from "../../CreateNew/CreateNew";
 
 
-function SiteDisplay() {
+function SiteDisplay({sites}) {
 
   const admin = true;
   const coordinator = false;
