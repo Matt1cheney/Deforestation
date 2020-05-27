@@ -28,7 +28,7 @@ const NavComp = () => {
             </NavDropdown>
           </Nav>
           <Nav>
-            <Nav.Link href="/dashboard">Login</Nav.Link>
+            <Nav.Link href="/logout">Logout</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
