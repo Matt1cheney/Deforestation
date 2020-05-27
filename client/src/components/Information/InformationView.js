@@ -2,38 +2,34 @@ import React from "react";
 import Footer from "../../components/Footer/Footer";
 import Header from "../Header/Header";
 import "./InformationView.css";
+import ReforestationMap from "../Reforestation/ReforestationMap";
 
 const Home = () => {
   return (
     <>
       <div className="info">
         <Header />
-        <section className="grid1">
-          <div class="img1"></div>
-
-          <div class="img2"></div>
-
-          <div class="img3"></div>
-
-          <div className="strapline">
-            <blockquote>
-              "The quik lazy brown fox jumped over the loh"
-            </blockquote>
-          </div>
-          <div class="cta-wrapper">
-            <div class="cta">
-              <h1>Gibraltar</h1>
+        <section className="main">
+        <div className="backgroundImage"></div>
+        div
+        </section>
+        <section className="grid2">
+          <div className="parent">
+            <div className="div1">
+              <h2>About Us</h2>
+            </div>
+            <div className="div2">
+              <h2>About Us</h2>
+            </div>
+            <div className="div3"></div>
+            <div className="div4">
               <p>
-                Introducing 212/SE, our most powerful and agile subwoofer,
-                designed exclusively for larger systems and rooms to allow
-                superior state of the art speakers to spring to full voice.
+                hello lorem ipsumn lesdnc the qwuiacj fr[brin foix jumoed ovet={" "}
               </p>
-              <a class="button" href="/">
-                View Product Details →
-              </a>
             </div>
           </div>
         </section>
+        <ReforestationMap />
         <Footer />
       </div>
     </>

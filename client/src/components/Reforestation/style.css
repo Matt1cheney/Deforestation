@@ -6,18 +6,18 @@ h1 {
 .mapdiv{
     flex: 1;
     margin: 0 10rem;
-    background-color: deepskyblue;
+    background-color: transparent;
 }
 
 .mapdiv path {
-    fill: green;
-    stroke: #dece0c;
+    fill: rgb(54, 65, 54);
+    stroke: transparent;
     stroke-width:2px;
     transition: fill 0.3s;
 }
 
 .mapdiv :hover {
-    fill:yellow;
+    fill:rgb(199, 199, 194);
 }
 
 .stateMapRegion {
