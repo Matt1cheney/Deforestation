@@ -29,8 +29,8 @@ const SiteCard = ({ site }) => {
           <Col md={7} lg={8} xl={9}>
             <Row>
               <Col sm={12} md={6} lg={4}>
-                <h6><b>Region:</b> {region} </h6>
-                <h6><b>Owner:</b> {owner} </h6>
+                <h6><b>Region:</b> {region.name} </h6>
+                <h6><b>Owner:</b> {owner.name} </h6>
                 {" "}
                 <p><b>Address:</b> <br></br> {street} <br></br> {city}, {state} <br></br> {zip} </p>
               </Col>

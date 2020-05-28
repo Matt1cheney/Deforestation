@@ -47,8 +47,6 @@ const Dashboard = () => {
 
   }, [])
 
-  console.log(eventState)
-
   return (
     <>
     <Navbar />
