@@ -1,49 +1,68 @@
-.main {
+.mainGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr) 1.25fr 1fr;
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(2, 1fr) .5fr 1fr .25fr 1fr;
+  grid-auto-rows: minmax(100px, auto);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
+  padding-bottom: 6em;
+}
+
+.headerDiv {
+  background-color: grey;
 }
 
 .backgroundImage {
-  grid-area: 1 / 1 / 6 / 6;
+  grid-area: 1 / 1 / 6 / 4;
+  background-image: url("../../images/Ferns.jpeg");
   background-color: lightslategray;
-}
-.div2 {
-  grid-area: 2 / 2 / 5 / 4;
-}
-.div3 {
-  grid-area: 2 / 4 / 5 / 5;
+  background-size: cover;
 }
 
-.parent {
+.blur {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+.textBlock {
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  grid-area: 1 / 4 / 7 / 7;
+  font-size: 20px;
+  padding: 4em;
+}
+.secondaryImage {
+  grid-area: 2 / 3 / 3 / 5;
+  background-color: white;
+}
+
+.about h1 {
+  text-align: center;
+}
+
+.grid2 {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(2, 1fr) 4fr 1fr 0.25fr;
+  grid-template-columns: 1fr .5fr 1fr .5fr 1fr 1fr;
+  grid-auto-rows: minmax(100px, auto);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
+  padding-bottom: 6em;
+}
+.div1 {
+  background-image: url("../../images/Xmas.jpeg");
+  grid-area: 1 / 4 / 7 / 7;
 }
 
-.div1 {
-  grid-area: 1 / 4 / 4 / 6;
-  background: url("../../images/Plant.jpeg");
-}
 .div2 {
   grid-area: 2 / 3 / 3 / 5;
-  background-color: blanchedalmond;
-  align-self: center;
-  align-content: center;
-}
-.div3 {
-  grid-area: 5 / 2 / 6 / 5;
-  background-color: black;
-}
-.div4 {
-  grid-area: 2 / 1 / 4 / 4;
+  background-color: white;
 }
 
-.div2 h2 {
-  align-content: center;
-  text-align: center;
+.div4 {
+  grid-area: 1 / 1 / 7 / 4;
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  font-size: 20px;
+  padding-left: 4em;
 }
