@@ -27,7 +27,7 @@ async function getAllPerson(req, res) {
     try {
         const data = await PersonModel.find().sort({
             createdAt: -1,
-        });
+        }).populate("region");
         if (!data) 
             res.status(404).json({ message: `Cannot FIND Person with name=${id}. Maybe Person was not found!` });
         else res.json(data);
@@ -43,7 +43,7 @@ async function findPerson(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await PersonModel.findOne({ _id:id })
+        const data = await PersonModel.findOne({ _id:id }).populate("region")
         if (!data) 
             res.status(404).json({ message: `Cannot FIND Person with _id=${id}. Maybe Person was not found!` });
         else res.json(data);
@@ -98,7 +98,7 @@ async function getAllRegion(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await RegionModel.find();
+        const data = await RegionModel.find().populate("coordinator");
         if (!data) 
             res.status(404).json({ message: `Cannot FIND Region with name=${id}. Maybe Region was not found!` });
         else res.json(data);
@@ -114,7 +114,7 @@ async function findRegion(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await RegionModel.findOne({ _id:id })
+        const data = await RegionModel.findOne({ _id:id }).populate("coordinator");
         if (!data) 
             res.status(404).json({ message: `Cannot FIND Region with _id=${id}. Maybe Region was not found!` });
         else res.json(data);
@@ -169,7 +169,7 @@ async function getAllSite(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await SiteModel.find();
+        const data = await SiteModel.find().populate("region").populate("owner").populate("coordinator");
         if (!data) 
             res.status(404).json({ message: `Cannot FIND Site with name=${id}. Maybe Site was not found!` });
         else res.json(data);
@@ -185,7 +185,7 @@ async function findSite(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await SiteModel.findOne({ _id:id })
+        const data = await SiteModel.findOne({ _id:id }).populate("region").populate("owner").populate("coordinator");
         if (!data) 
             res.status(404).json({ message: `Cannot FIND Site with _id=${id}. Maybe Site was not found!` });
         else res.json(data);
@@ -240,7 +240,7 @@ async function getAllSource(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await SourceModel.find();
+        const data = await SourceModel.find().populate("region").populate("coordinator").populate("intendSite");
         if (!data) 
             res.status(404).json({ message: `Cannot FIND Source with name=${id}. Maybe Source was not found!` });
         else res.json(data);
@@ -256,7 +256,7 @@ async function findSource(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await SourceModel.findOne({ _id:id })
+        const data = await SourceModel.findOne({ _id:id }).populate("region").populate("coordinator").populate("intendSite");
         if (!data) 
             res.status(404).json({ message: `Cannot FIND Source with _id=${id}. Maybe Source was not found!` });
         else res.json(data);
@@ -311,7 +311,7 @@ async function getAllEvent(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await EventModel.find();
+        const data = await EventModel.find().populate("site").populate("coordinator").populate("volunteers");
         if (!data) 
             res.status(404).json({ message: `Cannot FIND Event with name=${id}. Maybe Event was not found!` });
         else res.json(data);
@@ -327,7 +327,7 @@ async function findEvent(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await EventModel.findOne({ _id:id })
+        const data = await EventModel.findOne({ _id:id }).populate("site").populate("coordinator").populate("volunteers");
         if (!data) 
             res.status(404).json({ message: `Cannot FIND Event with _id=${id}. Maybe Event was not found!` });
         else res.json(data);

@@ -23,7 +23,7 @@ const RegionCard = ({ region }) => {
             <Button className="btn align-right" variant="dark">Delete Region</Button>
           </Col>
         </Row>
-        <Card.Subtitle className="mb-2 text-muted">Coordinator: {coordinator}</Card.Subtitle>
+        <Card.Subtitle className="mb-2 text-muted">Coordinator: {coordinator.name}</Card.Subtitle>
         <Card.Text>{descriptor}</Card.Text>
       </Card.Body>
     </Card>
