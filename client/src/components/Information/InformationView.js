@@ -7,10 +7,10 @@ import ReforestationMap from "../Reforestation/ReforestationMap";
 const Home = () => {
   return (
     <>
-      <div className="info">
         <div className="headerDiv">
           <Header />
         </div>
+      <div className="info">
         <section className="mainGrid">
           <div className="backgroundImage">
             <div className="blur"></div>
@@ -33,6 +33,9 @@ const Home = () => {
             </p>
           </div>
         </section>
+        <section className="bar">
+          <div className="line"></div>
+        </section>
         <section className="grid2">
           <div className="div1"></div>
           <div className="div2">
@@ -53,6 +56,9 @@ const Home = () => {
               1.10.32 y 1.10.33 de "de Finnibus Bonorum et Malorum"{" "}
             </p>
           </div>
+        </section>
+        <section className="bar">
+          <div className="line"></div>
         </section>
         <ReforestationMap />
         <Footer />
