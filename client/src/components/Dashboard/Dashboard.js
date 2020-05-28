@@ -11,7 +11,8 @@ import SourceDisplay from "./Seedlings/SourceDisplay/SourceDisplay";
 import PersonsDisplay from "./Persons/PersonsDisplay/PersonsDisplay";
 import RegionForm from "./Regions/NewRegionForm/RegionForm";
 import SiteForm from "./Sites/NewSiteForm/SiteForm";
-import PersonForm from "./Persons/NewPerson/NewPersonForm";
+import AdminForm from "./Persons/NewPerson/NewAdminForm";
+import UserForm from "./Persons/NewPerson/NewUserForm";
 import EventForm from "./Events/NewEvent/NewEventForm";
 import "./assets/style.css";
 import Navbar from "../Navbar/Navbar";
@@ -76,8 +77,11 @@ const Dashboard = () => {
               <Route exact path="/dashboard/newSite">
                 <SiteForm regions={regionState.regions} persons={personsState.persons}/>
               </Route>
+              <Route exact path="/dashboard/newAdmin">
+                <AdminForm regions={regionState.regions}/>
+              </Route>
               <Route exact path="/dashboard/newPerson">
-                <PersonForm regions={regionState.regions}/>
+                <UserForm regions={regionState.regions}/>
               </Route>
               <Route exact path="/dashboard/newEvent">
                 <EventForm sites={sitesState.sites} persons={personsState.persons}/>
