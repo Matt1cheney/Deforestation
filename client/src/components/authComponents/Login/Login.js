@@ -1,5 +1,5 @@
 import React, { useCallback, useContext } from "react";
-import app from "../auth/baseauth";
+import app from "../userAuth/baseAuth";
 import { AuthContext } from "../userAuth/Auth";
 import { withRouter, Redirect } from "react-router";
 import Form from "react-bootstrap/Form";
@@ -22,11 +22,11 @@ const Login = ({ history }) => {
     [history]
   );
 
-  const { currentUser } = useContext(AuthContext);
+  // const { currentUser } = useContext(AuthContext);
 
-  if (currentUser) {
-    return <Redirect to="/" />;
-  }
+  // if (currentUser) {
+  //   return <Redirect to="/" />;
+  // }
 
   return (
     <Form onSubmit={handleLogin} className="formContainer">
