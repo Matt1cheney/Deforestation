@@ -33,6 +33,9 @@ const Dashboard = () => {
   const [sitesState, setSitesState] = useState({
     sites: []
   });
+  const [eventState, setEventState] = useState({
+    events: []
+  });
 
   useEffect(() => {
     
@@ -40,12 +43,13 @@ const Dashboard = () => {
       await API.getRegions().then(res => setRegionState({ ...regionState, regions: res.data }));
       await API.getPersons().then(res => setPersonsState({ ...personsState, persons: res.data}));
       await API.getSites().then(res => setSitesState({ ...sitesState, sites: res.data}));
+      await API.getEvents().then(res => setEventState({ ...eventState, events: res.data}));
     }
     fetchData()
 
   }, [])
 
-  console.log(sitesState)
+  console.log(eventState)
 
   return (
     <>
@@ -68,7 +72,7 @@ const Dashboard = () => {
                 <SiteDisplay sites={sitesState.sites}/>
               </Route>
               <Route exact path="/dashboard/events">
-                <EventDisplay />
+                <EventDisplay events={eventState.events}/>
               </Route>
               <Route exact path="/dashboard/source">
                 <SourceDisplay />

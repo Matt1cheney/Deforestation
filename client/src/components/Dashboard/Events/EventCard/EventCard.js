@@ -12,11 +12,11 @@ const EventCard = ({ event }) => {
   const {
     site,
     date,
-    start_time,
-    end_time,
+    startTime,
+    endTime,
     coordinator,
     description,
-    planters
+    volunteers
   } = event;
 
   return (
@@ -31,12 +31,12 @@ const EventCard = ({ event }) => {
           </Col>
         </Row>
         <Card.Subtitle className="mb-2 text-muted">{date}</Card.Subtitle>
-        <Card.Subtitle className="mb-2 text-muted">{start_time}-{end_time}</Card.Subtitle>
+        <Card.Subtitle className="mb-2 text-muted">{startTime}-{endTime}</Card.Subtitle>
         <Card.Subtitle className="mb-2 text-muted">Coordinator: {coordinator}</Card.Subtitle>
         <Card.Text>{description}</Card.Text>
         <Card.Subtitle className="mb-2">Volunteers:</Card.Subtitle>
         <Row>
-          {planters.map((person, index) => (
+          {volunteers !== null && volunteers.map((person, index) => (
             <Col lg={4} s={6} xs={12} key={index}>
               <Card className="volunteerCard">
                 <Card.Body>
