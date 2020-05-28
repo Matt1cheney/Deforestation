@@ -24,7 +24,7 @@ const EventCard = ({ event }) => {
       <Card.Body>
         <Row>
           <Col>
-            <Card.Title><h3>{site.name}</h3></Card.Title>
+            <Card.Title><h3>{site && site.name}</h3></Card.Title>
           </Col>
           <Col>
             <Button className="btn align-right" variant="dark">Delete Event</Button>
@@ -32,7 +32,7 @@ const EventCard = ({ event }) => {
         </Row>
         <Card.Subtitle className="mb-2 text-muted">{date}</Card.Subtitle>
         <Card.Subtitle className="mb-2 text-muted">{startTime}-{endTime}</Card.Subtitle>
-        <Card.Subtitle className="mb-2 text-muted">Coordinator: {coordinator.name}</Card.Subtitle>
+        <Card.Subtitle className="mb-2 text-muted">Coordinator: {coordinator && coordinator.name}</Card.Subtitle>
         <Card.Text>{description}</Card.Text>
         <Card.Subtitle className="mb-2">Volunteers:</Card.Subtitle>
         <Row>
