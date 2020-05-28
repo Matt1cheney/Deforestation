@@ -4,6 +4,7 @@ import { AuthContext } from "../userAuth/Auth";
 import { withRouter, Redirect } from "react-router";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 
 const Login = ({ history }) => {
   const handleLogin = useCallback(
@@ -14,7 +15,7 @@ const Login = ({ history }) => {
         await app
           .auth()
           .signInWithEmailAndPassword(email.value, password.value);
-        history.push("/");
+        history.push("/dashboard");
       } catch (error) {
         alert(error);
       }
@@ -22,11 +23,11 @@ const Login = ({ history }) => {
     [history]
   );
 
-  // const { currentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
 
-  // if (currentUser) {
-  //   return <Redirect to="/" />;
-  // }
+  if (currentUser) {
+    return <Link to="/dashboard" />;
+  }
 
   return (
     <Form onSubmit={handleLogin} className="formContainer">
@@ -53,4 +54,4 @@ const Login = ({ history }) => {
   )
 };
 
-export default withRouter(Login);
+export default Login;

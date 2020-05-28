@@ -1,9 +1,12 @@
 import React, { useCallback } from "react";
-import { withRouter } from "react-router";
+// import { withRouter } from "react-router";
 import App from "../userAuth/baseAuth";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import NewPersonForm from "../../Dashboard/Persons/NewPerson/NewPersonForm"
+import PersonForm from "../../Dashboard/Persons/NewPerson/NewAdminForm";
+
+
+
 
 const SignUp = ({ history }) => {
   const handleSignUp = useCallback(
@@ -22,9 +25,7 @@ const SignUp = ({ history }) => {
     [history]
   );
 
-  return (
-    <NewPersonForm onSubmit={handleSignUp} />
-  );
+
 
   // return (
   //   <div>
@@ -44,4 +45,4 @@ const SignUp = ({ history }) => {
   // );
 };
 
-export default withRouter(SignUp);
+export default SignUp ;
