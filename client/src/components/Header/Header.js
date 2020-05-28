@@ -3,6 +3,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
 import "./Header.css";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
+import { Link } from "react-router-dom";
 
 export default class Header extends React.Component {
   render() {
@@ -24,9 +25,15 @@ export default class Header extends React.Component {
               <Dropdown.Item href="#/action-3">Landowner</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-         <a href="/"><h1>ReforestNation</h1></a>
+
+          <Link to="/">
+            <h1>ReforestNation</h1>
+          </Link>
+
           <Dropdown as={ButtonGroup}>
-            <Button variant="success" href="/information">Get Information</Button>
+            <Button variant="success" href="/information">
+              Get Information
+            </Button>
             <Dropdown.Toggle
               split
               variant="success"
@@ -40,9 +47,9 @@ export default class Header extends React.Component {
           </Dropdown>
         </div>
         <div className="right">
-          <a href="/dashboard">
+          <Link to="/dashboard">
             <button className="log">Log In</button>
-          </a>
+          </Link>
         </div>
       </>
     );
