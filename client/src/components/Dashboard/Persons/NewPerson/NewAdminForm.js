@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import API from "../../../../utils/API";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import app from "../../../authComponents/userAuth/baseAuth"
 
 
-const PersonForm = ({ regions }) => {
+const PersonForm = ({ regions, history }) => {
 
   // const availableRegions = regions.filter((data) => {
   //   return data.coordinator === null;
@@ -61,9 +62,34 @@ const PersonForm = ({ regions }) => {
 
   console.log(formState)
 
+  
+    const handleSignUp = useCallback(
+      async (event) => {
+        event.preventDefault();
+        const { email, password, name, phone } = event.target.elements;
+        try {
+          await app
+            .auth()
+            .createUserWithEmailAndPassword(email.value, password.value);
+          await app
+            .auth()
+            .currentUser.updateProfile({
+              displayName:name.value,
+              phoneNumber:phone.value
+            });
+            history.push("/dashboard")
+        } catch (error) {
+          alert(error);
+        }
+      },
+      [history]
+    );
+  
 
   return (
-    <Form className="formContainer" onSubmit={handleSubmit}>
+    <>
+
+    <Form className="formContainer" onSubmit={handleSubmit && handleSignUp}>
       <h1>New Admin or Coordinator</h1>
       <Form.Row>
         <Form.Group as={Col} controlId="formName">
@@ -117,7 +143,10 @@ const PersonForm = ({ regions }) => {
         Submit
   </Button>
     </Form >
+
+    </>
   )
-}
+
+};
 
 export default PersonForm;

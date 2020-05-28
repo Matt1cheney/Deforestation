@@ -17,6 +17,8 @@ import EventForm from "./Events/NewEvent/NewEventForm";
 import "./assets/style.css";
 import Navbar from "../Navbar/Navbar";
 import API from "../../utils/API";
+import Login from "../authComponents/Login/Login";
+import { AuthProvider } from "../authComponents/userAuth/Auth";
 
 
 
@@ -50,6 +52,7 @@ const Dashboard = () => {
   return (
     <>
     <Navbar />
+    <AuthProvider>
       <Router>
         <Container fluid>
         <Row>
@@ -58,6 +61,8 @@ const Dashboard = () => {
           </Col>
           <Col xs={12} md={9} className="dashboardContentView">
             <Switch>
+              
+              <Route exact path ="/dashboard/login" component={Login} ></Route>
               <Route exact path="/dashboard/regions">
                 <RegionDisplay regions={regionState.regions}/>
               </Route>
@@ -93,6 +98,7 @@ const Dashboard = () => {
         </Row>
         </Container>
       </Router>
+    </AuthProvider>
     </>
   )
 }

@@ -1,9 +1,10 @@
 import React, { useCallback, useContext } from "react";
-import app from "../auth/baseauth";
+import app from "../userAuth/baseAuth";
 import { AuthContext } from "../userAuth/Auth";
 import { withRouter, Redirect } from "react-router";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 
 const Login = ({ history }) => {
   const handleLogin = useCallback(
@@ -14,7 +15,7 @@ const Login = ({ history }) => {
         await app
           .auth()
           .signInWithEmailAndPassword(email.value, password.value);
-        history.push("/");
+        history.push("/dashboard");
       } catch (error) {
         alert(error);
       }
@@ -25,7 +26,7 @@ const Login = ({ history }) => {
   const { currentUser } = useContext(AuthContext);
 
   if (currentUser) {
-    return <Redirect to="/" />;
+    return <Link to="/dashboard" />;
   }
 
   return (
@@ -53,4 +54,4 @@ const Login = ({ history }) => {
   )
 };
 
-export default withRouter(Login);
+export default Login;
