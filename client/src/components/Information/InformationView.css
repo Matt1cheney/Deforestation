@@ -10,6 +10,9 @@
 .info h1 {
     font-size: 3rem;
     font-style: italic;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+
 }
 
 .headerDiv {

@@ -14,6 +14,9 @@ img {
   font-size: 35px;
   font-family: "Bebas Neue", cursive;
 }
+.bottom img {
+  height: 500px;
+}
 
 img {
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
@@ -25,6 +28,7 @@ img {
   margin: 100px auto;
   background: white;
   border-radius: 5px;
+  height: 400px;
 }
 
 body {
