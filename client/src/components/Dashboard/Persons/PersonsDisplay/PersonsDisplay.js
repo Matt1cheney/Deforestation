@@ -1,27 +1,29 @@
 import React from "react";
 import PersonCard from "../PersonCard/Person";
 import Row from "react-bootstrap/Row";
-import CreateNew from "../../CreateNew/CreateNew";
+import Jumbotron from "react-bootstrap/Jumbotron";
+import Button from "react-bootstrap/Button";
 import API from "../../../../utils/API";
 
 
-const createObj = {
-  name: "Person",
-  title: "People",
-  path: "/dashboard/newPerson"
-}
+const PersonDisplay = ({ persons }) => {
 
-
-const PersonDisplay = ( { persons } ) => {
-
-  return(
+  return (
     <>
-    <CreateNew obj={createObj}/>
-    <Row>
-      {persons.map((person, index) => (
-        <PersonCard key={index} person={person} />
-      ))}
-    </Row>
+      <Jumbotron className="createNew">
+        <h1>People</h1>
+        <p>
+          <Button href="/dashboard/newAdmin" className="btn center" variant="dark">Add New Admin/Coordinator</Button>
+        </p>
+        <p>
+          <Button href="/dashboard/newPerson" className="btn center" variant="dark">Add New Volunteer/Land Owner</Button>
+        </p>
+      </Jumbotron>
+      <Row>
+        {persons.map((person, index) => (
+          <PersonCard key={index} person={person} />
+        ))}
+      </Row>
     </>
   )
 }

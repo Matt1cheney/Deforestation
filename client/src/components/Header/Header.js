@@ -43,7 +43,7 @@ export default class Header extends React.Component {
           </Dropdown>
         </div>
         <div className="right">
-          <Link to="/dashboard">
+          <Link to="/dashboard/login">
             <button className="log">Log In</button>
           </Link>
         </div>
