@@ -64,7 +64,7 @@ const PersonForm = ({ regions }) => {
 
   return (
     <Form className="formContainer" onSubmit={handleSubmit}>
-      <h1>New Person</h1>
+      <h1>New Admin or Coordinator</h1>
       <Form.Row>
         <Form.Group as={Col} controlId="formName">
           <Form.Label>Full Name</Form.Label>
@@ -109,8 +109,6 @@ const PersonForm = ({ regions }) => {
           <div key={`inline-${type}`} className="mb-3" value>
             <Form.Check inline label="Coordinator" type={type} id={`inline-${type}-Coordinator`} name="role" value="Coordinator" onChange={handleChange} />
             <Form.Check inline label="Admin" type={type} id={`inline-${type}-Admin`} name="role" value="Admin" onChange={handleChange} />
-            <Form.Check inline label="Land Owner" type={type} id={`inline-${type}-Admin`} name="role" value="LandOwner" onChange={handleChange} />
-            <Form.Check inline label="Volunteer" type={type} id={`inline-${type}-Admin`} name="role" value="Volunteer" onChange={handleChange} />
           </div>
         ))}
       </Form.Group>
