@@ -14,6 +14,7 @@ import SiteForm from "./Sites/NewSiteForm/SiteForm";
 import AdminForm from "./Persons/NewPerson/NewAdminForm";
 import UserForm from "./Persons/NewPerson/NewUserForm";
 import EventForm from "./Events/NewEvent/NewEventForm";
+import SourceForm from "./Seedlings/NewSource/NewSourceForm";
 import "./assets/style.css";
 import Navbar from "../Navbar/Navbar";
 import API from "../../utils/API";
@@ -36,14 +37,18 @@ const Dashboard = () => {
   const [eventState, setEventState] = useState({
     events: []
   });
+  const [sourceState, setSourceState] = useState({
+    sources: []
+  });
 
   useEffect(() => {
     
-    async function fetchData() {
-      await API.getRegions().then(res => setRegionState({ ...regionState, regions: res.data }));
-      await API.getPersons().then(res => setPersonsState({ ...personsState, persons: res.data}));
-      await API.getSites().then(res => setSitesState({ ...sitesState, sites: res.data}));
-      await API.getEvents().then(res => setEventState({ ...eventState, events: res.data}));
+    function fetchData() {
+      API.getRegions().then(res => setRegionState({ ...regionState, regions: res.data }));
+      API.getPersons().then(res => setPersonsState({ ...personsState, persons: res.data}));
+      API.getSites().then(res => setSitesState({ ...sitesState, sites: res.data}));
+      API.getEvents().then(res => setEventState({ ...eventState, events: res.data}));
+      API.getSources().then(res => setSourceState({ ...sourceState, sources: res.data}));
     }
     fetchData()
 
@@ -73,7 +78,7 @@ const Dashboard = () => {
                 <EventDisplay events={eventState.events}/>
               </Route>
               <Route exact path="/dashboard/source">
-                <SourceDisplay />
+                <SourceDisplay sources={sourceState.sources}/>
               </Route>
               <Route exact path="/dashboard/persons">
                 <PersonsDisplay persons={personsState.persons}/>
@@ -92,6 +97,9 @@ const Dashboard = () => {
               </Route>
               <Route exact path="/dashboard/newEvent">
                 <EventForm sites={sitesState.sites} persons={personsState.persons}/>
+              </Route>
+              <Route exact path="/dashboard/newSource">
+                <SourceForm regions={regionState.regions} sites={sitesState.sites} persons={personsState.persons}/>
               </Route>
             </Switch>
           </Col>
