@@ -240,7 +240,9 @@ async function getAllSource(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await SourceModel.find().populate("region").populate("coordinator").populate("intendSite");
+
+        const data = await SourceModel.find().populate("region").populate("coordinator").populate("intendSite").populate("owner");
+
         if (!data) 
             res.status(404).json({ message: `Cannot FIND Source with name=${id}. Maybe Source was not found!` });
         else res.json(data);

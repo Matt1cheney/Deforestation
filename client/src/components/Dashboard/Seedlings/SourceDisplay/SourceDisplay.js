@@ -5,15 +5,18 @@ import sources from "../../../../jsonData/source.json";
 import SourceCard from "../SourceCard/SourceCard";
 import CreateNew from "../../CreateNew/CreateNew";
 
-function SourceDisplay() {
+class SourceDisplay extends React.Component{
 
-  const admin = true;
-  const coordinator = false;
-
-  const createObj = {
-    name: "Source",
-    title: "Sources",
-    path: "/dashboard/newSource"
+  constructor() {
+    super();
+    this.admin = true;
+    this.coordinator = false;
+    this.sources = [];
+    this.createObj = {
+      name: "Source",
+      title: "Sources",
+      path: "/dashboard/newSource"
+    }
   }
 
   return (

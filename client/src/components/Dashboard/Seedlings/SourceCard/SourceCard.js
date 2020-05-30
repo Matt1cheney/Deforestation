@@ -9,7 +9,7 @@ import "../style.css";
 const SourceCard = ({ source }) => {
 
 
-  const { name, owner, address, seedlings, region } = source;
+  const { name, owner, address, seedlings, region, coordinator } = source;
 
   return (
     <Card className="dashboardCard">
@@ -22,14 +22,30 @@ const SourceCard = ({ source }) => {
             <Button className="btn align-right" variant="dark">Delete Source</Button>
           </Col>
         </Row>
-        <Card.Subtitle className="mb-2 text-muted">Owner: {owner}</Card.Subtitle>
-        <Card.Subtitle className="mb-2 text-muted">Region: {region}</Card.Subtitle>
+
+        <Card.Subtitle className="mb-2 text-muted">Owner: {owner && owner.name}</Card.Subtitle>
+        <Card.Subtitle className="mb-2 text-muted">Region: {region && region.name}</Card.Subtitle>
+        <Card.Subtitle className="mb-2 text-muted">Coordinator: {coordinator && coordinator.name}</Card.Subtitle>
         <br></br>
-        <Card.Subtitle className="mb-2"><b>Address:</b> <br></br> {address.street} <br></br> {address.city}, {address.state} <br></br> {address.zip}</Card.Subtitle>
-        <h6><b>Tree Types:</b> {seedlings.tree_type.join(", ")}</h6>
-        <h6><b>Count:</b> {seedlings.count}</h6>
-        <h6><b>Available:</b> {seedlings.available}</h6>
-        <h6><b>Intended Site:</b> {seedlings.site}</h6>
+        <Card.Subtitle className="mb-2"><b>Address:</b> {address} </Card.Subtitle>
+        <h4>Available Seedlings</h4>
+        <Row>
+          {seedlings && seedlings.map((item, index) => (
+            <Col xs={12} md={4} key={index}>
+              <Card>
+                <Card.Body>
+                  <Card.Title>{item.type}</Card.Title>
+                  <ul>
+                    <li>Count: {item.count}</li>
+                    <li>Age: {item.age}</li>
+                    <li>Available: {item.date}</li>
+                    <li>Site: {item.site}</li>
+                  </ul>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
       </Card.Body>
     </Card>
   )

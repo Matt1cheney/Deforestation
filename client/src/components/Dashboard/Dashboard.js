@@ -14,6 +14,12 @@ import SiteForm from "./Sites/NewSiteForm/SiteForm";
 import AdminForm from "./Persons/NewPerson/NewAdminForm";
 import UserForm from "./Persons/NewPerson/NewUserForm";
 import EventForm from "./Events/NewEvent/NewEventForm";
+import SourceForm from "./Seedlings/NewSource/NewSourceForm";
+import UpdateAdminForm from "./Persons/UpdatePerson/UpdatePersonForm";
+import UpdateUserForm from "./Persons/UpdatePerson/UpdatePersonForm";
+import UpdateEventForm from "./Events/UpdateEventsForm/UpdateEventsForm";
+import UpdateRegionForm from "./Regions/UpdateRegionForm/updateRegionForm";
+import UpdateSiteForm from "./Sites/UpdateSiteForm/UpdateSiteForm";
 import "./assets/style.css";
 import Navbar from "../Navbar/Navbar";
 import API from "../../utils/API";
@@ -35,6 +41,9 @@ const Dashboard = () => {
   });
   const [eventState, setEventState] = useState({
     events: []
+  });
+  const [sourceState, setSourceState] = useState({
+    sources: []
   });
 
   useEffect(() => {
@@ -73,7 +82,7 @@ const Dashboard = () => {
                 <EventDisplay events={eventState.events}/>
               </Route>
               <Route exact path="/dashboard/source">
-                <SourceDisplay />
+                <SourceDisplay sources={sourceState.sources}/>
               </Route>
               <Route exact path="/dashboard/persons">
                 <PersonsDisplay persons={personsState.persons}/>
@@ -92,6 +101,9 @@ const Dashboard = () => {
               </Route>
               <Route exact path="/dashboard/newEvent">
                 <EventForm sites={sitesState.sites} persons={personsState.persons}/>
+              </Route>
+              <Route exact path="/dashboard/newSource">
+                <SourceForm regions={regionState.regions} sites={sitesState.sites} persons={personsState.persons}/>
               </Route>
             </Switch>
           </Col>

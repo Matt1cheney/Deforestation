@@ -21,7 +21,7 @@
 
 .backgroundImage {
   grid-area: 1 / 1 / 6 / 4;
-  background-image: url("../../images/Ferns.jpeg");
+  /* background-image: url("../../images/Ferns.jpeg"); */
   background-color: lightslategray;
   background-size: cover;
 }
@@ -65,7 +65,8 @@
   padding-bottom: 6em;
 }
 .div1 {
-  background-image: url("../../images/Xmas.jpeg");
+
+  /* background-image: url("../../images/Xmas.jpeg"); */
   grid-area: 1 / 4 / 7 / 7;
 }
 
@@ -98,4 +99,4 @@
 .line {
   background-color: black;
   grid-area: 1 / 2 / 2 / 3;
-}
+
