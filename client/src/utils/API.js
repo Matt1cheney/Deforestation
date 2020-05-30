@@ -32,5 +32,13 @@ export default {
 
   getEvents: function() {
     return axios.get("/api/events")
-  }
+  },
+
+  createSource: function(sourceData) {
+    return axios.post("/api/sources", sourceData)
+  },
+
+  getSources: function() {
+    return axios.get("/api/sources")
+  },
 }
