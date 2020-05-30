@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const RegionSchema = new Schema({
     name: String,
-    description: String,
+    descriptor: String,
     coordinator: {
         type: Schema.Types.ObjectId,
         ref: "Person",
