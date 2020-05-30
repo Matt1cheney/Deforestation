@@ -15,7 +15,7 @@ a.sideMenuItems {
   margin-top: .5em;
   background-color: #f8f9fa;
   padding: 1em .25em 1em 1em;
-  min-height: 85vh;
+  min-height: 100vh;
 }
 
 .sideMenuCol {

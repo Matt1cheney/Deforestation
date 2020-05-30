@@ -90,7 +90,7 @@ export default class ReforestationMap extends React.Component {
 
     render() {
         return <>
-            <h1>U.S. Reforestation Map and Statistics</h1>
+            <h1 className="mapH1">U.S. Reforestation Map and Statistics</h1>
 
             <div className="pageContent">
                 <div className="mapdiv">
