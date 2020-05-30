@@ -27,7 +27,6 @@ const GetInvolved = ({ events }) => {
       <Router>
         <Container fluid>
           <Row>
-            
             <Col className="dashboardContentView">
               <EventDisplay events={eventState.events} />
             </Col>
