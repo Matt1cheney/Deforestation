@@ -1,12 +1,6 @@
 import React, { useCallback } from "react";
-// import { withRouter } from "react-router";
-import App from "../userAuth/baseAuth";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import PersonForm from "../../Dashboard/Persons/NewPerson/NewAdminForm";
-
-
-
+import { withRouter } from "react-router";
+import Admin from "../admin/baseAdmin"
 
 const SignUp = ({ history }) => {
   const handleSignUp = useCallback(
@@ -14,9 +8,12 @@ const SignUp = ({ history }) => {
       event.preventDefault();
       const { email, password } = event.target.elements;
       try {
-        await App
+        await Admin
           .auth()
-          .createUserWithEmailAndPassword(email.value, password.value);
+          .createUser({
+            email: email.value,
+            password: password.value
+          });
         history.push("/")
       } catch (error) {
         alert(error);
@@ -26,23 +23,22 @@ const SignUp = ({ history }) => {
   );
 
 
-
-  // return (
-  //   <div>
-  //     <h1>Sign Up</h1>
-  //     <form onSubmit={handleSignUp}>
-  //       <label>
-  //         Email
-  //         <input name="email" type="email" placeholder="Email" />
-  //       </label>
-  //       <label>
-  //         Password
-  //         <input name="password" type="password" placeholder="Password" />
-  //       </label>
-  //       <button type="submit">Sign Up</button>
-  //     </form>
-  //   </div>
-  // );
+  return (
+    <div>
+      <h1>Sign Up</h1>
+      <form onSubmit={handleSignUp}>
+        <label>
+          Email
+          <input name="email" type="email" placeholder="Email" />
+        </label>
+        <label>
+          Password
+          <input name="password" type="password" placeholder="Password" />
+        </label>
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  );
 };
 
-export default SignUp ;
+export default withRouter(SignUp);
