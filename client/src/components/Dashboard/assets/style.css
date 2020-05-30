@@ -1,16 +1,16 @@
 .dashboardContentView {
-  overflow-y: auto;
+  overflow: scroll;
   background-image: url("./treeview.jpg");
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  min-height: 95vh;
-  max-height: 95vh;
+  min-height: 100vh;
+  max-height: 100vh;
 }
 
 .dashboardCard {
-  /* margin-top: 1.5em; */
+  margin-top: 1.5em;
   margin-bottom: .75em;
   background-color: rgba(255, 255, 255, 0.94);
 }
@@ -18,16 +18,12 @@
 .formContainer {
   background-color: rgba(255, 255, 255, 0.94);
   padding: 1em;
-  margin-top: 15px;
+  margin-top: 1.5em;
 }
 
 .createNew {
-  margin-top: 15px;
+  margin-top: 1.5em;
   background-color: rgba(255, 255, 255, 0.94);
-}
-
-.jumbotron {
-  padding: 1rem !important;
 }
 
 .btn {
@@ -49,8 +45,4 @@
 
 .fas {
   margin-right: 1em;
-}
-
-.m-1 {
-  margin: 1rem;
 }
