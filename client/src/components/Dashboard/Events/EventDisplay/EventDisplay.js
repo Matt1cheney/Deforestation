@@ -20,7 +20,7 @@ function EventDisplay( {events} ) {
   return (
 
     <>
-    <CreateNew obj={createObj}/>
+    {/* <CreateNew obj={createObj}/> */}
     <Row>
       {events.map((event, index) => (
         <Col sm={12} key={index}>

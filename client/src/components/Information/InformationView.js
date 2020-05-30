@@ -7,9 +7,9 @@ import ReforestationMap from "../Reforestation/ReforestationMap";
 const Home = () => {
   return (
     <>
-        <div className="headerDiv">
-          <Header />
-        </div>
+      <div className="headerDiv">
+        <Header />
+      </div>
       <div className="info">
         <section className="mainGrid">
           <div className="backgroundImage">
