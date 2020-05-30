@@ -6,7 +6,7 @@ import Container from "react-bootstrap/Container";
 import City from "../../../images/City.jpeg";
 import Road from "../../../images/Road.jpeg";
 
-import "./Photo.css";
+import "./InfoCard.css";
 
 export class InfoCard extends React.Component {
   render() {
@@ -15,13 +15,13 @@ export class InfoCard extends React.Component {
         <Row className="bottom">
           <Col xs={6} md={6}>
             <a href="/information">
-              <Image src={City} />
+              <Image className="infoLinks" src={City} />
               <p className="centered">About Us</p>
             </a>
           </Col>
           <Col xs={6} md={6}>
             <a href="/information">
-              <Image src={Road} />
+              <Image className="infoLinks" src={Road} />
               <p className="centered">Reforestation</p>
             </a>
           </Col>

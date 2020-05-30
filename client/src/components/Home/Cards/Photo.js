@@ -18,16 +18,16 @@ export class Photo extends React.Component {
             <Container>
             <Row>
               <Col xs={6} md={4}>
-                <Link to href="/volunteer"><Image src={Hands}  />
+                <Link to href="/volunteer"><Image className="volunteerLinks" src={Hands}  />
                 <p className="centered">Volunteer</p></Link>
               </Col>
               <Col xs={6} md={4}>
-                <Link to href="/volunteer"><Image src={Tree} />
+                <Link to href="/volunteer"><Image className="volunteerLinks" src={Tree} />
                 <p className="centered">Land?</p></Link>
 
               </Col>
               <Col xs={6} md={4}>
-                <Link to href="/volunteer"><Image src={Forest} />
+                <Link to href="/volunteer"><Image className="volunteerLinks" src={Forest} />
                 <p className="centered">Resources?</p></Link>
               </Col>
             </Row>
