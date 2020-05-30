@@ -1,3 +1,30 @@
 .eventBtn {
   margin-top: .5em;
 }
+.color-white {
+  color: white;
+}
+.color-white:hover {
+  color: white;
+}
+.css-26l3qy-menu {
+  margin-top: 0 !important;
+}
+.css-9gakcf-option {
+  background-color: #356d65 !important;
+}
+.css-1n7v3ny-option {
+  background-color: #356d6552 !important;
+}
+.css-1pahdxg-control:hover {
+  border-color: hsl(0,0%,70%) !important;
+  box-shadow: none;
+}
+.css-1pahdxg-control:active {
+  border-color: hsl(0,0%,70%) !important;
+  box-shadow: none;
+}
+.css-1pahdxg-control:focus {
+  border-color: hsl(0,0%,70%) !important;
+  box-shadow: none;
+}
