@@ -9,7 +9,7 @@ import API from "../../../../utils/API";
 const RegionForm = ({ persons }) => {
 
   const coordinators = persons.filter((data) => {
-    return data.role.toLowerCase() === "coordinator" && data.region === null
+    return data.role.toLowerCase() === "coordinator"
   })
 
   const [formState, setFormState] = useState({
