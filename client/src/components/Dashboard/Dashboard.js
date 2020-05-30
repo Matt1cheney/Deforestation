@@ -15,9 +15,13 @@ import AdminForm from "./Persons/NewPerson/NewAdminForm";
 import UserForm from "./Persons/NewPerson/NewUserForm";
 import EventForm from "./Events/NewEvent/NewEventForm";
 import SourceForm from "./Seedlings/NewSource/NewSourceForm";
+import UpdateAdminForm from "./Persons/UpdatePerson/UpdatePersonForm";
+import UpdateUserForm from "./Persons/UpdatePerson/UpdatePersonForm";
+import UpdateEventForm from "./Events/UpdateEventsForm/UpdateEventsForm";
+import UpdateRegionForm from "./Regions/UpdateRegionForm/updateRegionForm";
+import UpdateSiteForm from "./Sites/UpdateSiteForm/UpdateSiteForm";
 import "./assets/style.css";
 import Navbar from "../Navbar/Navbar";
-import API from "../../utils/API";
 import Login from "../authComponents/Login/Login";
 import { AuthProvider } from "../authComponents/userAuth/Auth";
 
@@ -41,23 +45,10 @@ const Dashboard = () => {
     sources: []
   });
 
-  useEffect(() => {
-    
-    function fetchData() {
-      API.getRegions().then(res => setRegionState({ ...regionState, regions: res.data }));
-      API.getPersons().then(res => setPersonsState({ ...personsState, persons: res.data}));
-      API.getSites().then(res => setSitesState({ ...sitesState, sites: res.data}));
-      API.getEvents().then(res => setEventState({ ...eventState, events: res.data}));
-      API.getSources().then(res => setSourceState({ ...sourceState, sources: res.data}));
-    }
-    fetchData()
-
-  }, [])
-
   return (
     <>
     <Navbar />
-    <AuthProvider>
+    {/* <AuthProvider> */}
       <Router>
         <Container fluid>
         <Row>
@@ -68,35 +59,46 @@ const Dashboard = () => {
             <Switch>
               
               <Route exact path ="/dashboard/login" component={Login} ></Route>
-              <Route exact path="/dashboard/regions">
-                <RegionDisplay regions={regionState.regions}/>
-              </Route>
-              <Route exact path="/dashboard/sites">
-                <SiteDisplay sites={sitesState.sites}/>
-              </Route>
-              <Route exact path="/dashboard/events">
-                <EventDisplay events={eventState.events}/>
-              </Route>
+
+              <Route exact path="/dashboard/regions" component={RegionDisplay} />
+
+              <Route exact path="/dashboard/sites" component={SiteDisplay} />
+
+              <Route exact path="/dashboard/events" component={EventDisplay} />
+              
               <Route exact path="/dashboard/source">
                 <SourceDisplay sources={sourceState.sources}/>
               </Route>
               <Route exact path="/dashboard/persons">
-                <PersonsDisplay persons={personsState.persons}/>
+                <PersonsDisplay/>
               </Route>
-              <Route exact path="/dashboard/newRegion">
-                <RegionForm persons={personsState.persons}/>
-              </Route>
-              <Route exact path="/dashboard/newSite">
-                <SiteForm regions={regionState.regions} persons={personsState.persons}/>
-              </Route>
+              
+              <Route exact path="/dashboard/newRegion" component={RegionForm} />
+
+              <Route exact path="/dashboard/newSite" component={SiteForm} />
+
               <Route exact path="/dashboard/newAdmin">
-                <AdminForm regions={regionState.regions}/>
+                <AdminForm/>
               </Route>
               <Route exact path="/dashboard/newPerson">
-                <UserForm regions={regionState.regions}/>
+                <UserForm/>
               </Route>
-              <Route exact path="/dashboard/newEvent">
-                <EventForm sites={sitesState.sites} persons={personsState.persons}/>
+
+              <Route exact path="/dashboard/newEvent" component={EventForm} />
+
+              <Route exact path="/dashboard/updateRegion" component={UpdateRegionForm} />
+
+              <Route exact path="/dashboard/updateSite/:id">
+                <UpdateSiteForm/>
+              </Route>
+              <Route exact path="/dashboard/updateAdmin/:id">
+                <UpdateAdminForm/>
+              </Route>
+              <Route exact path="/dashboard/updatePerson/:id">
+                <UpdateUserForm/>
+              </Route>
+              <Route exact path="/dashboard/updateEvent/:id">
+                <UpdateEventForm/>
               </Route>
               <Route exact path="/dashboard/newSource">
                 <SourceForm regions={regionState.regions} sites={sitesState.sites} persons={personsState.persons}/>
@@ -106,7 +108,7 @@ const Dashboard = () => {
         </Row>
         </Container>
       </Router>
-    </AuthProvider>
+    {/* </AuthProvider> */}
     </>
   )
 }

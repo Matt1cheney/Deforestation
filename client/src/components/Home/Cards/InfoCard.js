@@ -12,7 +12,7 @@ export class InfoCard extends React.Component {
   render() {
     return (
       <Container>
-        <Row className="bottom">
+        <Row>
           <Col xs={6} md={6}>
             <a href="/information">
               <Image src={City} />

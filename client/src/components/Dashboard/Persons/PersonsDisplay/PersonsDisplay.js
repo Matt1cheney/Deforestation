@@ -6,10 +6,26 @@ import Button from "react-bootstrap/Button";
 import API from "../../../../utils/API";
 
 
-const PersonDisplay = ({ persons }) => {
+class PersonDisplay extends React.Component {
 
-  return (
-    <>
+  constructor() {
+    super();
+    this.admin = true;
+    this.persons = []
+    this.createObj = {
+      name: "Persons",
+      title: "Persons",
+      path: "/dashboard/newPerson"
+    }
+  }
+
+  componentWillMount() {
+    API.getPersons().then(data => {console.log(data.data); this.setState( this.persons = data.data)});
+  }
+
+  render() {
+    return (
+      <>
       <Jumbotron className="createNew">
         <h1>People</h1>
         <p>
@@ -20,12 +36,13 @@ const PersonDisplay = ({ persons }) => {
         </p>
       </Jumbotron>
       <Row>
-        {persons.map((person, index) => (
+        {this.persons.map((person, index) => (
           <PersonCard key={index} person={person} />
         ))}
       </Row>
     </>
-  )
+    )
+  }
 }
 
 export default PersonDisplay;
