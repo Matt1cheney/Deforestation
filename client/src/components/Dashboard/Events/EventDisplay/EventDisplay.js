@@ -30,7 +30,6 @@ class EventDisplay extends React.Component {
       this.setState({ loading: false });
     });
   }
-
   render() {
     return (
       <>
