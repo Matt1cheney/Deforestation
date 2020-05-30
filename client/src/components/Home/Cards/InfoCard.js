@@ -6,22 +6,22 @@ import Container from "react-bootstrap/Container";
 import City from "../../../images/City.jpeg";
 import Road from "../../../images/Road.jpeg";
 
-import "./InfoCard.css";
+import "./Photo.css";
 
 export class InfoCard extends React.Component {
   render() {
     return (
       <Container>
-        <Row>
+        <Row className="bottom">
           <Col xs={6} md={6}>
             <a href="/information">
-              <Image className="infoLinks" src={City} />
+              <Image src={City} />
               <p className="centered">About Us</p>
             </a>
           </Col>
           <Col xs={6} md={6}>
             <a href="/information">
-              <Image className="infoLinks" src={Road} />
+              <Image src={Road} />
               <p className="centered">Reforestation</p>
             </a>
           </Col>

@@ -1,12 +1,16 @@
 
 .footer {
-    padding: 20px;
-    display: flex;
-    justify-content: center;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .footer img {
-  height: 24px;
-  object-fit: initial;
-  
+height: 24px;
+object-fit: initial;
+
+}
+
+.footer a {
+  margin: 15px;
 }
