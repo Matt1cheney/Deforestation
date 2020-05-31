@@ -8,7 +8,7 @@ import API from "../../../../utils/API";
 import "../style.css";
 
 const RegionCard = ({ region }) => {
-  const { _id, coordinator, descriptor, name } = region;
+  const { _id, coordinator, description, name } = region;
   const coord_name = coordinator ? coordinator.name : "";
   const url = `/dashboard/updateRegion/${_id}`;
 
@@ -60,7 +60,7 @@ const RegionCard = ({ region }) => {
         <Card.Subtitle className="mb-2 text-muted">
           Coordinator: {coord_name}
         </Card.Subtitle>
-        <Card.Text>{descriptor}</Card.Text>
+        <Card.Text>{description}</Card.Text>
       </Card.Body>
     </Card>
   );
