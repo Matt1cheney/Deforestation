@@ -18,6 +18,10 @@ class UserForm extends React.Component {
     };
   }
 
+  componentWillMount() {
+    API.getRegions().then((data) => this.setState((this.regions = data.data)));
+  }
+
   handleChange = (event) => {
     const { name, value } = event.target;
 
