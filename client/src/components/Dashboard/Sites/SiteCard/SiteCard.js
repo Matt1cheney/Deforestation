@@ -71,7 +71,7 @@ const SiteCard = ({ site }) => {
                   <b>Owner:</b> {owner && owner.name && (owner.name)}
                 </h6>
                 <h6>
-                  <b>Coordinator:</b> {coordinator.name}
+                  <b>Coordinator:</b> {coordinator && coordinator.name}
                 </h6>
                 <h6>
                   <b>location:</b> <a href={map_link_url} target="_blank">{latitude}/{longitude}</a>
@@ -129,8 +129,8 @@ const SiteCard = ({ site }) => {
           <Col>
             <h4>Notes:</h4>
           </Col>
-          {notes &&
-            notes.map((note, index) => (
+          {notes !== null
+           && notes.map((note, index) => (
               <Col sm={12} key={index}>
                 <Card>
                   <Card.Body>
