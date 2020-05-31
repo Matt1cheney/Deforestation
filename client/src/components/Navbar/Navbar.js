@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from "react-bootstrap/Nav";
-import app from "../authComponents/userAuth/baseAuth";
+import app from "../authComponents/userAuth/baseauth";
 // import DropdownButton from "react-bootstrap/DropdownButton";
 // import Dropdown from 'react-bootstrap/Dropdown';
 // import SplitButton from 'react-bootstrap/SplitButton';
