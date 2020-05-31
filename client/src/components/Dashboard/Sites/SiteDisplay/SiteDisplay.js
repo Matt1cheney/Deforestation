@@ -1,14 +1,36 @@
 import React from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-// import sites from "../../../../jsonData/sites.json";
 import SiteCard from "../SiteCard/SiteCard";
 import CreateNew from "../../CreateNew/CreateNew";
+import Spinner from "react-bootstrap/Spinner";
+import API from "../../../../utils/API";
 
+class SiteDisplay extends React.Component {
+  constructor() {
+    super();
+    this.admin = true;
+    this.coordinator = false;
+    this.sites = [];
+    this.createObj = {
+      name: "Site",
+      title: "Sites",
+      path: "/dashboard/newSite",
+    };
+    this.state = {
+      loading: false,
+    };
+  }
 
-function SiteDisplay({sites}) {
+  componentWillMount() {
+    this.setState({ loading: true });
+    API.getSites().then((data) => {
+      this.setState((this.sites = data.data));
+      this.setState({ loading: false });
+    });
+  }
 
-  render() 
+  render() {
     return (
       <>
         <CreateNew obj={this.createObj} />
@@ -40,19 +62,6 @@ function SiteDisplay({sites}) {
       </>
     );
   }
-
-//   return (
-//     <>
-//       <CreateNew obj={createObj}/>
-//       <Row>
-//         {sites.map((site, index) => (
-//           <Col sm={12} key={index}>
-//             <SiteCard site={site} />
-//           </Col>
-//         ))}
-//       </Row>
-//     </>
-//   )
-// }
+}
 
 export default SiteDisplay;
