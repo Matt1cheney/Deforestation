@@ -9,7 +9,7 @@ const PersonSchema = new Schema({
     },
     name: String,
     email: String,
-    phone: String,
+    phone: Number,
     notes: String,
     role: {
         type: String,

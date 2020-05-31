@@ -1,9 +1,11 @@
-import React from "react";
+ import React from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import sources from "../../../../jsonData/source.json";
 import SourceCard from "../SourceCard/SourceCard";
 import CreateNew from "../../CreateNew/CreateNew";
+import API from "../../../../utils/API";
+
+
 
 class SourceDisplay extends React.Component{
 
@@ -19,19 +21,24 @@ class SourceDisplay extends React.Component{
     }
   }
 
-  return (
+  componentWillMount() {
+    API.getSources().then(data => {console.log(data.data); this.setState( this.sources = data.data)})
+  }
 
-    <>
-    <CreateNew obj={createObj}/>
-    <Row>
-      {sources.map((source, index) => (
-        <Col sm={12} key={index}>
-          <SourceCard source={source} />
-        </Col>
-      ))}
-    </Row>
-    </>
-  )
+  render() {
+    return (
+      <>
+      <CreateNew obj={this.createObj}/>
+      <Row>
+        {this.sources.map((source, index) => (
+          <Col sm={12} key={index}>
+            <SourceCard source={source} />
+          </Col>
+        ))}
+      </Row>
+      </>
+    )
+  }
 }
 
 export default SourceDisplay;
