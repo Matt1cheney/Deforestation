@@ -9,13 +9,7 @@
 }
 .header h1 {
   padding: 0 45px;
-  font-family: 'Raleway', sans-serif;
-  text-decoration: none;
-  color: white;
-}
-
-a:hover {
-    text-decoration: none;
+  font-family: "Prata", serif;
 }
 
 .header .btn {

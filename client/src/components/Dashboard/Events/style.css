@@ -6,3 +6,7 @@
 .volunteerCard {
   margin-top: .75em;
 }
+
+.react-datepicker-wrapper {
+  width: 100%;
+}

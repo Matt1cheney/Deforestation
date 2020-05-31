@@ -10,7 +10,7 @@ const PersonSchema = new Schema({
     name: String,
     fireBaseUid: String,
     email: String,
-    phone: String,
+    phone: Number,
     notes: String,
     role: {
         type: String,
