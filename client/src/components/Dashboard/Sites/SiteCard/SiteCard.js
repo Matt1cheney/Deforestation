@@ -29,10 +29,21 @@ const SiteCard = ({ site }) => {
           <Col md={7} lg={8} xl={9}>
             <Row>
               <Col sm={12} md={6} lg={4}>
-                <h6><b>Region:</b> {region && region.name} </h6>
-                <h6><b>Owner:</b> {owner && owner.name} </h6>
-                {" "}
-                <p><b>Address:</b> <br></br> {street} <br></br> {city}, {state} <br></br> {zip} </p>
+                <h6>
+                  <b>Region:</b> {region && region.name && (region.name)}
+                </h6>
+                <h6>
+                  <b>Owner:</b> {owner && owner.name && (owner.name)}
+                </h6>
+                <h6>
+                  <b>Coordinator:</b> {coordinator && coordinator.name}
+                </h6>
+                <h6>
+                  <b>location:</b> <a href={map_link_url} target="_blank">{latitude}/{longitude}</a>
+                </h6>
+                <p>
+                  <b>Address:</b> {address}
+                </p>
               </Col>
               <Col sm={12} md={6} lg={4}>
                 <h6><b>Status:</b> {status} </h6>
@@ -61,18 +72,23 @@ const SiteCard = ({ site }) => {
         <Row>
           <br></br>
           <br></br>
-          <Col><h4>Notes:</h4></Col>
-          {/* {notes.map((note, index) => (
-            <Col sm={12} key={index}>
-              <Card>
-                <Card.Body>
-                  <Card.Title>{note.title}</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">Written by: {note.author}</Card.Subtitle>
-                  <Card.Text>{note.text}</Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))} */}
+          <Col>
+            <h4>Notes:</h4>
+          </Col>
+          {notes !== null
+           && notes.map((note, index) => (
+              <Col sm={12} key={index}>
+                <Card>
+                  <Card.Body>
+                    <Card.Title>{note ? note.title : ""}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">
+                      Written by: {note ? note.author : ""}
+                    </Card.Subtitle>
+                    <Card.Text>{note ? note.text : ""}</Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
         </Row>
       </Card.Body>
     </Card>
