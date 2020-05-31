@@ -48,7 +48,7 @@ const Dashboard = () => {
   return (
     <>
     <Navbar />
-    <AuthProvider>
+    {/* <AuthProvider> */}
       <Router>
         <Container fluid>
         <Row>
@@ -108,7 +108,7 @@ const Dashboard = () => {
         </Row>
         </Container>
       </Router>
-    </AuthProvider>
+    {/* </AuthProvider> */}
     </>
   )
 }
