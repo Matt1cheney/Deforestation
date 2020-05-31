@@ -19,6 +19,7 @@ import UpdateUserForm from "./Persons/UpdatePerson/UpdatePersonForm";
 import UpdateEventForm from "./Events/UpdateEventsForm/UpdateEventsForm";
 import UpdateRegionForm from "./Regions/UpdateRegionForm/updateRegionForm";
 import UpdateSiteForm from "./Sites/UpdateSiteForm/UpdateSiteForm";
+import SourceForm from "./Seedlings/NewSource/NewSourceForm";
 import "./assets/style.css";
 import Navbar from "../Navbar/Navbar";
 import Login from "../authComponents/Login/Login";
@@ -47,7 +48,7 @@ const Dashboard = () => {
   return (
     <>
     <Navbar />
-    {/* <AuthProvider> */}
+    <AuthProvider>
       <Router>
         <Container fluid>
         <Row>
@@ -107,7 +108,7 @@ const Dashboard = () => {
         </Row>
         </Container>
       </Router>
-    {/* </AuthProvider> */}
+    </AuthProvider>
     </>
   )
 }

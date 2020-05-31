@@ -37,7 +37,7 @@ class SiteDisplay extends React.Component {
         {!this.state.loading ? (
           this.sites.length > 0 ? (
             <Row>
-              {this.sites.map((site, index) => (
+              {this.sites && this.sites.map((site, index) => (
                 <Col sm={12} key={index}>
                   <SiteCard site={site} />
                 </Col>

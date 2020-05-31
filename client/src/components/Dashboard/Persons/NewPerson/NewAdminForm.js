@@ -90,7 +90,8 @@ class PersonForm extends React.Component {
       <>
         <Form
           className="formContainer"
-          onSubmit={this.handleSubmit && this.handleSignUp}
+          // temporarily removed && this.handleSignUp from the onSubmit
+          onSubmit={this.handleSubmit}
         >
           <h1>New Admin or Coordinator</h1>
           <Form.Row>
