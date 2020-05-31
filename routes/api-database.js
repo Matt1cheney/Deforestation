@@ -39,7 +39,7 @@ async function findPerson(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await PersonModel.findOne({ name:id }).populate("region", "name")
+        const data = await PersonModel.findOne({ firebaseUid:id }).populate("region", "name")
         if (!data) 
             res.status(404).json({ message: `Cannot FIND Person with name=${id}. Maybe Person was not found!` });
         else res.json(data);

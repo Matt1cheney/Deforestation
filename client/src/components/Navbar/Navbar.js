@@ -29,7 +29,7 @@ const NavComp = () => {
             </NavDropdown>
           </Nav>
           <Nav>
-            <Nav.Link href="/dashboard">Login</Nav.Link>
+            <Nav.Link href="/" onClick={() => app.auth().signOut()}>Logout</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
