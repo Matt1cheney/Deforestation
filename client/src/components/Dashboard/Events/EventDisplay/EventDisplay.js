@@ -1,26 +1,10 @@
 import React from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+// import events from "../../../../jsonData/events.json";
 import EventCard from "../EventCard/EventCard";
 import CreateNew from "../../CreateNew/CreateNew";
-import Spinner from "react-bootstrap/Spinner";
-import API from "../../../../utils/API";
 
-class EventDisplay extends React.Component {
-  constructor() {
-    super();
-    this.admin = true;
-    this.coordinator = false;
-    this.events = [];
-    this.createObj = {
-      name: "Event",
-      title: "Events",
-      path: "/dashboard/newEvent",
-    };
-    this.state = {
-      loading: false,
-    };
-  }
 
   componentWillMount() {
     this.setState({ loading: true });
@@ -62,6 +46,20 @@ class EventDisplay extends React.Component {
       </>
     );
   }
+
+  return (
+
+    <>
+    <CreateNew obj={createObj}/>
+    <Row>
+      {events.map((event, index) => (
+        <Col sm={12} key={index}>
+          <EventCard event={event} />
+        </Col>
+      ))}
+    </Row>
+    </>
+  )
 }
 
 export default EventDisplay;

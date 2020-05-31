@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <>
       <div className="style">
-      <Header />
+    <Header />
         <div className="title">
           <h1>
             Reforestation is one of the biggest and cheapest ways to help combat
