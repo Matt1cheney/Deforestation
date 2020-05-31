@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import API from "../../../../utils/API";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import app from "../../../authComponents/userAuth/baseAuth";
+import app from "../../../authComponents/userAuth/baseauth";
 
 class PersonForm extends React.Component {
   // const availableRegions = regions.filter((data) => {
@@ -17,6 +17,7 @@ class PersonForm extends React.Component {
       region: null,
       name: "",
       email: "",
+      firebaseUid: "",
       phone: "",
       role: "",
       password: "",
@@ -41,56 +42,45 @@ class PersonForm extends React.Component {
       [name]: value,
     });
   };
-
-  handleSubmit = (event) => {
+//  grabbing values from form and inputting into state
+  handleSubmit = async (event) => {
     event.preventDefault();
-
+// if name or email is missing send alert and return
     if (this.state.name === "" || this.state.email === "") {
       alert("Looks like you forgot one!");
       return;
     }
-
+    try {
+// create a user within firebase, then finally grab the UID that firebase provides and input into the for state.
+      await app
+        .auth()
+        .createUserWithEmailAndPassword(this.state.email, this.state.password);
+    } catch (error) {
+      alert(error);
+    } finally {
+      this.setState({ firebaseUid: app.auth().currentUser.uid });
+    }
+// create the user with all the needed info to Mongo
     API.createPerson(this.state)
       .then(() => alert("Admin Created"))
       .catch((err) => alert(err.message));
-
+// return setState to null.
     this.setState({
       region: null,
       name: "",
       email: "",
+      firebaseUid: "",
       phone: "",
       role: "",
       password: "",
     });
   };
 
-  // console.log(formState)
-
-  handleSignUp /*useCallback(*/ = async (event) => {
-    event.preventDefault();
-    const { email, password, name, phone } = event.target.elements;
-    try {
-      await app
-        .auth()
-        .createUserWithEmailAndPassword(email.value, password.value);
-      await app.auth().currentUser.updateProfile({
-        displayName: name.value,
-        phoneNumber: phone.value,
-      });
-      // this.props.history.push("/dashboard")
-    } catch (error) {
-      alert(error);
-    }
-  }; /*,*/
-  //   [this.props.history]
-  // );
-
   render() {
     return (
       <>
         <Form
           className="formContainer"
-          // temporarily removed && this.handleSignUp from the onSubmit
           onSubmit={this.handleSubmit}
         >
           <h1>New Admin or Coordinator</h1>

@@ -8,7 +8,7 @@ import CreateNew from "../../CreateNew/CreateNew";
 
 function SiteDisplay({sites}) {
 
-  render() {
+  render() 
     return (
       <>
         <CreateNew obj={this.createObj} />
@@ -41,18 +41,18 @@ function SiteDisplay({sites}) {
     );
   }
 
-  return (
-    <>
-      <CreateNew obj={createObj}/>
-      <Row>
-        {sites.map((site, index) => (
-          <Col sm={12} key={index}>
-            <SiteCard site={site} />
-          </Col>
-        ))}
-      </Row>
-    </>
-  )
-}
+//   return (
+//     <>
+//       <CreateNew obj={createObj}/>
+//       <Row>
+//         {sites.map((site, index) => (
+//           <Col sm={12} key={index}>
+//             <SiteCard site={site} />
+//           </Col>
+//         ))}
+//       </Row>
+//     </>
+//   )
+// }
 
 export default SiteDisplay;
