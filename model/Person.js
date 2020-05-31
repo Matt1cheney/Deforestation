@@ -8,6 +8,7 @@ const PersonSchema = new Schema({
         default: null
     },
     name: String,
+    fireBaseUid: String,
     email: String,
     phone: String,
     notes: String,
