@@ -21,7 +21,7 @@
 
 .backgroundImage {
   grid-area: 1 / 1 / 6 / 4;
-  /* background-image: url("../../images/Ferns.jpeg"); */
+  background-image: url("../../images/Ferns.jpeg");
   background-color: lightslategray;
   background-size: cover;
 }
@@ -66,7 +66,7 @@
 }
 .div1 {
 
-  /* background-image: url("../../images/Xmas.jpeg"); */
+  background-image: url("../../images/Xmas.jpeg");
   grid-area: 1 / 4 / 7 / 7;
 }
 
@@ -99,4 +99,23 @@
 .line {
   background-color: black;
   grid-area: 1 / 2 / 2 / 3;
+}
+
+@media (max-width: 700px) {
+  .info {
+    
+    background-color: #3f4749;
+  }
+  .mainGrid {
+    grid-column-end: auto;
+    display: none;
+  }
+
+  .backgroundImage {
+    grid-area: span 7;
+  }
+
+  .headerDiv {
+    display:none;
+  }
 }

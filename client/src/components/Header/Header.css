@@ -1,15 +1,21 @@
 .header {
-  display: grid;
   background-color: transparent;
   color: white;
   justify-items: center;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   padding-top: 20px;
 }
 .header h1 {
   padding: 0 45px;
-  font-family: "Prata", serif;
+  font-family: 'Raleway', sans-serif;
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+    text-decoration: none;
 }
 
 .header .btn {
@@ -30,3 +36,10 @@
   font-family: "Montserrat", sans-serif;
 }
 
+.getBtn {
+  order: 2;
+}
+
+.infoBtn {
+  order: 3;
+}
