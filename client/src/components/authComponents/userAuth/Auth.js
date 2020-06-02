@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
     app.auth().onAuthStateChanged((user) => {
       // make an API call with their firebase UID (provided from the user obj passed in)
       // and return all data that belongs to that user
-      API.getPersonById(user.uid)
+      API.getPersonByUid(user.uid)
         .then((dbUserres) => {
           setCurrentUser({
             currentUser: user,

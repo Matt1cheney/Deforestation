@@ -1,11 +1,10 @@
-import React, { setFormState, useCallback } from "react";
+import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import API from "../../../../utils/API";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import app from "../../../authComponents/userAuth/baseauth";
-import Spinner from "react-bootstrap/Spinner";
 
 class PersonForm extends React.Component {
   // const availableRegions = regions.filter((data) => {
@@ -15,21 +14,18 @@ class PersonForm extends React.Component {
     super(props);
     this.regions = [];
     this.state = {
-      regions: [],
-      loading: false,
       region: null,
       name: "",
       email: "",
+      firebaseUid: "",
       phone: "",
       role: "",
       password: "",
     };
   }
 
-  componentWillMount() {this.setState({ loading: true });
-    API.getRegions().then((data) => {
-      this.setState({ regions: data.data, loading: false });
-    });
+  componentWillMount() {
+    API.getRegions().then((data) => this.setState((this.regions = data.data)));
   }
 
   handleChange = (event) => {
@@ -47,75 +43,48 @@ class PersonForm extends React.Component {
     });
   };
 
-  handleSubmit = async(event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
 
     if (this.state.name === "" || this.state.email === "") {
       alert("Looks like you forgot one!");
       return;
     }
-
-    if (this.state.password !== this.state.confirm) {
-      alert("Password and Confirm password not matched");
-      return;
-    }
-
     try {
-      await API.createPerson(this.state);
-
-      try {
-        await app
-          .auth()
-          .createUserWithEmailAndPassword(this.state.email, this.state.password);
-        await app.auth().currentUser.updateProfile({
-          displayName: this.state.name,
-          phoneNumber: this.state.phone,
-        });
-
-        if(this.state.role === "Coordinator") {
-          alert("Coordinator Created");
-        } else {
-          alert("Admin Created");
-        }
-        this.props.history.goBack();
-      } catch (error) {
-        alert(error);
-      }    
-
-    } catch (err) {
-      console.log(err.message);
+      await app
+        .auth()
+        .createUserWithEmailAndPassword(this.state.email, this.state.password);
+      // await this.setState({ firebaseuid: app.auth().currentUser.uid});
+    } catch (error) {
+      alert(error);
+    } finally {
+      this.setState({ firebaseUid: app.auth().currentUser.uid });
     }
 
+    API.createPerson(this.state)
+      .then(() => alert("Admin Created"))
+      .catch((err) => alert(err.message));
+
+    this.setState({
+      region: null,
+      name: "",
+      email: "",
+      firebaseUid: "",
+      phone: "",
+      role: "",
+      password: "",
+    });
   };
-
-
-  // handleSignUp /*useCallback(*/ = async (event) => {
-  //   event.preventDefault();
-  //   const { email, password, name, phone } = event.target.elements;
-  //   try {
-  //     await app
-  //       .auth()
-  //       .createUserWithEmailAndPassword(email.value, password.value);
-  //     await app.auth().currentUser.updateProfile({
-  //       displayName: name.value,
-  //       phoneNumber: phone.value,
-  //     });
-  //     this.props.history.goBack();
-  //   } catch (error) {
-  //     alert(error);
-  //   }
-  // };
 
   render() {
     return (
       <>
         <Form
           className="formContainer"
+          // temporarily removed && this.handleSignUp from the onSubmit
           onSubmit={this.handleSubmit}
         >
           <h1>New Admin or Coordinator</h1>
-        {!this.state.loading ? (
-          <div>
           <Form.Row>
             <Form.Group as={Col} controlId="formName">
               <Form.Label>Full Name</Form.Label>
@@ -181,7 +150,7 @@ class PersonForm extends React.Component {
               custom
             >
               <option>none</option>
-              {this.state.regions.map((region, index) => (
+              {this.regions.map((region, index) => (
                 <option key={index} value={region._id}>
                   {region.name}
                 </option>
@@ -189,7 +158,6 @@ class PersonForm extends React.Component {
             </Form.Control>
           </Form.Group>
           <Form.Group>
-              <Form.Label>Person Type</Form.Label>
             {["radio"].map((type) => (
               <div key={`inline-${type}`} className="mb-3" value>
                 <Form.Check
@@ -222,16 +190,6 @@ class PersonForm extends React.Component {
               Submit
             </Button>
           </Form.Group>
-          </div>
-        ) : (
-          <Row>
-            <Col sm={12} className="text-center">
-              <Spinner animation="border" role="status" variant="dark">
-                <span className="sr-only">Loading...</span>
-              </Spinner>
-            </Col>
-          </Row>
-        )}
         </Form>
       </>
     );

@@ -48,6 +48,22 @@ async function findPerson(req, res) {
     }
 }
 
+async function findFirebasePerson(req, res) {
+    if (!req.params.uid) 
+        return res.status(400).json({ message: "Person to find can not be empty!" });
+    
+    const id = req.params.uid;
+
+    try {
+        const data = await PersonModel.findOne({ firebaseUid:id }).populate("region", "name")
+        if (!data) 
+        res.status(404).json({ message: `Looks like this user is not linked to our servers...` });
+        else res.json(data);
+    } catch(err) {
+        res.status(500).json({ message: "Error finding Person with name=" + uid });
+    }
+}
+
 async function deletePerson(req, res) {
     if (!req.params.id) 
         return res.status(400).json({ message: "Person to delete can not be empty!" });
@@ -374,6 +390,7 @@ async function updateEvent(req, res) {
 router.get("/api/persons", getAllPerson);
 router.post("/api/persons", createPerson);
 router.get("/api/person/:id", findPerson);
+router.get("/api/firebaseperson/:uid", findFirebasePerson);
 router.put("/api/person/:id", updatePerson);
 router.delete("/api/person/:id", deletePerson);
 
