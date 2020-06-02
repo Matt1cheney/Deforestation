@@ -1,8 +1,7 @@
   
-import React, { useCallback, useContext } from "react";
+import React, { useCallback } from "react";
 import app from "../userAuth/baseauth";
-import { AuthContext } from "../userAuth/Auth";
-import {withRouter, Redirect } from "react-router";
+import { withRouter } from "react-router";
 
 const Login = ({ history }) => {
   const handleLogin = useCallback(
@@ -13,19 +12,13 @@ const Login = ({ history }) => {
         await app
           .auth()
           .signInWithEmailAndPassword(email.value, password.value);
-        history.push("/");
+        history.push("/dashboard");
       } catch (error) {
         alert(error);
       }
     },
     [history]
   );
-
-  const { currentUser } = useContext(AuthContext);
-
-  if (currentUser) {
-    return <Redirect to="/" />;
-  }
 
   return(
     <div>

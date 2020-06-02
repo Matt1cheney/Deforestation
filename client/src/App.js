@@ -9,6 +9,7 @@ import Volunteer from './components/GetInvolved/VolunteerForm/volunteer';
 import ReforestationMap from "./components/Reforestation/ReforestationMap";
 import InformationView from "./components/Information/InformationView";
 import GetInvolved from "./components/GetInvolved/GetInvolved";
+import Login from "./components/authComponents/Login/Login";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Switch>
           <Route exact path="/" component={ Home } />
             <Route path="/dashboard" component={Dashboard}/>
+            <Route exact path="/login" component={Login}/>
             <Route path="/volunteer" component={Volunteer}/>
             <Route path="/getInvolved" component={GetInvolved}/>            
             <Route path="/reforestation" component={ReforestationMap} />
