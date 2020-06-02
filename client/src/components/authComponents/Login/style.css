@@ -1,0 +1,14 @@
+.parent {
+  padding-top: 25vh;
+  background-color: rgba(7, 7, 7, 0.90);
+  height: 100vh;
+  min-width: 100vw;
+}
+
+.centerMe {
+  text-align: center;
+}
+
+.loginText {
+  color: white
+}
