@@ -39,7 +39,7 @@ async function findPerson(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await PersonModel.findOne({ firebaseUid:id }).populate("region", "name")
+        const data = await PersonModel.findOne({ name:id }).populate("region", "name")
         if (!data) 
             res.status(404).json({ message: `Cannot FIND Person with name=${id}. Maybe Person was not found!` });
         else res.json(data);
@@ -55,7 +55,7 @@ async function deletePerson(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await PersonModel.findOneAndDelete({ name:id })
+        const data = await PersonModel.findOneAndDelete({ _id:id })
         if (!data) 
             res.status(404).json({ message: `Cannot DELETE Person with name=${id}. Maybe Person was not found!` });
         else res.json(data);
@@ -129,7 +129,7 @@ async function deleteRegion(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await RegionModel.findOneAndDelete({ name:id })
+        const data = await RegionModel.findOneAndDelete({ _id:id })
         console.log(data)
         if (!data) 
             res.status(404).json({ message: `Cannot DELETE Region with name=${id}. Maybe Region was not found!` });
@@ -200,7 +200,7 @@ async function deleteSite(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await SiteModel.findOneAndDelete({ name:id })
+        const data = await SiteModel.findOneAndDelete({ _id:id })
         if (!data) 
             res.status(404).json({ message: `Cannot DELETE Site with name=${id}. Maybe Site was not found!` });
         else res.json(data);
@@ -213,7 +213,7 @@ async function updateSite(req, res) {
     if (!req.body) 
         return res.status(400).json({ message: "Site to update can not be empty!" });
 
-    const id = req.params.id;
+    const id = req.body._id;
 
     try {
         const data = await SiteModel.findOneAndUpdate({ _id:id }, req.body, { useFindAndModify: false })
@@ -238,7 +238,7 @@ async function getAllSource(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await SourceModel.find().populate("region", "name").populate("intendSite", "name");
+        const data = await SourceModel.find().populate("region", "name").populate("coordinator", "name").populate("owner", "name").populate("seedlings.intendSite", "name");
         if (!data) 
             res.status(404).json({ message: `Cannot FIND Source with name=${id}. Maybe Source was not found!` });
         else res.json(data);
@@ -270,7 +270,7 @@ async function deleteSource(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await SourceModel.findOneAndDelete({ name:id })
+        const data = await SourceModel.findOneAndDelete({ _id:id })
         if (!data) 
             res.status(404).json({ message: `Cannot DELETE Source with name=${id}. Maybe Source was not found!` });
         else res.json(data);
@@ -284,7 +284,7 @@ async function updateSource(req, res) {
         return res.status(400).json({ message: "Source to update can not be empty!" });
     
     
-    const id = req.params.id;
+    const id = req.body._id;
 
     try {
         const data = await SourceModel.findOneAndUpdate({ _id:id }, req.body, { useFindAndModify: false })
@@ -354,8 +354,7 @@ async function updateEvent(req, res) {
     if (!req.body) 
         return res.status(400).json({ message: "Event to update can not be empty!" });
     
-    
-    const id = req.params.id;
+    const id = req.body._id;
 
     try {
         const data = await EventModel.findOneAndUpdate({ _id:id }, req.body, { useFindAndModify: false })
@@ -383,7 +382,7 @@ router.delete("/api/person/:id", deletePerson);
 router.get("/api/sites", getAllSite);
 router.post("/api/sites", createSite);
 router.get("/api/site/:id", findSite);
-router.put("/api/site/:id", updateSite);
+router.put("/api/site", updateSite);
 router.delete("/api/site/:id", deleteSite);
 
 //----------------------- Source routes -------------------
@@ -391,7 +390,7 @@ router.delete("/api/site/:id", deleteSite);
 router.get("/api/sources", getAllSource);
 router.post("/api/sources", createSource);
 router.get("/api/source/:id", findSource);
-router.put("/api/source/:id", updateSource);
+router.put("/api/source", updateSource);
 router.delete("/api/source/:id", deleteSource);
 
 //----------------------- Region routes -------------------
@@ -407,7 +406,7 @@ router.delete("/api/region/:id", deleteRegion);
 router.get("/api/events", getAllEvent);
 router.post("/api/events", createEvent);
 router.get("/api/event/:id", findEvent);
-router.put("/api/event/:id", updateEvent);
+router.put("/api/event", updateEvent);
 router.delete("/api/event/:id", deleteEvent);
 
 //----------------------- Additional (Non Database) Routes -----------------------

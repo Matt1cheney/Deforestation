@@ -11,13 +11,13 @@ class SiteDisplay extends React.Component {
     super();
     this.admin = true;
     this.coordinator = false;
-    this.sites = [];
     this.createObj = {
       name: "Site",
       title: "Sites",
       path: "/dashboard/newSite",
     };
     this.state = {
+      sites: [],
       loading: false,
     };
   }
@@ -25,21 +25,36 @@ class SiteDisplay extends React.Component {
   componentWillMount() {
     this.setState({ loading: true });
     API.getSites().then((data) => {
-      this.setState((this.sites = data.data));
+      this.setState({sites: data.data});
       this.setState({ loading: false });
     });
   }
+
+  async onDelete(_id, this4) {
+    try {
+      await API.deleteSite(_id);
+      let filter_sites = this4.state.sites
+      const indexOfDeleteSite = filter_sites.findIndex(a => {
+        return a._id === _id
+      })
+      filter_sites.splice(indexOfDeleteSite, 1)
+      this4.setState({ sites: filter_sites });
+      alert("Deleted");
+    } catch (err) {
+      alert(err.message);
+    }
+  };
 
   render() {
     return (
       <>
         <CreateNew obj={this.createObj} />
         {!this.state.loading ? (
-          this.sites.length > 0 ? (
+          this.state.sites.length > 0 ? (
             <Row>
-              {this.sites && this.sites.map((site, index) => (
+              {this.state.sites.map((site, index) => (
                 <Col sm={12} key={index}>
-                  <SiteCard site={site} />
+                  <SiteCard site={site} onDelete={this.onDelete} this3={this}/>
                 </Col>
               ))}
             </Row>
