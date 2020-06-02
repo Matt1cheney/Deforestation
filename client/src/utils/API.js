@@ -58,8 +58,8 @@ export default {
     return axios.delete(`/api/site/${id}`)
   },
 
-  updateSite: (id) => {
-    return axios.put(`api/site/${id}`)
+  updateSite: function(siteData) {
+    return axios.put(`/api/site`, siteData)
   },
 
   createEvent: function(eventData) {
@@ -78,8 +78,8 @@ export default {
     return axios.delete(`/api/event/${id}`)
   },
 
-  updateEvent: (id) => {
-    return axios.put(`api/event/${id}`)
+  updateEvent: function(eventData) {
+    return axios.put(`/api/event`, eventData)
   },
 
   createSource: function(sourceData) {
@@ -98,7 +98,7 @@ export default {
     return axios.delete(`/api/source/${id}`)
   },
 
-  updateSource: (id) => {
-    return axios.put(`api/spurce/${id}`)
+  updateSource: function(sourceData) {
+    return axios.put(`/api/source`, sourceData)
   }
 }
