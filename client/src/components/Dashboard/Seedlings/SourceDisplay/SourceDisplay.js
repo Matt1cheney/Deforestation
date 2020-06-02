@@ -1,9 +1,11 @@
- import React from "react";
+import React from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Spinner from "react-bootstrap/Spinner";
 import SourceCard from "../SourceCard/SourceCard";
 import CreateNew from "../../CreateNew/CreateNew";
 import API from "../../../../utils/API";
+// import sources from "../../../../jsonData/source.json";
 
 
 
@@ -13,29 +15,68 @@ class SourceDisplay extends React.Component{
     super();
     this.admin = true;
     this.coordinator = false;
-    this.sources = [];
     this.createObj = {
       name: "Source",
       title: "Sources",
       path: "/dashboard/newSource"
     }
+    this.state = {
+      sources: [],
+      loading: false,
+    }
   }
 
   componentWillMount() {
-    API.getSources().then(data => {console.log(data.data); this.setState( this.sources = data.data)})
+    this.setState({ loading: true });
+    API.getSources().then(data => {
+      this.setState({ sources: data.data, loading: false })
+    })
   }
+
+  async onDelete(_id, this4) {
+    try {
+      await API.deleteSource(_id);
+      let filter_sources = this4.state.sources
+      const indexOfDeleteEvent = filter_sources.findIndex(a => {
+        return a._id === _id
+      })
+      filter_sources.splice(indexOfDeleteEvent, 1)
+      this4.setState({ sources: filter_sources });
+      alert("Deleted");
+    } catch (err) {
+      alert(err.message);
+    }
+  };
 
   render() {
     return (
       <>
       <CreateNew obj={this.createObj}/>
-      <Row>
-        {this.sources.map((source, index) => (
-          <Col sm={12} key={index}>
-            <SourceCard source={source} />
-          </Col>
-        ))}
-      </Row>
+      {!this.state.loading ? (
+          this.state.sources.length > 0 ? (
+          <Row>
+            {this.state.sources.map((source, index) => (
+              <Col sm={12} key={index}>
+                <SourceCard source={source} onDelete={this.onDelete} this3={this}/>
+              </Col>
+            ))}
+          </Row>
+        ) : (
+            <Row>
+              <Col sm={12}>
+                <h6 className="color-white">No Record Founds</h6>
+              </Col>
+            </Row>
+          )          
+        ) : (
+          <Row>
+            <Col sm={12}>
+              <Spinner animation="border" role="status" variant="light">
+                <span className="sr-only">Loading...</span>
+              </Spinner>
+            </Col>
+          </Row>
+        )}
       </>
     )
   }

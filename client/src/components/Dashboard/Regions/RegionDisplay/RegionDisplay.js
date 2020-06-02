@@ -10,13 +10,13 @@ class RegionDisplay extends React.Component {
   constructor() {
     super();
     this.admin = true;
-    this.regions = [];
     this.createObj = {
       name: "Region",
       title: "Regions",
       path: "/dashboard/newRegion",
     };
     this.state = {
+      regions: [],
       loading: false,
     };
   }
@@ -24,21 +24,35 @@ class RegionDisplay extends React.Component {
   componentWillMount() {
     this.setState({ loading: true });
     API.getRegions().then((data) => {
-      this.setState((this.regions = data.data));
-      this.setState({ loading: false });
+      this.setState({ regions: data.data, loading: false });
     });
   }
+
+  async onDelete(_id, this4) {
+    try {
+      await API.deleteRegion(_id);
+      let filter_regions = this4.state.regions
+      const indexOfDeleteEvent = filter_regions.findIndex(a => {
+        return a._id === _id
+      })
+      filter_regions.splice(indexOfDeleteEvent, 1)
+      this4.setState({ regions: filter_regions });
+      alert("Deleted");
+    } catch (err) {
+      alert(err.message);
+    }
+  };
 
   render() {
     return (
       <>
         {this.admin && <CreateNew obj={this.createObj} />}
         {!this.state.loading ? (
-          this.regions.length > 0 ? (
+          this.state.regions.length > 0 ? (
             <Row>
-              {this.regions.map((region, index) => (
+              {this.state.regions.map((region, index) => (
                 <Col sm={12} key={index}>
-                  <RegionCard region={region} />
+                  <RegionCard region={region} onDelete={this.onDelete} this3={this}/>
                 </Col>
               ))}
             </Row>

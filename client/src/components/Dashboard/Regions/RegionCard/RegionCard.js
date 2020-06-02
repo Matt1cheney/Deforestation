@@ -1,26 +1,14 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import API from "../../../../utils/API";
 import "../style.css";
 
-const RegionCard = ({ region }) => {
-  const { _id, coordinator, descriptor, name } = region;
+const RegionCard = ({ region, onDelete, this3 }) => {
+  const { _id, coordinator, description, name } = region;
   const coord_name = coordinator ? coordinator.name : "";
-  const url = `/dashboard/updateRegion/${_id}`;
-
-  const onDelete = async (event) => {
-    try {
-      const response = await API.deleteRegion(name);
-      alert(response.data.message);
-      window.location.reload(true);
-    } catch (err) {
-      alert(err.message);
-    }
-  };
 
   return (
     <Card className="dashboardCard">
@@ -48,7 +36,7 @@ const RegionCard = ({ region }) => {
             <Button
               className="btn align-right"
               variant="dark"
-              onClick={onDelete}
+              onClick={() => onDelete(_id, this3)}
             >
               <svg class="bi bi-trash" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
@@ -60,7 +48,7 @@ const RegionCard = ({ region }) => {
         <Card.Subtitle className="mb-2 text-muted">
           Coordinator: {coord_name}
         </Card.Subtitle>
-        <Card.Text>{descriptor}</Card.Text>
+        <Card.Text>{description}</Card.Text>
       </Card.Body>
     </Card>
   );

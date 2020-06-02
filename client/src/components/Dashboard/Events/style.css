@@ -10,3 +10,15 @@
 .react-datepicker-wrapper {
   width: 100%;
 }
+
+.volunteerCard .card-body {
+  min-height: 201px;
+}
+
+.width-240 {
+  width: 240px !important;
+}
+
+.width-260 {
+  width: 260px !important;
+}

@@ -13,21 +13,27 @@ const SiteSchema = new Schema({
         ref: "Person",
         default: null
     },
-    address: String,
+    address: {
+        type: Object,
+        default: null
+    },
+    plantingTarget: {
+        type: Object,
+        default: null
+    },
     latitude: Number,
     longitude: Number,
     status: String,
-    notes: String,
     coordinator: {
         type: Schema.Types.ObjectId,
-        ref: "Person",
+        ref: "Person",  
         default: null
     },
     profileImage: String,
     contract: String,
-    document: String,
     additionalImages: [{ type: String }],
-    plantingTarget: String 
+    document: String,
+    notes: String
 });
 
 module.exports = mongoose.model("Site", SiteSchema, "Sites");
