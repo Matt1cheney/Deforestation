@@ -13,13 +13,26 @@ const SourceSchema = new Schema({
         ref: "Person",
         default: null
     },
-    address: String,
+    address: {
+        type: Object,
+        default: null
+    },
     coordinator: {
         type: Schema.Types.ObjectId,
         ref: "Person",
         default: null
     },
-    seedlings: Array
+    seedlings: {
+        count:Number,
+        tree_type: String,
+        target_age: Number,
+        available: Date,
+        intendSite: {
+            type: Schema.Types.ObjectId,
+            ref: "Site",
+            default: null
+        }
+    }
 });
 
 module.exports = mongoose.model("Source", SourceSchema, "Sources");

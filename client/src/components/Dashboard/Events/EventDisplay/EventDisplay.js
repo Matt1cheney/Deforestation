@@ -11,13 +11,13 @@ class EventDisplay extends React.Component {
     super();
     this.admin = true;
     this.coordinator = false;
-    this.events = [];
     this.createObj = {
       name: "Event",
       title: "Events",
       path: "/dashboard/newEvent",
     };
     this.state = {
+      events: [],
       loading: false,
     };
   }
@@ -25,22 +25,74 @@ class EventDisplay extends React.Component {
   componentWillMount() {
     this.setState({ loading: true });
     API.getEvents().then((data) => {
-      console.log(data);
-      this.setState((this.events = data.data));
-      this.setState({ loading: false });
+      this.setState({ events: data.data, loading: false });
     });
   }
+
+  async onDelete(_id, this4) {
+    try {
+      await API.deleteEvent(_id);
+      let filter_events = this4.state.events
+      const indexOfDeleteEvent = filter_events.findIndex(a => {
+        return a._id === _id
+      })
+      filter_events.splice(indexOfDeleteEvent, 1)
+      this4.setState({ events: filter_events });
+      alert("Deleted");
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
+  async onVolunteerDelete(event, _id, this4) {
+    try {
+      let filter_volunteers = event.volunteers
+      const indexOfDeleteEvent = filter_volunteers.findIndex(a => {
+        return a._id === _id
+      })
+      filter_volunteers.splice(indexOfDeleteEvent, 1)
+
+      let new_arr = filter_volunteers.map((v) => {
+        return v._id;
+      });
+    
+      let eventData = {
+        _id: event._id,
+        site: event.site,
+        coordinator: event.coordinator,
+        description: event.description,
+        startDate: event.startDate,
+        endDate: event.endDate,
+        volunteers: new_arr
+      };
+  
+      try {
+        await API.updateEvent(eventData);
+        alert("Volunteer Deleted");
+        
+        let updated_events = this4.state.events
+        updated_events.volunteers = filter_volunteers
+        this4.setState({ events: updated_events });
+
+      } catch (err) {
+        console.log(err.message);
+      }
+
+    } catch (err) {
+      alert(err.message);
+    }
+  };
 
   render() {
     return (
       <>
         {this.admin && <CreateNew obj={this.createObj} />}
         {!this.state.loading ? (
-          this.events.length > 0 ? (
+          this.state.events.length > 0 ? (
             <Row>
-              {this.events.map((event, index) => (
+              {this.state.events.map((event, index) => (
                 <Col sm={12} key={index}>
-                  <EventCard event={event} />
+                  <EventCard event={event} onDelete={this.onDelete} onVolunteerDelete={this.onVolunteerDelete} this3={this}/>
                 </Col>
               ))}
             </Row>
@@ -66,3 +118,4 @@ class EventDisplay extends React.Component {
 }
 
 export default EventDisplay;
+

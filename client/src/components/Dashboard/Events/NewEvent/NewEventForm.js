@@ -21,9 +21,8 @@ class EventForm extends React.Component {
       site: null,
       coordinator: null,
       description: "",
-      date: "",
-      start_date: null,
-      end_date: null,
+      startDate: null,
+      endDate: null,
       volunteers: []
     };
   }
@@ -92,8 +91,8 @@ class EventForm extends React.Component {
       site: this.state.site,
       coordinator: this.state.coordinator,
       description: this.state.description,
-      start_date: this.state.start_date,
-      end_date: this.state.end_date,
+      startDate: this.state.startDate,
+      endDate: this.state.endDate,
       volunteers: this.state.volunteers
     };
 
@@ -104,25 +103,15 @@ class EventForm extends React.Component {
     } catch (err) {
       console.log(err.message);
     }
-
-    this.setState({
-      loader: false,
-      site: null,
-      coordinator: null,
-      description: "",
-      start_date: null,
-      end_date: null,
-      volunteers: []
-    });
     
   };
 
   setStartDate = (event) => {
-    this.setState({ start_date: event });
+    this.setState({ startDate: event });
   };
 
   setEndDate = (event) => {
-    this.setState({ end_date: event });
+    this.setState({ endDate: event });
   };
 
   handleVolunteersChange = (event) => {
@@ -207,6 +196,7 @@ class EventForm extends React.Component {
               <Form.Group as={Col} controlId="formDate">
                 <Form.Label>Start Date</Form.Label>
                 <DatePicker
+                  autoComplete={false}
                   className="form-control"
                   placeholder="MM/DD/YYYY"
                   onChange={this.setStartDate}
@@ -217,15 +207,15 @@ class EventForm extends React.Component {
                   scrollableYearDropdown
                   selectsStart
                   selected={
-                    this.state.start_date ? new Date(this.state.start_date) : ""
+                    this.state.startDate ? new Date(this.state.startDate) : ""
                   }
                   startDate={
-                    this.state.start_date ? new Date(this.state.start_date) : ""
+                    this.state.startDate ? new Date(this.state.startDate) : ""
                   }
                   endDate={
-                    this.state.send_date ? new Date(this.state.send_date) : ""
+                    this.state.endDate ? new Date(this.state.endDate) : ""
                   }
-                  name="start_date"
+                  name="startDate"
                 />
               </Form.Group>
 
@@ -236,8 +226,8 @@ class EventForm extends React.Component {
                   placeholder="MM/DD/YYYY"
                   onChange={this.setEndDate}
                   minDate={
-                    new Date(this.state.start_date) > new Date()
-                      ? new Date(this.state.start_date)
+                    new Date(this.state.startDate) > new Date()
+                      ? new Date(this.state.startDate)
                       : new Date()
                   }
                   showYearDropdown
@@ -246,15 +236,15 @@ class EventForm extends React.Component {
                   scrollableYearDropdown
                   selectsEnd
                   selected={
-                    this.state.end_date ? new Date(this.state.end_date) : ""
+                    this.state.endDate ? new Date(this.state.endDate) : ""
                   }
                   startDate={
-                    this.state.start_date ? new Date(this.state.start_date) : ""
+                    this.state.startDate ? new Date(this.state.startDate) : ""
                   }
                   endDate={
-                    this.state.end_date ? new Date(this.state.end_date) : ""
+                    this.state.endDate ? new Date(this.state.endDate) : ""
                   }
-                  name="end_date"
+                  name="endDate"
                 />
               </Form.Group>
             </Form.Row>
@@ -266,9 +256,6 @@ class EventForm extends React.Component {
                 placeholder="Select Volunteers"
                 isMulti={true}
                 options={volunteers_option}
-                // value={volunteers_option.filter(
-                //   ({ value }) => value === this.state.volunteers
-                // )}
                 onChange={this.handleVolunteersChange}
               />
             </Form.Group>
@@ -312,3 +299,4 @@ class EventForm extends React.Component {
 }
 
 export default EventForm;
+
