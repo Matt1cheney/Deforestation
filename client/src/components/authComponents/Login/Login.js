@@ -1,8 +1,8 @@
 
-import React, { useCallback, useContext } from "react";
+import React, { useCallback } from "react";
 import app from "../userAuth/baseauth";
-import { AuthContext } from "../userAuth/Auth";
-import { withRouter, Redirect } from "react-router";
+// import { AuthContext } from "../userAuth/Auth";
+import { withRouter } from "react-router";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -27,15 +27,15 @@ const Login = ({ history }) => {
     [history]
   );
 
-  const { currentUser } = useContext(AuthContext);
+  // const { currentUser } = useContext(AuthContext);
 
-  if (currentUser) {
-    return <Redirect to="/" />;
-  }
+  // if (currentUser) {
+  //   return <Redirect to="/" />;
+  // }
 
   return (
     <Container className="parent">
-      <Form >
+      <Form onSubmit={handleLogin}>
         <h3 className="centerMe loginText">Sign in to continue.</h3>
         <Form.Row className="justify-content-center">
           <Form.Group as={Col} xs={12} md={5} lg={4} controlId="formBasicEmail">
