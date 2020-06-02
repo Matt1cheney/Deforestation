@@ -14,6 +14,10 @@ export default {
     return axios.get(`/api/person/${id}`)
   },
 
+  getPersonByUid: function(uid) {
+    return axios.get(`/api/firebaseperson/${uid}`)
+  },
+
   deletePerson: (id) => {
     return axios.delete(`/api/person/${id}`)
   },
