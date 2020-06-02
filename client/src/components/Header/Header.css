@@ -36,10 +36,15 @@ a:hover {
   font-family: "Montserrat", sans-serif;
 }
 
-.getBtn {
-  order: 2;
-}
 
-.infoBtn {
-  order: 3;
+@media (max-width: 420px) {
+
+  .getBtn {
+    order: 2;
+  }
+  
+  .infoBtn {
+    order: 3;
+  }
+  
 }

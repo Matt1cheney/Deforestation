@@ -5,7 +5,7 @@ import UserEventCard from "../UserEvents/UserEventCard";
 
 
 
-function EventDisplay( {events} ) {
+function UserEventDisplay( {events} ) {
 
   return (
 
@@ -21,4 +21,4 @@ function EventDisplay( {events} ) {
   )
 }
 
-export default EventDisplay;
+export default UserEventDisplay;
