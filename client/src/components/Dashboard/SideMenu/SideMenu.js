@@ -25,6 +25,9 @@ const SideMenu = () => {
         <Dropdown.Item className="sideMenuItems">
           <Link to={{ pathname: `/dashboard/source` }}>Source</Link>
         </Dropdown.Item>
+        <Dropdown.Item className="sideMenuItems">
+          <Link to={{ pathname: `/dashboard/persons` }}>Persons</Link>
+        </Dropdown.Item>
       </DropdownButton>
       <div className="sideMenu">
         <Link
