@@ -1,7 +1,9 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Spinner from "react-bootstrap/Spinner";
 import API from "../../../../utils/API";
 import Select from "react-select";
 
@@ -10,6 +12,7 @@ class RegionForm extends React.Component {
     super(props);
     this.coordinators = [];
     this.state = {
+      loader: false,
       name: "",
       coordinator: "",
       description: "",
@@ -17,12 +20,14 @@ class RegionForm extends React.Component {
   }
 
   componentWillMount() {
+    this.setState({ loader: true });
     API.getPersons().then((data) => {
       this.setState(
         (this.coordinators = data.data.filter((data) => {
           return data.role.toLowerCase() === "coordinator";
         }))
       );
+      this.setState({ loader: false });
     });
   }
 
@@ -60,17 +65,10 @@ class RegionForm extends React.Component {
     } catch (err) {
       console.log(err.message);
     }
-
-
-    this.setState({
-      name: "",
-      coordinator: "",
-      description: "",
-    });
+    
   };
 
   render() {
-
     let coordinators_option = this.coordinators.map((value) => {
       return {
         label: value.name,
@@ -82,50 +80,66 @@ class RegionForm extends React.Component {
       <div className="formContainer">
         <Form onSubmit={this.handleSubmit}>
           <h1>New Region</h1>
-          <Form.Group controlId="formRegion">
-            <Form.Label>Region Name</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter region name"
-              name="name"
-              value={this.state.name}
-              onChange={this.handleChange}
-            />
-          </Form.Group>
+          {!this.state.loader ? (
+            <>
+              <Form.Group controlId="formRegion">
+                <Form.Label>Region Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter region name"
+                  name="name"
+                  value={this.state.name}
+                  onChange={this.handleChange}
+                />
+              </Form.Group>
 
-          <Form.Group controlId="formCoordinator">
-            <Form.Label>Coordinator</Form.Label>
-            <Select
-              name="coordinator"
-              placeholder="Select Coordinator"
-              options={coordinators_option}
-              value={coordinators_option.filter(
-                ({ value }) => value === this.state.coordinator
-              )}
-              onChange={this.handleSelectChange}
-            />
-          </Form.Group>
+              <Form.Group controlId="formCoordinator">
+                <Form.Label>Coordinator</Form.Label>
+                <Select
+                  name="coordinator"
+                  placeholder="Select Coordinator"
+                  options={coordinators_option}
+                  value={coordinators_option.filter(
+                    ({ value }) => value === this.state.coordinator
+                  )}
+                  onChange={this.handleSelectChange}
+                />
+              </Form.Group>
 
-          <Form.Group controlId="formDescription">
-            <Form.Label>Description</Form.Label>
-            <Form.Control
-              as="textarea"
-              rows="3"
-              placeholder="Enter brief description"
-              name="description"
-              value={this.state.description}
-              onChange={this.handleChange}
-            />
-          </Form.Group>
+              <Form.Group controlId="formDescription">
+                <Form.Label>Description</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows="3"
+                  placeholder="Enter brief description"
+                  name="description"
+                  value={this.state.description}
+                  onChange={this.handleChange}
+                />
+              </Form.Group>
 
-          <Form.Group
-            controlId="formDescription"
-            style={{ height: 30, marginTop: 22 }}
-          >
-            <Button variant="dark" className="btn float-right" type="submit">
-              Submit
-            </Button>
-          </Form.Group>
+              <Form.Group
+                controlId="formDescription"
+                style={{ height: 30, marginTop: 22 }}
+              >
+                <Button
+                  variant="dark"
+                  className="btn float-right"
+                  type="submit"
+                >
+                  Submit
+                </Button>
+              </Form.Group>
+            </>
+          ) : (
+            <Row>
+              <Col sm={12} className="text-center">
+                <Spinner animation="border" role="status" variant="dark">
+                  <span className="sr-only">Loading...</span>
+                </Spinner>
+              </Col>
+            </Row>
+          )}
         </Form>
       </div>
     );

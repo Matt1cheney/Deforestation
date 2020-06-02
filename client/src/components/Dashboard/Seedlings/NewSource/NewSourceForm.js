@@ -1,227 +1,410 @@
-import React, { useState } from "react";
+import React from "react";
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
+import Spinner from "react-bootstrap/Spinner";
+import Select from "react-select";
+import DatePicker from "react-datepicker";
 import API from "../../../../utils/API";
-import Card from "react-bootstrap/Card";
 
-
-
-const SourceForm = ({ sites, persons, regions }) => {
-
-  const owners = persons.filter((data) => { return data.role.toLowerCase() === "landowner" });
-
-  const coordinators = persons.filter((data) => { return data.role.toLowerCase() === "coordinator" });
-
-  const [formState, setFormState] = useState({
-    region: null,
-    name: "",
-    owner: null,
-    coordinator: null,
-    address: "",
-    seedlings: []
-  })
-
-  const [seedState, setSeedState] = useState({
-    count: "",
-    type: "",
-    age: "",
-    date: "",
-    site: "",
-  })
-
-  const handleSeedState = (event) => {
-    const { name, value } = event.target
-
-    setSeedState({
-      ...seedState,
-      [name]: value
-    })
-  }
-
-  const handleSeedAdd = (event) => {
-    event.preventDefault()
-
-    const newObj = {
-      count: seedState.count,
-      type: seedState.type,
-      age: seedState.age,
-      date: seedState.date,
-      site: seedState.site
-    }
-
-    formState.seedlings.push(newObj)
-
-    setSeedState({
-      ...seedState,
+class SourceForm extends React.Component {
+  constructor() {
+    super();
+    this.owners = [];
+    this.coordinators = [];
+    this.persons = [];
+    this.regions = [];
+    this.sites = [];
+    this.states = [
+      "Alabama",
+      "Alaska",
+      "Arizona",
+      "Arkansas",
+      "California",
+      "Colorado",
+      "Connecticut",
+      "Delaware",
+      "District of Columbia",
+      "Florida",
+      "Georgia",
+      "Hawaii",
+      "Idaho",
+      "Illinois",
+      "Indiana",
+      "Iowa",
+      "Kansas",
+      "Kentucky",
+      "Louisiana",
+      "Maine",
+      "Maryland",
+      "Massachusetts",
+      "Michigan",
+      "Minnesota",
+      "Mississippi",
+      "Missouri",
+      "Montana",
+      "Nebraska",
+      "Nevada",
+      "New Hampshire",
+      "New Jersey",
+      "New Mexico",
+      "New York",
+      "North Carolina",
+      "North Dakota",
+      "Ohio",
+      "Oklahoma",
+      "Oregon",
+      "Pennsylvania",
+      "Rhode Island",
+      "South Carolina",
+      "South Dakota",
+      "Tennessee",
+      "Texas",
+      "Utah",
+      "Vermont",
+      "Virginia",
+      "Washington",
+      "West Virginia",
+      "Wisconsin",
+      "Wyoming",
+    ];
+    this.state = {
+      loader: false,
+      name: "",
+      region: null,
+      owner: null,
+      street: "",
+      city: "",
+      state: "",
+      zip: "",
+      coordinator: null,
       count: "",
-      type: "",
-      age: "",
-      date: "",
+      tree_type: "",
+      target_age: "",
+      available: "",
       site: "",
-    })
+    };
   }
 
-  const deleteSeed = (event) => {
-    const { value } = event.target
-    console.log(value)
+  async componentWillMount() {
+    this.setState({ loading: true });
+    API.getPersons().then((data) => {
+      this.setState(
+        (this.coordinators = data.data.filter((data) => {
+          return data.role.toLowerCase() === "coordinator";
+        }))
+      );
+      this.setState(
+        (this.owners = data.data.filter((data) => {
+          return data.role.toLowerCase() === "landowner";
+        }))
+      );
+      API.getSites().then((result) => {
+        this.setState((this.sites = result.data));
+
+        API.getRegions().then((data) => {
+          this.setState((this.regions = data.data));
+          this.setState({ loading: false });
+        });
+      });
+    });
   }
 
-  const handleChange = (event) => {
-    const { name, value } = event.target
+  handleChange = (event) => {
+    const { name, value } = event.target;
 
     if (value === "none") {
-      setFormState({
-        ...formState,
-        [name]: null
-      })
-      return
+      this.setFormState({
+        [name]: null,
+      });
+      return;
     }
 
-    setFormState({
-      ...formState,
-      [name]: value
-    })
-  }
+    this.setState({
+      [name]: value,
+    });
+  };
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
+  handleSiteChange = (data) => {
+    if (data.value !== "") {
+      this.setState({
+        site: data.value,
+      });
+    }
+  };
 
-    if (formState.name === "" || formState.email === "") {
-      alert("Looks like you forgot one!")
-      return
+  setAvailableDate = (event) => {
+    this.setState({ available: event });
+  };
+
+  handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (
+      this.state.street === "" ||
+      this.state.owner === "" ||
+      this.state.city === "" ||
+      this.state.state === "" ||
+      this.state.zip === "" ||
+      this.state.region === null ||
+      this.state.coordinator === null ||
+      this.state.name === "" ||
+      this.state.count === "" || 
+      this.state.tree_type === "" || 
+      this.state.target_age === "" || 
+      this.state.available === "" || 
+      this.state.site === ""
+    ) {
+      alert("Looks like you forgot one!");
+      return;
     }
 
-    API.createSource(formState).then(res => console.log(res.data))
+    let sourceData = {
+      name: this.state.name,
+      region: this.state.region,
+      owner: this.state.owner,
+      address: {
+        street: this.state.street,
+        city: this.state.city,
+        state: this.state.state,
+        zip: this.state.zip,
+      },
+      coordinator: this.state.coordinator,
+      seedlings: {
+        count: this.state.count,
+        tree_type: this.state.tree_type,
+        available: this.state.available,
+        target_age: this.state.target_age,
+        intendSite: this.state.site,
+      }
+    };
 
-    setFormState({
-      ...formState,
-      region: null,
-      name: "",
-      owner: null,
-      coordinator: null,
-      address: "",
-      seedlings: []
-    })
+    try {
+      await API.createSource(sourceData);
+      alert("Source Added");
+      this.props.history.goBack();
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
+  render() {
+
+    let sites_option = this.sites.map((value) => {
+      return {
+        label: value.name,
+        value: value._id,
+      };
+    });
+
+    return (
+      <Form className="formContainer" onSubmit={this.handleSubmit}>
+        <h1>New Source</h1>
+        {!this.state.loading ? (
+          <>
+            <Form.Row>
+              <Form.Group as={Col} xs={12} md={4} controlId="formSiteName">
+                <Form.Label>Source Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder=""
+                  name="name"
+                  onChange={this.handleChange}
+                  value={this.state.name}
+                />
+              </Form.Group>
+
+              <Form.Group as={Col} xs={12} md={4} controlId="formRegion">
+                <Form.Label>Region</Form.Label>
+                <Form.Control
+                  as="select"
+                  name="region"
+                  onChange={this.handleChange}
+                >
+                  <option>none</option>
+                  {this.regions.map((region, index) => (
+                    <option key={index} value={region._id}>
+                      {region.name}
+                    </option>
+                  ))}
+                </Form.Control>
+              </Form.Group>
+              <Form.Group as={Col} xs={12} md={4} controlId="formSiteOwner">
+                <Form.Label>Owner</Form.Label>
+                <Form.Control
+                  as="select"
+                  name="owner"
+                  onChange={this.handleChange}
+                >
+                  <option>none</option>
+                  {this.owners.map((owner, index) => (
+                    <option key={index} value={owner._id}>
+                      {owner.name}
+                    </option>
+                  ))}
+                </Form.Control>
+              </Form.Group>
+            </Form.Row>
+
+            <Form.Row>
+              <Form.Group as={Col} xs={12} md={6} controlId="formGridAddress1">
+                <Form.Label>Address</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="1234 Main St"
+                  name="street"
+                  onChange={this.handleChange}
+                  value={this.state.street}
+                />
+              </Form.Group>
+
+              <Form.Group as={Col} xs={12} md={6} controlId="formGridCity">
+                <Form.Label>City</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="city"
+                  onChange={this.handleChange}
+                  value={this.state.city}
+                />
+              </Form.Group>
+            </Form.Row>
+
+            <Form.Row>
+              <Form.Group as={Col} xs={12} md={4} controlId="formGridState">
+                <Form.Label>State</Form.Label>
+                <Form.Control
+                  as="select"
+                  name="state"
+                  onChange={this.handleChange}
+                >
+                  <option>select</option>
+                  {this.states.map((state, index) => (
+                    <option key={index}>{state}</option>
+                  ))}
+                </Form.Control>
+              </Form.Group>
+
+              <Form.Group as={Col} xs={12} md={4} controlId="formGridZip">
+                <Form.Label>Zip</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="zip"
+                  onChange={this.handleChange}
+                  value={this.state.zip}
+                />
+              </Form.Group>
+
+              <Form.Group as={Col} xs={12} md={4} controlId="formCoordinator">
+                <Form.Label>Coordinator</Form.Label>
+                <Form.Control
+                  as="select"
+                  name="coordinator"
+                  onChange={this.handleChange}
+                >
+                  <option>none</option>
+                  {this.coordinators.map((person, index) => (
+                    <option key={index} value={person._id}>
+                      {person.name}
+                    </option>
+                  ))}
+                </Form.Control>
+              </Form.Group>
+            </Form.Row>
+
+            <Form.Row>              
+              <Form.Group as={Col} xs={12} md={12} controlId="formMainText" style={{margin: 0}}>
+                <Form.Label style={{textDecoration: "underline"}}>Seedlings Details:</Form.Label>
+              </Form.Group>
+
+              <Form.Group as={Col} xs={12} md={4} controlId="formGridCity">
+                <Form.Label>Count</Form.Label>
+                <Form.Control
+                  type="number"
+                  name="count"
+                  onChange={this.handleChange}
+                  value={this.state.count}
+                />
+              </Form.Group>
+              
+              <Form.Group as={Col} xs={12} md={4} controlId="formGridCity">
+                <Form.Label>Target Age (year)</Form.Label>
+                <Form.Control
+                  type="number"
+                  name="target_age"
+                  onChange={this.handleChange}
+                  value={this.state.target_age}
+                />
+              </Form.Group>
+              
+              <Form.Group as={Col} xs={12} md={4} controlId="formGridCity">
+                <Form.Label>Available Date</Form.Label>
+                <DatePicker
+                  className="form-control"
+                  placeholder="MM/DD/YYYY"
+                  onChange={this.setAvailableDate}
+                  minDate={new Date()}
+                  showYearDropdown
+                  yearDropdownItemNumber={5}
+                  dateFormatCalendar="MMMM"
+                  scrollableYearDropdown
+                  selected={
+                    this.state.available ? new Date(this.state.available) : ""
+                  }
+                  name="available"
+                />
+              </Form.Group>  
+              
+              <Form.Group as={Col} xs={12} md={6} controlId="formGridCity">
+                <Form.Label>Tree Type</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="tree_type"
+                  onChange={this.handleChange}
+                  value={this.state.tree_type}
+                />
+                <small>Please use comma(,) to sepereate type</small>
+              </Form.Group>
+              
+              <Form.Group as={Col} xs={12} md={6} controlId="formGridCity">
+                <Form.Label>Site</Form.Label>
+                <Select
+                  name="site"
+                  placeholder="Select Site"
+                  options={sites_option}
+                  value={sites_option.filter(
+                    ({ value }) => value === this.state.site
+                  )}
+                  onChange={this.handleSiteChange}
+                />
+              </Form.Group>              
+            </Form.Row>
+
+            <Form.Group
+              controlId="formDescription"
+              style={{ height: 30, marginTop: 22 }}
+            >
+              <Button
+                variant="primary"
+                className="btn float-right"
+                type="submit"
+              >
+                Submit
+              </Button>
+            </Form.Group>
+          </>
+        ) : (
+          <Row>
+            <Col sm={12} className="text-center">
+              <Spinner animation="border" role="status" variant="dark">
+                <span className="sr-only">Loading...</span>
+              </Spinner>
+            </Col>
+          </Row>
+        )}
+      </Form>
+    );
   }
-
-
-  return (
-    <Form className="formContainer" onSubmit={handleSubmit}>
-      <h1>New Source</h1>
-      <Form.Row>
-        <Form.Group as={Col} xs={12} md={4} controlId="formDate">
-          <Form.Label>Name</Form.Label>
-          <Form.Control placeholder="" name="name" onChange={handleChange} value={formState.date} />
-        </Form.Group>
-
-        <Form.Group as={Col} xs={12} md={4} controlId="formSite">
-          <Form.Label>Region</Form.Label>
-          <Form.Control as="select" name="region" onChange={handleChange}>
-            <option>none</option>
-            {regions.map((region, index) => (
-              <option key={index} value={region._id}>{region.name}</option>
-            ))}
-          </Form.Control>
-        </Form.Group>
-
-        <Form.Group as={Col} xs={12} md={4} controlId="formCoordinator">
-          <Form.Label>Owner</Form.Label>
-          <Form.Control as="select" name="owner" onChange={handleChange}>
-            <option>none</option>
-            {owners.map((person, index) => (
-              <option key={index} value={person._id}>{person.name}</option>
-            ))}
-          </Form.Control>
-        </Form.Group>
-      </Form.Row>
-
-      <Form.Row>
-        <Form.Group as={Col} xs={12} md={8} controlId="formStartTime">
-          <Form.Label>Address</Form.Label>
-          <Form.Control placeholder="" name="address" onChange={handleChange} value={formState.startTime} />
-        </Form.Group>
-        <Form.Group as={Col} xs={12} md={4} controlId="formCoordinator">
-          <Form.Label>Coordinator</Form.Label>
-          <Form.Control as="select" name="coordinator" onChange={handleChange}>
-            <option>none</option>
-            {coordinators.map((person, index) => (
-              <option key={index} value={person._id}>{person.name}</option>
-            ))}
-          </Form.Control>
-        </Form.Group>
-
-      </Form.Row>
-
-
-      <h3>Available Seedlings</h3>
-      <Row>
-        {formState.seedlings !== [] && formState.seedlings.map((item, index) => (
-          <Col xs={12} md={4} key={index}>
-            <Card>
-              <Card.Body>
-                <Row>
-                  <Col>
-                    <Card.Title><h3>{item.type}</h3></Card.Title>
-                  </Col>
-                  <Col>
-                    <Button className="btn align-right" variant="dark" value={index} onClick={deleteSeed}><i className="far fa-trash-alt"></i></Button>
-                  </Col>
-                </Row>
-                <ul>
-                  <li>Count: {item.count}</li>
-                  <li>Age: {item.age}</li>
-                  <li>Available: {item.date}</li>
-                  <li>Site: {item.site}</li>
-                </ul>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </Row>
-      <Form.Row>
-        <Form.Group as={Col} xs={12} md={4} controlId="formType">
-          <Form.Label>Tree Type</Form.Label>
-          <Form.Control type="text" value={seedState.type} placeholder="" name="type" onChange={handleSeedState} />
-        </Form.Group>
-        <Form.Group as={Col} xs={12} md={4} controlId="formCount">
-          <Form.Label>Count</Form.Label>
-          <Form.Control type="text" value={seedState.count} placeholder="" name="count" onChange={handleSeedState} />
-        </Form.Group>
-        <Form.Group as={Col} xs={12} md={4} controlId="formAge">
-          <Form.Label>Target Age</Form.Label>
-          <Form.Control type="text" value={seedState.age} placeholder="" name="age" onChange={handleSeedState} />
-        </Form.Group>
-      </Form.Row>
-      <Form.Row>
-        <Form.Group as={Col} xs={12} md={4} controlId="formDate">
-          <Form.Label>Availibilty Date</Form.Label>
-          <Form.Control type="text" value={seedState.date} placeholder="" name="date" onChange={handleSeedState} />
-        </Form.Group>
-        <Form.Group as={Col} xs={12} md={4} controlId="formSite">
-          <Form.Label>Intended Site</Form.Label>
-          <Form.Control as="select" value={seedState.site} name="site" onChange={handleSeedState}>
-            <option>none</option>
-            {sites.map((site, index) => (
-              <option key={index} >{site.name}</option>
-            ))}
-          </Form.Control>
-        </Form.Group>
-      </Form.Row>
-      <Button variant="dark" type="click" onClick={handleSeedAdd}>
-        Add Seedling Type
-</Button>
-
-      <br></br>
-      <br></br>
-
-      <Button variant="dark" type="submit">
-        Submit
-</Button>
-    </Form>
-  )
 }
-
 
 export default SourceForm;
