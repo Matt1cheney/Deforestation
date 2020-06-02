@@ -1,8 +1,14 @@
-  
+
 import React, { useCallback, useContext } from "react";
 import app from "../userAuth/baseauth";
 import { AuthContext } from "../userAuth/Auth";
-import {withRouter, Redirect } from "react-router";
+import { withRouter, Redirect } from "react-router";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import "./style.css";
 
 const Login = ({ history }) => {
   const handleLogin = useCallback(
@@ -13,7 +19,7 @@ const Login = ({ history }) => {
         await app
           .auth()
           .signInWithEmailAndPassword(email.value, password.value);
-        history.push("/");
+        history.push("/dashboard");
       } catch (error) {
         alert(error);
       }
@@ -27,21 +33,30 @@ const Login = ({ history }) => {
     return <Redirect to="/" />;
   }
 
-  return(
-    <div>
-      <h1>Log In</h1>
-      <form onSubmit={handleLogin}>
-        <label>
-          Email
-          <input name="email" type="email" placeholder="Email"/>
-        </label>
-        <label>
-          Password
-          <input name="password" type="password" placeholder="Password"/>
-        </label>
-        <button type="submit">Log In</button>
-      </form>
-    </div>
+  return (
+    <Container className="parent">
+      <Form >
+        <h3 className="centerMe loginText">Sign in to continue.</h3>
+        <Form.Row className="justify-content-center">
+          <Form.Group as={Col} xs={12} md={5} lg={4} controlId="formBasicEmail">
+            <Form.Label className="loginText">Email address</Form.Label>
+            <Form.Control type="email" placeholder="Enter email" />
+          </Form.Group>
+        </Form.Row>
+
+        <Form.Row className="justify-content-center">
+          <Form.Group as={Col} xs={12} md={5} lg={4} controlId="formBasicPassword">
+            <Form.Label className="loginText">Password</Form.Label>
+            <Form.Control type="password" placeholder="Password" />
+          </Form.Group>
+        </Form.Row>
+        <Form.Row className="justify-content-center">
+        <Button variant="dark" className="btn" type="submit">
+          Submit
+  </Button>
+        </Form.Row>
+      </Form>
+    </Container>
   )
 };
 
