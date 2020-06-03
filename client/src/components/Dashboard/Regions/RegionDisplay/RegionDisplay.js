@@ -85,7 +85,7 @@ class RegionDisplay extends React.Component {
       this.handleSearch()
     } 
 
-  }, 800);
+  }, 1000);
 
 
 

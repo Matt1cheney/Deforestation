@@ -28,6 +28,8 @@
 
 .jumbotron {
   padding: 1rem !important;
+  margin-bottom: 0em;
+  border-radius: 0;
 }
 
 .btn {
