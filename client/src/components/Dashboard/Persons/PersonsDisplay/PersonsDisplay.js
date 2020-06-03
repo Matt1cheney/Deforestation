@@ -8,6 +8,7 @@ import Spinner from "react-bootstrap/Spinner";
 import API from "../../../../utils/API";
 import SearchBar from "../../SearchBar/Search";
 import debounce from "lodash.debounce";
+import "../style.css";
 
 
 class PersonDisplay extends React.Component {
@@ -86,64 +87,70 @@ class PersonDisplay extends React.Component {
       return
     } else {
       this.handleSearch()
-    } 
+    }
 
   }, 1000);
 
   render() {
     return (
       <>
-      <Jumbotron className="createNew">
-        <h1>People</h1>
-        <p>
-          <Link
-            className="btn color-white width-240"
-            variant="dark"
-            style={{ width: "100%", marginBottom: 10 }}
-            to={{ pathname: `/dashboard/newAdmin` }}
-          >
-            Add New Admin/Coordinator
+        <Jumbotron className="createNew">
+          <Row>
+            <Col xs={12} md={6}>
+              <h1>People</h1>
+            </Col>
+            <Col xs={12} md={6}>
+                <Link
+                  as="button"
+                  className="btn color-white newPersonBtn"
+                  variant="dark"
+                  style={{ marginBottom: 10 }}
+                  to={{ pathname: `/dashboard/newAdmin` }}
+                >
+                  Add Admin/Coordinator
           </Link>
-        </p>
-        <p>
-          <Link
-            className="btn color-white width-260"
-            variant="dark"
-            style={{ width: "100%", marginBottom: 10 }}
-            to={{ pathname: `/dashboard/newPerson` }}
-          >
-            Add New Volunteer/Land Owner
+          <br></br>
+          <br></br>
+                <Link
+                  as="button"
+                  className="btn color-white newPersonBtn"
+                  variant="dark"
+                  style={{ marginBottom: 10 }}
+                  to={{ pathname: `/dashboard/newPerson` }}
+                >
+                  Add Volunteer/Land Owner
           </Link>
-        </p>
-      </Jumbotron>
-      <SearchBar
+            </Col>
+          </Row>
+        </Jumbotron>
+        <SearchBar
           search={this.state.search}
           handleInputChange={this.handleInputChange}
           clearSearch={this.clearSearch} />
-      {!this.state.loading ? (
+        {!this.state.loading ? (
           this.state.persons.length > 0 ? (
             <Row>
               {this.state.persons.map((person, index) => (
-                <PersonCard key={index} person={person} onDelete={this.onDelete} this3={this}/>
+                <PersonCard key={index} person={person} onDelete={this.onDelete} this3={this} />
               ))}
             </Row>
-      ) : (
+          ) : (
+              <Row>
+                <Col sm={12}>
+                  <h6 className="color-white">No Record Founds</h6>
+                </Col>
+              </Row>
+            )
+        ) : (
             <Row>
               <Col sm={12}>
-                <h6 className="color-white">No Record Founds</h6>
+                <Spinner animation="border" role="status" variant="light">
+                  <span className="sr-only">Loading...</span>
+                </Spinner>
               </Col>
             </Row>
-          )
-        ) : (
-          <Row>
-            <Col sm={12}>
-              <Spinner animation="border" role="status" variant="light">
-                <span className="sr-only">Loading...</span>
-              </Spinner>
-            </Col>
-          </Row>
-        )}
-    </>
+          )}
+      </>
     )
   }
 }
