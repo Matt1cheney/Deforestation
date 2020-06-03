@@ -7,30 +7,34 @@ const SearchBar = ({ search, handleInputChange, clearSearch }) => {
 
   return (
 
-      <Form className="searchBar">
-        <Form.Group>
-          <Form.Label><h4>Search</h4></Form.Label>
-          <Form.Control
-            id="searchInput"
-            type="text"
-            placeholder="Search something..."
-            onChange={ e => handleInputChange(e.target.value)}
-            name="search"
-            autocomplete="off"
-          />
-        </Form.Group>
-        {search.length > 0 && (
-          <Button
-            className="btn"
-            size="lg"
-            type="click"
-            variant="dark"
-            onClick={clearSearch}
-          >
-            Clear Search
-          </Button>
-        )}
-      </Form>
+    <Form className="searchBar" onSubmit={e => {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    }>
+      <Form.Group>
+        <Form.Label><h5 className="searchBarH1">Search</h5></Form.Label>
+        <Form.Control
+          id="searchInput"
+          type="text"
+          placeholder="Search something..."
+          onChange={e => handleInputChange(e.target.value)}
+          name="search"
+          autocomplete="off"
+        />
+      </Form.Group>
+      {search.length > 0 && (
+        <Button
+          className="btn"
+          size="lg"
+          type="click"
+          variant="dark"
+          onClick={clearSearch}
+        >
+          Clear Search
+        </Button>
+      )}
+    </Form>
 
   )
 

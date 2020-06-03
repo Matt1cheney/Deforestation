@@ -2,25 +2,32 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import "./style.css"
 
 const CreateNew = ({ obj }) => {
   const { path, name, title } = obj;
 
   return (
     <Jumbotron className="createNew">
-      <h1 className="m-1">
-        {title}
+      <Row>
+        <Col xs={12} md={6}>
+          <h1 className="m-1">{title}</h1>
+        </Col>
 
-        <Link
-          as="button"
-          className="btn center float-right color-white" variant="dark"
-          to={{
-            pathname: path,
-          }}
-        >
-          Add New {name}
-        </Link>
-      </h1>
+        <Col xs={12} md={6}>
+          <Link
+            as="button"
+            className="btn center color-white createNewBtn" variant="dark"
+            to={{
+              pathname: path,
+            }}
+          >
+            Add New {name}
+          </Link>
+        </Col>
+      </Row>
     </Jumbotron>
   );
 };

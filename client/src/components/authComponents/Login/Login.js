@@ -19,7 +19,7 @@ const Login = ({ history }) => {
         await app
           .auth()
           .signInWithEmailAndPassword(email.value, password.value);
-        history.push("/dashboard");
+        history.push("/dashboard/home");
       } catch (error) {
         alert(error);
       }
