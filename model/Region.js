@@ -10,5 +10,6 @@ const RegionSchema = new Schema({
         default: null
     },
 });
+RegionSchema.index({'$**': 'text'});
 
 module.exports = mongoose.model("Region", RegionSchema, "Regions");

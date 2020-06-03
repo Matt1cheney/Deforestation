@@ -5,6 +5,8 @@ import EventCard from "../EventCard/EventCard";
 import CreateNew from "../../CreateNew/CreateNew";
 import Spinner from "react-bootstrap/Spinner";
 import API from "../../../../utils/API";
+import SearchBar from "../../SearchBar/Search";
+import debounce from "lodash.debounce";
 
 class EventDisplay extends React.Component {
   constructor() {
@@ -17,6 +19,7 @@ class EventDisplay extends React.Component {
       path: "/dashboard/newEvent",
     };
     this.state = {
+      search: "",
       events: [],
       loading: false,
     };
@@ -83,10 +86,54 @@ class EventDisplay extends React.Component {
     }
   };
 
+  clearSearch = () => {
+    this.setState({ loading: true });
+    document.getElementById("searchInput").value = "";
+
+    API.getEvents().then((data) => {
+      this.setState({ events: data.data, loading: false });
+    });
+
+    this.setState({
+      search: ""
+    })
+  }
+
+  handleSearch = async () => {
+
+    try {
+      this.setState({ loading: true });
+      await API.searchEvents(this.state.search).then(data => {
+        this.setState({ events: data.data, loading: false })
+      });
+    } catch (err) {
+      alert(err.message);
+    }
+  }
+
+
+  handleInputChange = debounce((search) => {
+    this.setState({ search });
+
+    if (this.state.search === "") {
+      API.getEvents().then((data) => {
+        this.setState({ events: data.data, loading: false });
+      });
+      return
+    } else {
+      this.handleSearch()
+    } 
+
+  }, 800);
+
   render() {
     return (
       <>
         {this.admin && <CreateNew obj={this.createObj} />}
+        <SearchBar
+          search={this.state.search}
+          handleInputChange={this.handleInputChange}
+          clearSearch={this.clearSearch} />
         {!this.state.loading ? (
           this.state.events.length > 0 ? (
             <Row>

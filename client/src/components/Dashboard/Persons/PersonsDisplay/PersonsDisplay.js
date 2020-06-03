@@ -6,6 +6,8 @@ import Col from "react-bootstrap/Col";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Spinner from "react-bootstrap/Spinner";
 import API from "../../../../utils/API";
+import SearchBar from "../../SearchBar/Search";
+import debounce from "lodash.debounce";
 
 
 class PersonDisplay extends React.Component {
@@ -20,6 +22,7 @@ class PersonDisplay extends React.Component {
       path: "/dashboard/newPerson"
     }
     this.state = {
+      search: "",
       persons: [],
       loading: false,
     }
@@ -47,6 +50,46 @@ class PersonDisplay extends React.Component {
     }
   };
 
+  clearSearch = () => {
+    this.setState({ loading: true });
+    document.getElementById("searchInput").value = "";
+
+    API.getPersons().then((data) => {
+      this.setState({ persons: data.data, loading: false });
+    });
+
+    this.setState({
+      search: ""
+    })
+  }
+
+  handleSearch = async () => {
+
+    try {
+      this.setState({ loading: true });
+      await API.searchPersons(this.state.search).then(data => {
+        this.setState({ persons: data.data, loading: false })
+      });
+    } catch (err) {
+      alert(err.message);
+    }
+  }
+
+
+  handleInputChange = debounce((search) => {
+    this.setState({ search });
+
+    if (this.state.search === "") {
+      API.getPersons().then((data) => {
+        this.setState({ persons: data.data, loading: false });
+      });
+      return
+    } else {
+      this.handleSearch()
+    } 
+
+  }, 800);
+
   render() {
     return (
       <>
@@ -73,6 +116,10 @@ class PersonDisplay extends React.Component {
           </Link>
         </p>
       </Jumbotron>
+      <SearchBar
+          search={this.state.search}
+          handleInputChange={this.handleInputChange}
+          clearSearch={this.clearSearch} />
       {!this.state.loading ? (
           this.state.persons.length > 0 ? (
             <Row>

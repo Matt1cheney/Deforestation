@@ -34,5 +34,6 @@ const SourceSchema = new Schema({
         }
     }
 });
+SourceSchema.index({'$**': 'text'});
 
 module.exports = mongoose.model("Source", SourceSchema, "Sources");

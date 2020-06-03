@@ -10,6 +10,10 @@ export default {
     return axios.get("/api/persons")
   },
 
+  searchPersons: function(search) {
+    return axios.get(`/api/matchperson?keyword=${search}`)
+  },
+
   getPersonById: function(id) {
     return axios.get(`/api/person/${id}`)
   },
@@ -28,6 +32,10 @@ export default {
 
   createRegion: function(regionData) {
     return axios.post("/api/regions", regionData);
+  },
+
+  searchRegions: function(search) {
+    return axios.get(`/api/matchregion?keyword=${search}`)
   },
 
   getRegions: function() {
@@ -50,6 +58,10 @@ export default {
     return axios.post("/api/sites", siteData)
   },
 
+  searchSites: function(search) {
+    return axios.get(`/api/matchsite?keyword=${search}`)
+  },
+
   getSites: function() {
     return axios.get("/api/sites")
   },
@@ -70,6 +82,10 @@ export default {
     return axios.post("/api/events", eventData)
   },
 
+  searchEvents: function(search) {
+    return axios.get(`/api/matchevent?keyword=${search}`)
+  },
+
   getEvents: function() {
     return axios.get("/api/events")
   },
@@ -88,6 +104,10 @@ export default {
 
   createSource: function(sourceData) {
     return axios.post("/api/sources", sourceData)
+  },
+
+  searchSources: function(search) {
+    return axios.get(`/api/matchsource?keyword=${search}`)
   },
 
   getSources: function() {
