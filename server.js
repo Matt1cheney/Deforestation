@@ -11,9 +11,14 @@ const PORT = process.env.PORT || 4000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static("client/build"));
+// }
+// serve build files
+jsDirectory = process.env.NODE_ENV === 'production' ? 'build' : 'dist';
+app.use(express.static("client"));
+app.use(express.static(jsDirectory));
+
 // Add routes, both API and view
 app.use(data_routes);
 
