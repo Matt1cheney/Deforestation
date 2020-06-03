@@ -382,6 +382,72 @@ async function updateEvent(req, res) {
     }
 }
 
+//---------------------------------- Search Routes ------------------------------
+
+async function searchPerson(req, res) {    
+    const query = req.query.keyword;
+
+    try {
+        const data = await PersonModel.find({$text: {$search: query}});
+        if (!data) 
+            res.status(404).json({ message: `Cannot FIND Person with name=. Maybe Person was not found!` });
+        else res.json(data);
+    } catch(err) {
+        res.status(500).json({ message: "Error updating Person with name="});
+    }
+}
+
+async function searchRegion(req, res) {    
+    const query = req.query.keyword;
+
+    try {
+        const data = await RegionModel.find({$text: {$search: query}}).populate("coordinator", "name");
+        if (!data) 
+            res.status(404).json({ message: `Cannot FIND Region` });
+        else res.json(data);
+    } catch(err) {
+        res.status(500).json({ message: "Error updating Region"});
+    }
+}
+
+async function searchSite(req, res) {    
+    const query = req.query.keyword;
+
+    try {
+        const data = await SiteModel.find({$text: {$search: query}}).populate("region", "name").populate("coordinator", "name").populate("owner", "name");
+        if (!data) 
+            res.status(404).json({ message: `Cannot FIND Site` });
+        else res.json(data);
+    } catch(err) {
+        res.status(500).json({ message: "Error updating Site"});
+    }
+}
+
+async function searchEvent(req, res) {    
+    const query = req.query.keyword;
+
+    try {
+        const data = await EventModel.find({$text: {$search: query}}).populate("site", "name").populate("coordinator", "name").populate("volunteers");
+        if (!data) 
+            res.status(404).json({ message: `Cannot FIND Event` });
+        else res.json(data);
+    } catch(err) {
+        res.status(500).json({ message: "Error updating Event"});
+    }
+}
+
+async function searchSource(req, res) {    
+    const query = req.query.keyword;
+
+    try {
+        const data = await SourceModel.find({$text: {$search: query}}).populate("region", "name").populate("coordinator", "name").populate("owner", "name").populate("seedlings.intendSite", "name");
+        if (!data) 
+            res.status(404).json({ message: `Cannot FIND Source` });
+        else res.json(data);
+    } catch(err) {
+        res.status(500).json({ message: "Error updating Source"});
+    }
+}
 
 //--------------------------------- API Routes ----------------------------------
 
@@ -391,12 +457,14 @@ router.get("/api/persons", getAllPerson);
 router.post("/api/persons", createPerson);
 router.get("/api/person/:id", findPerson);
 router.get("/api/firebaseperson/:uid", findFirebasePerson);
+router.get(`/api/matchperson?:keyword`, searchPerson);
 router.put("/api/person/:id", updatePerson);
 router.delete("/api/person/:id", deletePerson);
 
 //----------------------- Site routes -------------------
 
 router.get("/api/sites", getAllSite);
+router.get(`/api/matchsite?:keyword`, searchSite);
 router.post("/api/sites", createSite);
 router.get("/api/site/:id", findSite);
 router.put("/api/site", updateSite);
@@ -405,6 +473,7 @@ router.delete("/api/site/:id", deleteSite);
 //----------------------- Source routes -------------------
 
 router.get("/api/sources", getAllSource);
+router.get(`/api/matchsource?:keyword`, searchSource);
 router.post("/api/sources", createSource);
 router.get("/api/source/:id", findSource);
 router.put("/api/source", updateSource);
@@ -413,6 +482,7 @@ router.delete("/api/source/:id", deleteSource);
 //----------------------- Region routes -------------------
 
 router.get("/api/regions", getAllRegion);
+router.get(`/api/matchregion?:keyword`, searchRegion);
 router.post("/api/regions", createRegion);
 router.get("/api/region/:id", findRegion);
 router.put("/api/region", updateRegion);
@@ -421,6 +491,7 @@ router.delete("/api/region/:id", deleteRegion);
 //----------------------- Event routes -------------------
 
 router.get("/api/events", getAllEvent);
+router.get(`/api/matchevent?:keyword`, searchEvent);
 router.post("/api/events", createEvent);
 router.get("/api/event/:id", findEvent);
 router.put("/api/event", updateEvent);
