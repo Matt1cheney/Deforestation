@@ -13,7 +13,7 @@ const SearchBar = ({ search, handleInputChange, clearSearch }) => {
     }
     }>
       <Form.Group>
-        <Form.Label><h4>Search</h4></Form.Label>
+        <Form.Label><h5 className="searchBarH1">Search</h5></Form.Label>
         <Form.Control
           id="searchInput"
           type="text"
