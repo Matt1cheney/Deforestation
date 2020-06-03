@@ -388,7 +388,7 @@ async function searchPerson(req, res) {
     const query = req.query.keyword;
 
     try {
-        const data = await PersonModel.find({$text: {$search: query}});
+        const data = await PersonModel.find({$text: {$search: query}}).populate("region", "name");
         if (!data) 
             res.status(404).json({ message: `Cannot FIND Person with name=. Maybe Person was not found!` });
         else res.json(data);
