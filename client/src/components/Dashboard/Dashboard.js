@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -9,6 +9,7 @@ import SiteDisplay from "./Sites/SiteDisplay/SiteDisplay";
 import EventDisplay from "./Events/EventDisplay/EventDisplay";
 import SourceDisplay from "./Seedlings/SourceDisplay/SourceDisplay";
 import PersonsDisplay from "./Persons/PersonsDisplay/PersonsDisplay";
+import DashboardHome from "./Home/DashboardHome";
 import RegionForm from "./Regions/NewRegionForm/RegionForm";
 import SiteForm from "./Sites/NewSiteForm/SiteForm";
 import AdminForm from "./Persons/NewPerson/NewAdminForm";
@@ -30,74 +31,61 @@ import { AuthProvider } from "../authComponents/userAuth/Auth";
 
 const Dashboard = () => {
 
-  const [regionState, setRegionState] = useState({
-    regions: []
-  });
-  const [personsState, setPersonsState] = useState({
-    persons: []
-  });
-  const [sitesState, setSitesState] = useState({
-    sites: []
-  });
-  const [eventState, setEventState] = useState({
-    events: []
-  });
-
   return (
     <>
-    <Navbar />
-    <AuthProvider>
-      <Router>
-        <Container fluid>
-        <Row>
-          <Col xs={12} md={3} className="sideMenuCol">
-            <SideMenu />
-          </Col>
-          <Col xs={12} md={9} className="dashboardContentView">
-            <Switch>
-              
-              {/* <Route exact path ="/dashboard/login" component={Login} ></Route> */}
+      <Navbar />
+      <AuthProvider>
+        <Router>
+          <Container fluid>
+            <Row>
+              <Col xs={12} md={3} className="sideMenuCol">
+                <SideMenu />
+              </Col>
+              <Col xs={12} md={9} className="dashboardContentView">
+                <Switch>
 
-              <Route exact path="/dashboard/regions" component={RegionDisplay} />
+                  <Route exact path="/dashboard/home" component={DashboardHome} />
 
-              <Route exact path="/dashboard/sites" component={SiteDisplay} />
+                  <Route exact path="/dashboard/regions" component={RegionDisplay} />
 
-              <Route exact path="/dashboard/events" component={EventDisplay} />
-              
-              <Route exact path="/dashboard/source" component={SourceDisplay} />
-              
-              <Route exact path="/dashboard/persons" component={PersonsDisplay} />
-              
-              <Route exact path="/dashboard/newRegion" component={RegionForm} />
+                  <Route exact path="/dashboard/sites" component={SiteDisplay} />
 
-              <Route exact path="/dashboard/newSite" component={SiteForm} />
+                  <Route exact path="/dashboard/events" component={EventDisplay} />
 
-              <Route exact path="/dashboard/newAdmin" component={AdminForm} />
+                  <Route exact path="/dashboard/source" component={SourceDisplay} />
 
-              <Route exact path="/dashboard/newPerson" component={UserForm} />
+                  <Route exact path="/dashboard/persons" component={PersonsDisplay} />
 
-              <Route exact path="/dashboard/newEvent" component={EventForm} />
-              
-              <Route exact path="/dashboard/newSource" component={SourceForm} />
+                  <Route exact path="/dashboard/newRegion" component={RegionForm} />
 
-              <Route exact path="/dashboard/updateRegion" component={UpdateRegionForm} />
+                  <Route exact path="/dashboard/newSite" component={SiteForm} />
 
-              <Route exact path="/dashboard/updateSite" component={UpdateSiteForm} />
+                  <Route exact path="/dashboard/newAdmin" component={AdminForm} />
 
-              <Route exact path="/dashboard/updateAdmin/:id" component={UpdateAdminForm} />
+                  <Route exact path="/dashboard/newPerson" component={UserForm} />
 
-              <Route exact path="/dashboard/updatePerson/:id" component={UpdateUserForm} />
+                  <Route exact path="/dashboard/newEvent" component={EventForm} />
 
-              <Route exact path="/dashboard/updateEvent" component={UpdateEventForm} />
+                  <Route exact path="/dashboard/newSource" component={SourceForm} />
 
-              <Route exact path="/dashboard/updateSource" component={UpdateSourceForm} />
+                  <Route exact path="/dashboard/updateRegion" component={UpdateRegionForm} />
 
-            </Switch>
-          </Col>
-        </Row>
-        </Container>
-      </Router>
-    </AuthProvider>
+                  <Route exact path="/dashboard/updateSite" component={UpdateSiteForm} />
+
+                  <Route exact path="/dashboard/updateAdmin/:id" component={UpdateAdminForm} />
+
+                  <Route exact path="/dashboard/updatePerson/:id" component={UpdateUserForm} />
+
+                  <Route exact path="/dashboard/updateEvent" component={UpdateEventForm} />
+
+                  <Route exact path="/dashboard/updateSource" component={UpdateSourceForm} />
+
+                </Switch>
+              </Col>
+            </Row>
+          </Container>
+        </Router>
+      </AuthProvider>
     </>
   )
 }
