@@ -88,7 +88,7 @@ class SourceDisplay extends React.Component{
       this.handleSearch()
     } 
 
-  }, 800);
+  }, 1000);
 
   render() {
     return (
