@@ -1,0 +1,13 @@
+.createNewBtn {
+  float: right;
+}
+
+@media screen and (max-width: 768px) {
+
+  .createNewBtn {
+    float: left;
+    margin-top: 5px;
+  }
+
+
+}

@@ -84,7 +84,7 @@ const SiteCard = ({ site, onDelete, this3 }) => {
                   <b>Owner:</b> {owner && owner.name && owner.name}
                 </h6>
                 <h6>
-                  <b>Coordinator:</b> {coordinator.name}
+                  <b>Coordinator:</b> {coordinator && coordinator.name}
                 </h6>
                 <h6>
                   <b>location:</b>
@@ -93,8 +93,8 @@ const SiteCard = ({ site, onDelete, this3 }) => {
                   </a>
                 </h6>
                 <p>
-                  <b>Address:</b> {address.street && address.street} <br></br>
-                  {address.city && address.city}, {address.state && address.state}, {address.zip && address.zip}
+                  <b>Address:</b> {address && address.street} <br></br>
+                  {address && address.city}, {address && address.state}, {address && address.zip}
                 </p>
               </Col>
               <Col sm={12} md={6} lg={4}>
@@ -103,19 +103,19 @@ const SiteCard = ({ site, onDelete, this3 }) => {
                 </h6>
                 <h6>
                   <b>Capacity: </b>
-                  {plantingTarget.capacity && plantingTarget.capacity}
+                  {plantingTarget && plantingTarget.capacity}
                 </h6>
                 <h6>
                   <b>Tree Types: </b>                  
-                  {plantingTarget.tree_type && plantingTarget.tree_type}
+                  {plantingTarget && plantingTarget.tree_type}
                 </h6>
                 <h6>
                   <b>Location: </b>
-                  {plantingTarget.location && plantingTarget.location}
+                  {plantingTarget && plantingTarget.location}
                 </h6>
                 <h6>
                   <b>Number Planted: </b>
-                  {plantingTarget.number_planted && plantingTarget.number_planted}
+                  {plantingTarget && plantingTarget.number_planted}
                 </h6>
               </Col>
               <Col sm={12} md={12} lg={12}>

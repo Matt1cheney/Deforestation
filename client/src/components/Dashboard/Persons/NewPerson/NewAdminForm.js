@@ -54,7 +54,7 @@ class PersonForm extends React.Component {
       await app
         .auth()
         .createUserWithEmailAndPassword(this.state.email, this.state.password);
-      // await this.setState({ firebaseuid: app.auth().currentUser.uid});
+      await this.setState({ firebaseuid: app.auth().currentUser.uid });
     } catch (error) {
       alert(error);
     } finally {
@@ -81,7 +81,6 @@ class PersonForm extends React.Component {
       <>
         <Form
           className="formContainer"
-          // temporarily removed && this.handleSignUp from the onSubmit
           onSubmit={this.handleSubmit}
         >
           <h1>New Admin or Coordinator</h1>
