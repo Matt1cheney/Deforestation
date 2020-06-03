@@ -27,12 +27,6 @@ const Login = ({ history }) => {
     [history]
   );
 
-  // const { currentUser } = useContext(AuthContext);
-
-  // if (currentUser) {
-  //   return <Redirect to="/" />;
-  // }
-
   return (
     <Container className="parent">
       <Form onSubmit={handleLogin}>
@@ -40,14 +34,14 @@ const Login = ({ history }) => {
         <Form.Row className="justify-content-center">
           <Form.Group as={Col} xs={12} md={5} lg={4} controlId="formBasicEmail">
             <Form.Label className="loginText">Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
+            <Form.Control type="email" name="email" placeholder="Enter email" />
           </Form.Group>
         </Form.Row>
 
         <Form.Row className="justify-content-center">
           <Form.Group as={Col} xs={12} md={5} lg={4} controlId="formBasicPassword">
             <Form.Label className="loginText">Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
+            <Form.Control type="password" name="password" placeholder="Password" />
           </Form.Group>
         </Form.Row>
         <Form.Row className="justify-content-center">
