@@ -2,5 +2,8 @@
   padding: 1em;
   background-color: rgba(255, 255, 255, 0.94);
   margin-bottom: 15px;
-  border-radius: .25em;
+}
+
+.searchBarH1 {
+  margin-bottom: 0;
 }
