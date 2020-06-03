@@ -94,7 +94,7 @@ class PersonDisplay extends React.Component {
     return (
       <>
       <Jumbotron className="createNew">
-        <h1 style={{margin: 0}}>People</h1>
+        <h1>People</h1>
         <p>
           <Link
             className="btn color-white width-240"
