@@ -35,5 +35,6 @@ const SiteSchema = new Schema({
     document: String,
     notes: String
 });
+SiteSchema.index({'$**': 'text'});
 
 module.exports = mongoose.model("Site", SiteSchema, "Sites");

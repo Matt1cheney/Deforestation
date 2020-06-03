@@ -43,7 +43,9 @@ export default class Header extends React.Component {
           </Dropdown>
         </div>
         <div className="right">
-         
+          <a href="/login">
+            <button className="log">Log In</button>
+          </a>
         </div>
       </>
     );

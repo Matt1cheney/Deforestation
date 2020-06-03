@@ -17,5 +17,6 @@ const PersonSchema = new Schema({
         default: "Volunteer"
     }
 });
+PersonSchema.index({'$**': 'text'});
 
 module.exports = mongoose.model("Person", PersonSchema, "Persons");

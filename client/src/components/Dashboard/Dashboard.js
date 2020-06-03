@@ -46,7 +46,7 @@ const Dashboard = () => {
   return (
     <>
     <Navbar />
-    {/* <AuthProvider> */}
+    <AuthProvider>
       <Router>
         <Container fluid>
         <Row>
@@ -56,7 +56,7 @@ const Dashboard = () => {
           <Col xs={12} md={9} className="dashboardContentView">
             <Switch>
               
-              <Route exact path ="/dashboard/login" component={Login} ></Route>
+              {/* <Route exact path ="/dashboard/login" component={Login} ></Route> */}
 
               <Route exact path="/dashboard/regions" component={RegionDisplay} />
 
@@ -97,7 +97,7 @@ const Dashboard = () => {
         </Row>
         </Container>
       </Router>
-    {/* </AuthProvider> */}
+    </AuthProvider>
     </>
   )
 }

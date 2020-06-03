@@ -5,7 +5,8 @@ import Spinner from "react-bootstrap/Spinner";
 import SourceCard from "../SourceCard/SourceCard";
 import CreateNew from "../../CreateNew/CreateNew";
 import API from "../../../../utils/API";
-// import sources from "../../../../jsonData/source.json";
+import SearchBar from "../../SearchBar/Search";
+import debounce from "lodash.debounce";
 
 
 
@@ -21,6 +22,7 @@ class SourceDisplay extends React.Component{
       path: "/dashboard/newSource"
     }
     this.state = {
+      search: "",
       sources: [],
       loading: false,
     }
@@ -48,10 +50,54 @@ class SourceDisplay extends React.Component{
     }
   };
 
+  clearSearch = () => {
+    this.setState({ loading: true });
+    document.getElementById("searchInput").value = "";
+
+    API.getSources().then((data) => {
+      this.setState({ sources: data.data, loading: false });
+    });
+
+    this.setState({
+      search: ""
+    })
+  }
+
+  handleSearch = async () => {
+
+    try {
+      this.setState({ loading: true });
+      await API.searchSources(this.state.search).then(data => {
+        this.setState({ sources: data.data, loading: false })
+      });
+    } catch (err) {
+      alert(err.message);
+    }
+  }
+
+
+  handleInputChange = debounce((search) => {
+    this.setState({ search });
+
+    if (this.state.search === "") {
+      API.getSources().then((data) => {
+        this.setState({ sources: data.data, loading: false });
+      });
+      return
+    } else {
+      this.handleSearch()
+    } 
+
+  }, 800);
+
   render() {
     return (
       <>
       <CreateNew obj={this.createObj}/>
+      <SearchBar
+          search={this.state.search}
+          handleInputChange={this.handleInputChange}
+          clearSearch={this.clearSearch} />
       {!this.state.loading ? (
           this.state.sources.length > 0 ? (
           <Row>
