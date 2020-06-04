@@ -25,8 +25,6 @@ import UpdateSiteForm from "./Sites/UpdateSiteForm/UpdateSiteForm";
 import "./assets/style.css";
 import Navbar from "../Navbar/Navbar";
 import Login from "../authComponents/Login/Login";
-import { AuthProvider } from "../authComponents/userAuth/Auth";
-
 
 
 const Dashboard = () => {
@@ -34,7 +32,6 @@ const Dashboard = () => {
   return (
     <>
       <Navbar />
-      <AuthProvider>
         <Router>
           <Container fluid>
             <Row>
@@ -85,7 +82,6 @@ const Dashboard = () => {
             </Row>
           </Container>
         </Router>
-      </AuthProvider>
     </>
   )
 }
