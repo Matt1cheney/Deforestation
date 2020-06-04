@@ -5,22 +5,18 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Plant from "../../../images/Plant.jpeg";
 import moment from "moment";
-// import Link from "react-bootstrap/Link";
-
+import { Link } from "react-router-dom";
 
 const UserEventCard = ({ event }) => {
   function sayHello() {
-    alert('Hello!');
-
+    alert("Hello!");
   }
 
-  const { site, startDate, endDate, coordinator, description } = event;
-
-
- 
+  const { site, startDate, endDate, coordinator, description, _id } = event;
 
   return (
     <>
+    
       <Card className="eventCard">
         <Card.Img variant="top" src={Plant} />
         <Card.Body>
@@ -34,9 +30,12 @@ const UserEventCard = ({ event }) => {
             {moment(startDate).format("MM/DD/YYYY")} -{" "}
             {moment(endDate).format("MM/DD/YYYY")}
           </Card.Subtitle>
-          <Button variant="primary" onClick={sayHello}>View Event</Button>
-          
        
+            <Link to={"/events/" + event._id}>here</Link>
+          
+          <Button variant="primary" onClick={sayHello}>
+            View Event
+          </Button>
         </Card.Body>
       </Card>
     </>

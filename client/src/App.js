@@ -10,6 +10,7 @@ import ReforestationMap from "./components/Reforestation/ReforestationMap";
 import InformationView from "./components/Information/InformationView";
 import GetInvolved from "./components/GetInvolved/GetInvolved";
 import Login from "./components/authComponents/Login/Login";
+import EventDetails from "./components/GetInvolved/EventDetails/EventDetails"
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
             <Route path="/getInvolved" component={GetInvolved}/>            
             <Route path="/reforestation" component={ReforestationMap} />
             <Route path="/information" component={InformationView}/>
+            <Route exact path="/events/:id" component={EventDetails}/>
+
+
           </Switch>
         </>
     </Router>
