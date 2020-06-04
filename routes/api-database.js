@@ -13,86 +13,86 @@ async function createPerson(req, res) {
     let newPerson = new PersonModel(req.body);
     let savedPerson = await newPerson.save();
 
-    if (savedPerson.role == "Volunteer") 
+    if (savedPerson.role == "Volunteer")
         await sendMail(savedPerson.email, savedPerson.notes)
 
     res.json(savedPerson);
 }
 
-async function getAllPerson(req, res) {    
+async function getAllPerson(req, res) {
     const id = req.params.id;
 
     try {
         const data = await PersonModel.find().populate();
-        if (!data) 
+        if (!data)
             res.status(404).json({ message: `Cannot FIND Person with name=${id}. Maybe Person was not found!` });
         else res.json(data);
-    } catch(err) {
+    } catch (err) {
         res.status(500).json({ message: "Error updating Person with name=" + id });
     }
 }
 
 async function findPerson(req, res) {
-    if (!req.params.id) 
+    if (!req.params.id)
         return res.status(400).json({ message: "Person to find can not be empty!" });
-    
+
     const id = req.params.id;
 
     try {
-        const data = await PersonModel.findOne({ name:id }).populate("region", "name")
-        if (!data) 
+        const data = await PersonModel.findOne({ name: id }).populate("region", "name")
+        if (!data)
             res.status(404).json({ message: `Cannot FIND Person with name=${id}. Maybe Person was not found!` });
         else res.json(data);
-    } catch(err) {
+    } catch (err) {
         res.status(500).json({ message: "Error finding Person with name=" + id });
     }
 }
 
 async function findFirebasePerson(req, res) {
-    if (!req.params.uid) 
+    if (!req.params.uid) {
         return res.status(400).json({ message: "Person to find can not be empty!" });
-    
+    }
     const id = req.params.uid;
 
     try {
-        const data = await PersonModel.findOne({ firebaseUid:id }).populate("region", "name")
-        if (!data) 
-        res.status(404).json({ message: `Looks like this user is not linked to our servers...` });
+        const data = await PersonModel.findOne({ firebaseUid: id }).populate("region", "name")
+        if (!data)
+            res.status(404).json({ message: `Looks like this user is not linked to our servers...` });
         else res.json(data);
-    } catch(err) {
+    } catch (err) {
         res.status(500).json({ message: "Error finding Person with name=" + uid });
     }
 }
 
 async function deletePerson(req, res) {
-    if (!req.params.id) 
+    if (!req.params.id)
         return res.status(400).json({ message: "Person to delete can not be empty!" });
-    
+
     const id = req.params.id;
 
     try {
-        const data = await PersonModel.findOneAndDelete({ _id:id })
-        if (!data) 
+        const data = await PersonModel.findOneAndDelete({ _id: id })
+        if (!data)
             res.status(404).json({ message: `Cannot DELETE Person with name=${id}. Maybe Person was not found!` });
         else res.json(data);
-    } catch(err) {
+    } catch (err) {
         res.status(500).json({ message: "Error updating Person with name=" + id });
     }
 }
 
 async function updatePerson(req, res) {
-    if (!req.body) 
+    if (!req.body)
         return res.status(400).json({ message: "Person to update can not be empty!" });
-    
-    
+
+
     const id = req.params.id;
 
     try {
-        const data = await PersonModel.findOneAndUpdate({ _id:id }, req.body, { useFindAndModify: false })
-        if (!data) 
-            res.status(404).json({ message: `Cannot update Person with name=${id}. Maybe Person was not found!` });       
+        const data = await PersonModel.findOneAndUpdate({ _id: id }, req.body, { useFindAndModify: false })
+        if (!data)
+            res.status(404).json({ message: `Cannot update Person with name=${id}. Maybe Person was not found!` });
         else res.json(data);
-    } catch(err) {
+    } catch (err) {
         res.status(500).json({ message: "Error updating Person with name=" + id });
     }
 }
@@ -108,65 +108,65 @@ async function createRegion(req, res) {
     res.json(savedRegion);
 }
 
-async function getAllRegion(req, res) {    
+async function getAllRegion(req, res) {
     const id = req.params.id;
 
     try {
         const data = await RegionModel.find().populate("coordinator", "name");
         console.log(data)
-        if (!data) 
+        if (!data)
             res.status(404).json({ message: `Cannot FIND Region with name=${id}. Maybe Region was not found!` });
         else res.json(data);
-    } catch(err) {
+    } catch (err) {
         res.status(500).json({ message: "Error updating Region with name=" + id });
     }
 }
 
 async function findRegion(req, res) {
-    if (!req.params.id) 
+    if (!req.params.id)
         return res.status(400).json({ message: "Region to find can not be empty!" });
-    
+
     const id = req.params.id;
 
     try {
-        const data = await RegionModel.findOne({ name:id }).populate("coordinator", "name")
-        if (!data) 
+        const data = await RegionModel.findOne({ name: id }).populate("coordinator", "name")
+        if (!data)
             res.status(404).json({ message: `Cannot FIND Region with name=${id}. Maybe Region was not found!` });
         else res.json(data);
-    } catch(err) {
+    } catch (err) {
         res.status(500).json({ message: "Error finding Region with name=" + id });
     }
 }
 
 async function deleteRegion(req, res) {
-    if (!req.params.id) 
+    if (!req.params.id)
         return res.status(400).json({ message: "Region to delete can not be empty!" });
-    
+
     const id = req.params.id;
 
     try {
-        const data = await RegionModel.findOneAndDelete({ _id:id })
+        const data = await RegionModel.findOneAndDelete({ _id: id })
         console.log(data)
-        if (!data) 
+        if (!data)
             res.status(404).json({ message: `Cannot DELETE Region with name=${id}. Maybe Region was not found!` });
         else res.status(200).json({ message: `Region with name=${id} is DELETED!` });
-    } catch(err) {
+    } catch (err) {
         res.status(500).json({ message: "Error updating Region with name=" + id });
     }
 }
 
 async function updateRegion(req, res) {
-    if (!req.body) 
+    if (!req.body)
         return res.status(400).json({ message: "Region to update can not be empty!" });
-    
+
     const id = req.body._id;
 
     try {
-        const data = await RegionModel.findOneAndUpdate({ _id:id }, req.body, { useFindAndModify: false })
-        if (!data) 
-            res.status(404).json({ message: `Cannot update Region with name=${id}. Maybe Region was not found!` });       
+        const data = await RegionModel.findOneAndUpdate({ _id: id }, req.body, { useFindAndModify: false })
+        if (!data)
+            res.status(404).json({ message: `Cannot update Region with name=${id}. Maybe Region was not found!` });
         else res.json(data);
-    } catch(err) {
+    } catch (err) {
         res.status(500).json({ message: "Error updating Region with name=" + id });
     }
 }
@@ -180,63 +180,63 @@ async function createSite(req, res) {
     res.json(savedSite);
 }
 
-async function getAllSite(req, res) {    
+async function getAllSite(req, res) {
     const id = req.params.id;
 
     try {
         const data = await SiteModel.find().populate("region", "name").populate("coordinator", "name").populate("owner", "name");
-        if (!data) 
+        if (!data)
             res.status(404).json({ message: `Cannot FIND Site with name=${id}. Maybe Site was not found!` });
         else res.json(data);
-    } catch(err) {
+    } catch (err) {
         res.status(500).json({ message: "Error updating Site with name=" + id });
     }
 }
 
 async function findSite(req, res) {
-    if (!req.params.id) 
+    if (!req.params.id)
         return res.status(400).json({ message: "Site to find can not be empty!" });
-    
+
     const id = req.params.id;
 
     try {
-        const data = await SiteModel.findOne({ name:id }).populate("region", "name").populate("coordinator", "name");
-        if (!data) 
+        const data = await SiteModel.findOne({ name: id }).populate("region", "name").populate("coordinator", "name");
+        if (!data)
             res.status(404).json({ message: `Cannot FIND Site with name=${id}. Maybe Site was not found!` });
         else res.json(data);
-    } catch(err) {
+    } catch (err) {
         res.status(500).json({ message: "Error finding Site with name=" + id });
     }
 }
 
 async function deleteSite(req, res) {
-    if (!req.params.id) 
+    if (!req.params.id)
         return res.status(400).json({ message: "Site to delete can not be empty!" });
-    
+
     const id = req.params.id;
 
     try {
-        const data = await SiteModel.findOneAndDelete({ _id:id })
-        if (!data) 
+        const data = await SiteModel.findOneAndDelete({ _id: id })
+        if (!data)
             res.status(404).json({ message: `Cannot DELETE Site with name=${id}. Maybe Site was not found!` });
         else res.json(data);
-    } catch(err) {
+    } catch (err) {
         res.status(500).json({ message: "Error updating Site with name=" + id });
     }
 }
 
 async function updateSite(req, res) {
-    if (!req.body) 
+    if (!req.body)
         return res.status(400).json({ message: "Site to update can not be empty!" });
 
     const id = req.body._id;
 
     try {
-        const data = await SiteModel.findOneAndUpdate({ _id:id }, req.body, { useFindAndModify: false })
-        if (!data) 
-            res.status(404).json({ message: `Cannot update Site with name=${id}. Maybe Site was not found!` });       
+        const data = await SiteModel.findOneAndUpdate({ _id: id }, req.body, { useFindAndModify: false })
+        if (!data)
+            res.status(404).json({ message: `Cannot update Site with name=${id}. Maybe Site was not found!` });
         else res.json(data);
-    } catch(err) {
+    } catch (err) {
         res.status(500).json({ message: "Error updating Site with name=" + id });
     }
 }
@@ -250,64 +250,64 @@ async function createSource(req, res) {
     res.json(savedSource);
 }
 
-async function getAllSource(req, res) {    
+async function getAllSource(req, res) {
     const id = req.params.id;
 
     try {
         const data = await SourceModel.find().populate("region", "name").populate("coordinator", "name").populate("owner", "name").populate("seedlings.intendSite", "name");
-        if (!data) 
+        if (!data)
             res.status(404).json({ message: `Cannot FIND Source with name=${id}. Maybe Source was not found!` });
         else res.json(data);
-    } catch(err) {
+    } catch (err) {
         res.status(500).json({ message: "Error updating Source with name=" + id });
     }
 }
 
 async function findSource(req, res) {
-    if (!req.params.id) 
+    if (!req.params.id)
         return res.status(400).json({ message: "Source to find can not be empty!" });
-    
+
     const id = req.params.id;
 
     try {
-        const data = await SourceModel.findOne({ name:id }).populate("region", "name").populate("intendSite", "name");
-        if (!data) 
+        const data = await SourceModel.findOne({ name: id }).populate("region", "name").populate("intendSite", "name");
+        if (!data)
             res.status(404).json({ message: `Cannot FIND Source with name=${id}. Maybe Source was not found!` });
         else res.json(data);
-    } catch(err) {
+    } catch (err) {
         res.status(500).json({ message: "Error finding Source with name=" + id });
     }
 }
 
 async function deleteSource(req, res) {
-    if (!req.params.id) 
+    if (!req.params.id)
         return res.status(400).json({ message: "Source to delete can not be empty!" });
-    
+
     const id = req.params.id;
 
     try {
-        const data = await SourceModel.findOneAndDelete({ _id:id })
-        if (!data) 
+        const data = await SourceModel.findOneAndDelete({ _id: id })
+        if (!data)
             res.status(404).json({ message: `Cannot DELETE Source with name=${id}. Maybe Source was not found!` });
         else res.json(data);
-    } catch(err) {
+    } catch (err) {
         res.status(500).json({ message: "Error updating Source with name=" + id });
     }
 }
 
 async function updateSource(req, res) {
-    if (!req.body) 
+    if (!req.body)
         return res.status(400).json({ message: "Source to update can not be empty!" });
-    
-    
+
+
     const id = req.body._id;
 
     try {
-        const data = await SourceModel.findOneAndUpdate({ _id:id }, req.body, { useFindAndModify: false })
-        if (!data) 
-            res.status(404).json({ message: `Cannot update Source with name=${id}. Maybe Source was not found!` });       
+        const data = await SourceModel.findOneAndUpdate({ _id: id }, req.body, { useFindAndModify: false })
+        if (!data)
+            res.status(404).json({ message: `Cannot update Source with name=${id}. Maybe Source was not found!` });
         else res.json(data);
-    } catch(err) {
+    } catch (err) {
         res.status(500).json({ message: "Error updating Source with name=" + id });
     }
 }
@@ -321,131 +321,131 @@ async function createEvent(req, res) {
     res.json(savedEvent);
 }
 
-async function getAllEvent(req, res) {    
+async function getAllEvent(req, res) {
     const id = req.params.id;
 
     try {
         const data = await EventModel.find().populate("site", "name").populate("coordinator", "name").populate("volunteers");
-        if (!data) 
+        if (!data)
             res.status(404).json({ message: `Cannot FIND Event with name=${id}. Maybe Event was not found!` });
         else res.json(data);
-    } catch(err) {
+    } catch (err) {
         res.status(500).json({ message: "Error updating Event with name=" + id });
     }
 }
 
 async function findEvent(req, res) {
-    if (!req.params.id) 
+    if (!req.params.id)
         return res.status(400).json({ message: "Event to find can not be empty!" });
-    
+
     const id = req.params.id;
 
     try {
-        const data = await EventModel.findOne({ name:id }).populate("site", "name").populate("volunteer", "name");
-        if (!data) 
+        const data = await EventModel.findOne({ name: id }).populate("site", "name").populate("volunteer", "name");
+        if (!data)
             res.status(404).json({ message: `Cannot FIND Event with name=${id}. Maybe Event was not found!` });
         else res.json(data);
-    } catch(err) {
+    } catch (err) {
         res.status(500).json({ message: "Error finding Event with name=" + id });
     }
 }
 
 async function deleteEvent(req, res) {
-    if (!req.params.id) 
+    if (!req.params.id)
         return res.status(400).json({ message: "Event to delete can not be empty!" });
-    
+
     const id = req.params.id;
 
     try {
-        const data = await EventModel.findOneAndDelete({ _id:id })
-        if (!data) 
+        const data = await EventModel.findOneAndDelete({ _id: id })
+        if (!data)
             res.status(404).json({ message: `Cannot DELETE Event with _id=${id}. Maybe Event was not found!` });
         else res.json(data);
-    } catch(err) {
+    } catch (err) {
         res.status(500).json({ message: "Error updating Event with _id=" + id });
     }
 }
 
 async function updateEvent(req, res) {
-    if (!req.body) 
+    if (!req.body)
         return res.status(400).json({ message: "Event to update can not be empty!" });
-    
+
     const id = req.body._id;
 
     try {
-        const data = await EventModel.findOneAndUpdate({ _id:id }, req.body, { useFindAndModify: false })
-        if (!data) 
-            res.status(404).json({ message: `Cannot update Event with name=${id}. Maybe Event was not found!` });       
+        const data = await EventModel.findOneAndUpdate({ _id: id }, req.body, { useFindAndModify: false })
+        if (!data)
+            res.status(404).json({ message: `Cannot update Event with name=${id}. Maybe Event was not found!` });
         else res.json(data);
-    } catch(err) {
+    } catch (err) {
         res.status(500).json({ message: "Error updating Event with name=" + id });
     }
 }
 
 //---------------------------------- Search Routes ------------------------------
 
-async function searchPerson(req, res) {    
+async function searchPerson(req, res) {
     const query = req.query.keyword;
 
     try {
-        const data = await PersonModel.find({$text: {$search: query}}).populate("region", "name");
-        if (!data) 
+        const data = await PersonModel.find({ $text: { $search: query } }).populate("region", "name");
+        if (!data)
             res.status(404).json({ message: `Cannot FIND Person with name=. Maybe Person was not found!` });
         else res.json(data);
-    } catch(err) {
-        res.status(500).json({ message: "Error updating Person with name="});
+    } catch (err) {
+        res.status(500).json({ message: "Error updating Person with name=" });
     }
 }
 
-async function searchRegion(req, res) {    
+async function searchRegion(req, res) {
     const query = req.query.keyword;
 
     try {
-        const data = await RegionModel.find({$text: {$search: query}}).populate("coordinator", "name");
-        if (!data) 
+        const data = await RegionModel.find({ $text: { $search: query } }).populate("coordinator", "name");
+        if (!data)
             res.status(404).json({ message: `Cannot FIND Region` });
         else res.json(data);
-    } catch(err) {
-        res.status(500).json({ message: "Error updating Region"});
+    } catch (err) {
+        res.status(500).json({ message: "Error updating Region" });
     }
 }
 
-async function searchSite(req, res) {    
+async function searchSite(req, res) {
     const query = req.query.keyword;
 
     try {
-        const data = await SiteModel.find({$text: {$search: query}}).populate("region", "name").populate("coordinator", "name").populate("owner", "name");
-        if (!data) 
+        const data = await SiteModel.find({ $text: { $search: query } }).populate("region", "name").populate("coordinator", "name").populate("owner", "name");
+        if (!data)
             res.status(404).json({ message: `Cannot FIND Site` });
         else res.json(data);
-    } catch(err) {
-        res.status(500).json({ message: "Error updating Site"});
+    } catch (err) {
+        res.status(500).json({ message: "Error updating Site" });
     }
 }
 
-async function searchEvent(req, res) {    
+async function searchEvent(req, res) {
     const query = req.query.keyword;
 
     try {
-        const data = await EventModel.find({$text: {$search: query}}).populate("site", "name").populate("coordinator", "name").populate("volunteers");
-        if (!data) 
+        const data = await EventModel.find({ $text: { $search: query } }).populate("site", "name").populate("coordinator", "name").populate("volunteers");
+        if (!data)
             res.status(404).json({ message: `Cannot FIND Event` });
         else res.json(data);
-    } catch(err) {
-        res.status(500).json({ message: "Error updating Event"});
+    } catch (err) {
+        res.status(500).json({ message: "Error updating Event" });
     }
 }
 
-async function searchSource(req, res) {    
+async function searchSource(req, res) {
     const query = req.query.keyword;
 
     try {
-        const data = await SourceModel.find({$text: {$search: query}}).populate("region", "name").populate("coordinator", "name").populate("owner", "name").populate("seedlings.intendSite", "name");
-        if (!data) 
+        const data = await SourceModel.find({ $text: { $search: query } }).populate("region", "name").populate("coordinator", "name").populate("owner", "name").populate("seedlings.intendSite", "name");
+        if (!data)
             res.status(404).json({ message: `Cannot FIND Source` });
         else res.json(data);
-    } catch(err) {
-        res.status(500).json({ message: "Error updating Source"});
+    } catch (err) {
+        res.status(500).json({ message: "Error updating Source" });
     }
 }
 
