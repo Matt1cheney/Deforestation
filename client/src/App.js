@@ -11,27 +11,28 @@ import InformationView from "./components/Information/InformationView";
 import GetInvolved from "./components/GetInvolved/GetInvolved";
 import Login from "./components/authComponents/Login/Login";
 import EventDetails from "./components/GetInvolved/EventDetails/EventDetails"
+import SourceInquire from "./components/GetInvolved/Source/Source";
+import { AuthProvider } from "./components/authComponents/userAuth/Auth"
 
 function App() {
   return (
-    <>
     <Router>
+      <AuthProvider>
         <>
           <Switch>
-          <Route exact path="/" component={ Home } />
-            <Route path="/dashboard" component={Dashboard}/>
-            <Route exact path="/login" component={Login}/>
-            <Route path="/volunteer" component={Volunteer}/>
-            <Route path="/getInvolved" component={GetInvolved}/>            
+            <Route exact path="/" component={Home} />
+            <Route path="/dashboard" component={Dashboard} />
+            <Route exact path="/login" component={Login} />
+            <Route path="/volunteer" component={Volunteer} />
+            <Route path="/getInvolved" component={GetInvolved} />
             <Route path="/reforestation" component={ReforestationMap} />
             <Route path="/information" component={InformationView}/>
             <Route exact path="/events/:id" component={EventDetails}/>
-
-
+            <Route path="/sourceInquire" component={SourceInquire} />
           </Switch>
         </>
+      </AuthProvider>
     </Router>
-    </>
   );
 }
 

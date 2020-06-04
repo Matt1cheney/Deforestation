@@ -6,7 +6,6 @@ import "./style.css"
 
 const DashboardHome = () => {
   const currentUser = useContext(AuthContext);
-  console.log(currentUser.dbUser)
 
   const { name, role, region } = currentUser.dbUser;
 

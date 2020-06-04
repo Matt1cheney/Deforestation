@@ -19,8 +19,8 @@ export default class Header extends React.Component {
             />
             <Dropdown.Menu>
               <Dropdown.Item href="/getInvolved">Volunteer</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Seedlings</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Landowner</Dropdown.Item>
+              <Dropdown.Item href="/landInquire">Seedlings</Dropdown.Item>
+              <Dropdown.Item href="/sourceInquire">Landowner</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
           <Link to="/">
