@@ -3,7 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const data_routes = require("./routes/api-database.js");
-// const mongoURI = "mongodb+srv://reforestration:reforestration@cluster0-f774a.mongodb.net/test?retryWrites=true&w=majority";
+const mongoURI = process.env.MONGO_DATABASE;
 const app = express();
 const PORT = process.env.PORT || 4000;
 
