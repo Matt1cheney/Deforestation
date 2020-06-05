@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import API from "../../../../utils/API";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import app from "../../../authComponents/userAuth/baseAuth";
+import app from "../../../authComponents/userAuth/baseauth";
 
 class PersonForm extends React.Component {
   // const availableRegions = regions.filter((data) => {
