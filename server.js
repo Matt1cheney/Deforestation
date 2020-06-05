@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-import htmlRoutes from "./routes/htmlRoutes";
+const htmlRoutes = require("./routes/htmlRoutes");
 
 const data_routes = require("./routes/api-database.js");
 const mongoURI = process.env.MONGO_DATABASE;
