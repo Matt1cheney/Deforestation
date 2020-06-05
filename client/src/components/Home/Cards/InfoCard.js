@@ -5,6 +5,7 @@ import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 import City from "../../../images/City.jpeg";
 import Road from "../../../images/Road.jpeg";
+import { Link } from "react-router-dom";
 
 import "./Photo.css";
 
@@ -14,16 +15,16 @@ export class InfoCard extends React.Component {
       <Container>
         <Row>
           <Col xs={6} md={6}>
-            <a href="/information">
+            <Link href="/information">
               <Image src={City} />
               <p className="centered">About Us</p>
-            </a>
+            </Link>
           </Col>
           <Col xs={6} md={6}>
-            <a href="/information">
+            <Link href="/information">
               <Image src={Road} />
               <p className="centered">Reforestation</p>
-            </a>
+            </Link>
           </Col>
         </Row>
       </Container>
