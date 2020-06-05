@@ -9,7 +9,7 @@ const EventModel = require("../model/Event")
 //--------------------------- Person Controller -------------------------
 
 async function createPerson(req, res) {
-    // console.log(req.body)
+
     let newPerson = new PersonModel(req.body);
     let savedPerson = await newPerson.save();
 
@@ -23,7 +23,7 @@ async function getAllPerson(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await PersonModel.find().populate();
+        const data = await PersonModel.find().populate("region");
         if (!data)
             res.status(404).json({ message: `Cannot FIND Person with name=${id}. Maybe Person was not found!` });
         else res.json(data);
@@ -39,7 +39,23 @@ async function findPerson(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await PersonModel.findOne({ name: id }).populate("region", "name")
+        const data = await PersonModel.findOne({ name: id }).populate("region")
+        if (!data)
+            res.status(404).json({ message: `Cannot FIND Person with name=${id}. Maybe Person was not found!` });
+        else res.json(data);
+    } catch (err) {
+        res.status(500).json({ message: "Error finding Person with name=" + id });
+    }
+}
+
+async function findPersonByRegion(req, res) {
+    if (!req.params.id)
+        return res.status(400).json({ message: "Person to find can not be empty!" });
+
+    const id = req.params.id;
+
+    try {
+        const data = await PersonModel.find({ region: id }).populate("region")
         if (!data)
             res.status(404).json({ message: `Cannot FIND Person with name=${id}. Maybe Person was not found!` });
         else res.json(data);
@@ -55,7 +71,7 @@ async function findFirebasePerson(req, res) {
     const id = req.params.uid;
 
     try {
-        const data = await PersonModel.findOne({ firebaseUid: id }).populate("region", "name")
+        const data = await PersonModel.findOne({ firebaseUid: id }).populate("region")
         if (!data)
             res.status(404).json({ message: `Looks like this user is not linked to our servers...` });
         else res.json(data);
@@ -209,6 +225,22 @@ async function findSite(req, res) {
     }
 }
 
+async function findSiteByRegion(req, res) {
+    if (!req.params.id)
+        return res.status(400).json({ message: "Site to find can not be empty!" });
+
+    const id = req.params.id;
+
+    try {
+        const data = await SiteModel.find({ region: id }).populate("region", "name").populate("coordinator", "name");
+        if (!data)
+            res.status(404).json({ message: `Cannot FIND Site with name=${id}. Maybe Site was not found!` });
+        else res.json(data);
+    } catch (err) {
+        res.status(500).json({ message: "Error finding Site with name=" + id });
+    }
+}
+
 async function deleteSite(req, res) {
     if (!req.params.id)
         return res.status(400).json({ message: "Site to delete can not be empty!" });
@@ -271,6 +303,22 @@ async function findSource(req, res) {
 
     try {
         const data = await SourceModel.findOne({ name: id }).populate("region", "name").populate("intendSite", "name");
+        if (!data)
+            res.status(404).json({ message: `Cannot FIND Source with name=${id}. Maybe Source was not found!` });
+        else res.json(data);
+    } catch (err) {
+        res.status(500).json({ message: "Error finding Source with name=" + id });
+    }
+}
+
+async function findSourceByRegion(req, res) {
+    if (!req.params.id)
+        return res.status(400).json({ message: "Source to find can not be empty!" });
+
+    const id = req.params.id;
+
+    try {
+        const data = await SourceModel.find({ region: id }).populate("region", "name").populate("intendSite", "name");
         if (!data)
             res.status(404).json({ message: `Cannot FIND Source with name=${id}. Maybe Source was not found!` });
         else res.json(data);
@@ -342,6 +390,22 @@ async function findEvent(req, res) {
 
     try {
         const data = await EventModel.findOne({ name: id }).populate("site", "name").populate("volunteer", "name");
+        if (!data)
+            res.status(404).json({ message: `Cannot FIND Event with name=${id}. Maybe Event was not found!` });
+        else res.json(data);
+    } catch (err) {
+        res.status(500).json({ message: "Error finding Event with name=" + id });
+    }
+}
+
+async function findEventByCoord(req, res) {
+    if (!req.params.id)
+        return res.status(400).json({ message: "Event to find can not be empty!" });
+
+    const id = req.params.id;
+
+    try {
+        const data = await EventModel.find({ coordinator: id }).populate("site", "name").populate("coordinator", "name").populate("volunteers");
         if (!data)
             res.status(404).json({ message: `Cannot FIND Event with name=${id}. Maybe Event was not found!` });
         else res.json(data);
@@ -456,6 +520,7 @@ async function searchSource(req, res) {
 router.get("/api/persons", getAllPerson);
 router.post("/api/persons", createPerson);
 router.get("/api/person/:id", findPerson);
+router.get("/api/personregion/:id", findPersonByRegion);
 router.get("/api/firebaseperson/:uid", findFirebasePerson);
 router.get(`/api/matchperson?:keyword`, searchPerson);
 router.put("/api/person/:id", updatePerson);
@@ -467,6 +532,7 @@ router.get("/api/sites", getAllSite);
 router.get(`/api/matchsite?:keyword`, searchSite);
 router.post("/api/sites", createSite);
 router.get("/api/site/:id", findSite);
+router.get("/api/siteregion/:id", findSiteByRegion);
 router.put("/api/site", updateSite);
 router.delete("/api/site/:id", deleteSite);
 
@@ -476,6 +542,7 @@ router.get("/api/sources", getAllSource);
 router.get(`/api/matchsource?:keyword`, searchSource);
 router.post("/api/sources", createSource);
 router.get("/api/source/:id", findSource);
+router.get("/api/sourceregion/:id", findSourceByRegion);
 router.put("/api/source", updateSource);
 router.delete("/api/source/:id", deleteSource);
 
@@ -494,6 +561,7 @@ router.get("/api/events", getAllEvent);
 router.get(`/api/matchevent?:keyword`, searchEvent);
 router.post("/api/events", createEvent);
 router.get("/api/event/:id", findEvent);
+router.get("/api/eventcoordinator/:id", findEventByCoord);
 router.put("/api/event", updateEvent);
 router.delete("/api/event/:id", deleteEvent);
 

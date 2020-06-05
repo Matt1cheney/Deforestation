@@ -1,10 +1,15 @@
-import React from "react";
+import React, {useContext} from "react";
 import "./style.css";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../authComponents/userAuth/Auth";
 
 const SideMenu = () => {
+  const currentUser = useContext(AuthContext);
+
+  const { role } = currentUser.dbUser;
+
   return (
     <>
       <DropdownButton
@@ -16,9 +21,11 @@ const SideMenu = () => {
         <Dropdown.Item className="sideMenuItems">
           <Link to={{ pathname: `/dashboard/home` }}>Home</Link>
         </Dropdown.Item>
+        {role === "Admin" && 
         <Dropdown.Item className="sideMenuItems">
           <Link to={{ pathname: `/dashboard/regions` }}>Regions</Link>
         </Dropdown.Item>
+        }
         <Dropdown.Item className="sideMenuItems">
           <Link to={{ pathname: `/dashboard/sites` }}>Sites</Link>
         </Dropdown.Item>
@@ -42,6 +49,7 @@ const SideMenu = () => {
           Home
         </Link>
 
+        {role === "Admin" && 
         <Link
           className="btn color-white"
           variant="dark"
@@ -50,6 +58,7 @@ const SideMenu = () => {
         >
           Regions
         </Link>
+        }
 
         <Link
           className="btn color-white"

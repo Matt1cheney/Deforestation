@@ -18,6 +18,10 @@ export default {
     return axios.get(`/api/person/${id}`)
   },
 
+  getPersonByRegion: function(id) {
+    return axios.get(`/api/personregion/${id}`)
+  },
+
   getPersonByUid: function(uid) {
     return axios.get(`/api/firebaseperson/${uid}`)
   },
@@ -70,6 +74,10 @@ export default {
     return axios.get(`/api/site/${id}`)
   },
 
+  getSiteByRegion: function(id) {
+    return axios.get(`/api/siteregion/${id}`)
+  },
+
   deleteSite: (id) => {
     return axios.delete(`/api/site/${id}`)
   },
@@ -94,6 +102,10 @@ export default {
     return axios.get(`/api/event/${id}`)
   },
 
+  getEventByCoord: function(id) {
+    return axios.get(`/api/eventcoordinator/${id}`)
+  },
+
   deleteEvent: (id) => {
     return axios.delete(`/api/event/${id}`)
   },
@@ -116,6 +128,10 @@ export default {
 
   getSourceById: function(id) {
     return axios.get(`/api/source/${id}`)
+  },
+
+  getSourceByRegion: function(id) {
+    return axios.get(`/api/sourceregion/${id}`)
   },
 
   deleteSource: (id) => {
