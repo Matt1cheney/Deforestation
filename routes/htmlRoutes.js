@@ -1,12 +1,15 @@
-var path = require("path");
+const path = require("path");
+const router = require("express").Router()
 
-module.exports = function(app) {
 
-  app.get("/service-worker.js", (req, res) => {
+
+
+  router.get("/service-worker.js", (req, res) => {
     res.sendFile(path.resolve(__dirname, "../client/src/js/service-worker.js"));
   });  
 
-  app.get("*", function(req, res) {
+  router.get("*", function(req, res) {
     res.sendFile(path.join(__dirname, "../client/public/index.html"));
   });
-};
+
+  module.exports = router;

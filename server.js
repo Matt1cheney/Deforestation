@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+import htmlRoutes from "./routes/htmlRoutes";
 
 const data_routes = require("./routes/api-database.js");
 const mongoURI = process.env.MONGO_DATABASE;
@@ -21,6 +22,7 @@ if (process.env.NODE_ENV === "production") {
 
 // Add routes, both API and view
 app.use(data_routes);
+app.use(htmlRoutes);
 
 // // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || mongoURI, {

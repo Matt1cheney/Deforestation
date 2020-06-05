@@ -21,23 +21,23 @@ export default class Header extends React.Component {
             />
 
             <Dropdown.Menu>
-              <Dropdown.Item href="/getInvolved">Volunteer</Dropdown.Item>
-              <Dropdown.Item href="/landInquire">Seedlings</Dropdown.Item>
-              <Dropdown.Item href="/sourceInquire">Landowner</Dropdown.Item>
+              <Dropdown.Item><Link to="/getInvolved">Volunteer</Link></Dropdown.Item>
+              <Dropdown.Item><Link to="/landInquire">Seedlings</Link></Dropdown.Item>
+              <Dropdown.Item><Link to="/sourceInquire">Landowner</Link></Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
           <h1>ReforestNation</h1>
           <Dropdown as={ButtonGroup}>
-            <Button variant="success" href="/information">Get Information</Button>
+            <Button variant="success" ><Link to="/information">Get Information</Link></Button>
             <Dropdown.Toggle
               split
               variant="success"
               id="dropdown-split-basic"
             />
             <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">About Us</Dropdown.Item>
-              <Dropdown.Item href="/reforestation">Reforestation</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Contact</Dropdown.Item>
+              <Dropdown.Item><Link to="#/action-1">About Us</Link></Dropdown.Item>
+              <Dropdown.Item><Link to="/reforestation">Reforestation</Link></Dropdown.Item>
+              <Dropdown.Item><Link to="#/action-3">Contact</Link></Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </div>
