@@ -1,5 +1,5 @@
 import React from "react";
-import app from "../auth/baseauth";
+import app from "../auth/baseAuth";
 
 
 const Home = () => {

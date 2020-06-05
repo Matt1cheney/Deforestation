@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import app from "./baseauth.js";
+import app from "./baseAuth.js";
 import API from "../../../utils/API";
 
 export const AuthContext = React.createContext();
