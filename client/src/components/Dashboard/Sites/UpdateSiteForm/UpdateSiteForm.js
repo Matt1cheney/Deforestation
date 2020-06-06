@@ -85,40 +85,49 @@ class UpdateSiteForm extends React.Component {
       location: "",
       number_planted: "",
       notes: "",
+      profileImage: '',
+      document: '',
+      contract: '',
+      additionalImages: [],
+      profileImageFile: {},
+      documentFile: {},
+      contractFile: {},
+      additionalImagesFile: [],
     };
   }
 
   async componentWillMount() {
 
-    if(this.props.location.site === undefined) 
-    {
+    if (this.props.location.site === undefined) {
       this.props.history.push('/dashboard/sites');
     }
-    else if(this.props.location.site && this.props.location.site._id === undefined) 
-    {
+    else if (this.props.location.site && this.props.location.site._id === undefined) {
       this.props.history.push('/dashboard/sites');
-    } 
-    else 
-    {
+    }
+    else {
       this.setState({
         loading: true,
         _id: this.props.location.site._id,
-        name: this.props.location.site.name,
+        name: this.props.location.site.name ? this.props.location.site.name : "",
         region: this.props.location.site.region && this.props.location.site.region._id ? this.props.location.site.region._id : null,
         owner: this.props.location.site.owner && this.props.location.site.owner._id ? this.props.location.site.owner._id : null,
         street: this.props.location.site.address.street ? this.props.location.site.address.street : "",
         city: this.props.location.site.address.city ? this.props.location.site.address.city : "",
         state: this.props.location.site.address.state ? this.props.location.site.address.state : "",
         zip: this.props.location.site.address.zip ? this.props.location.site.address.zip : "",
-        latitude: this.props.location.site.latitude,
-        longitude: this.props.location.site.longitude,
-        status: this.props.location.site.status,
+        latitude: this.props.location.site.latitude ? this.props.location.site.latitude : null,
+        longitude: this.props.location.site.longitude ? this.props.location.site.longitude : null,
+        status: this.props.location.site.status ? this.props.location.site.status : "",
         coordinator: this.props.location.site.coordinator && this.props.location.site.coordinator._id ? this.props.location.site.coordinator._id : null,
-        capacity: this.props.location.site.plantingTarget.capacity,
-        tree_type: this.props.location.site.plantingTarget.tree_type,
-        location: this.props.location.site.plantingTarget.location,
-        number_planted: this.props.location.site.plantingTarget.number_planted,
-        notes: this.props.location.site.notes,
+        capacity: this.props.location.site.plantingTarget.capacity ? this.props.location.site.plantingTarget.capacity : "",
+        tree_type: this.props.location.site.plantingTarget.tree_type ? this.props.location.site.plantingTarget.tree_type : "",
+        location: this.props.location.site.plantingTarget.location ? this.props.location.site.plantingTarget.location : "",
+        number_planted: this.props.location.site.plantingTarget.number_planted ? this.props.location.site.plantingTarget.number_planted : "",
+        notes: this.props.location.site.notes ? this.props.location.site.notes : "",
+        profileImage: this.props.location.site.profileImage ? this.props.location.site.profileImage : "",
+        document: this.props.location.site.document ? this.props.location.site.document : "",
+        contract: this.props.location.site.contract ? this.props.location.site.contract : "",
+        additionalImages: this.props.location.site.additionalImages ? this.props.location.site.additionalImages : [],
       });
 
       API.getPersons().then((data) => {
@@ -158,20 +167,20 @@ class UpdateSiteForm extends React.Component {
   handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (
-      this.state.street === "" ||
-      this.state.city === "" ||
-      this.state.state === "" ||
-      this.state.zip === "" ||
-      this.state.latitude === "" ||
-      this.state.longitude === "" ||
-      this.state.region === null ||
-      this.state.coordinator === null ||
-      this.state.name === "" ||
-      this.state.capacity === "" || 
-      this.state.tree_type === "" || 
-      this.state.location === "" || 
-      this.state.number_planted === ""
+    if (false
+      // this.state.street === "" ||
+      // this.state.city === "" ||
+      // this.state.state === "" ||
+      // this.state.zip === "" ||
+      // this.state.latitude === "" ||
+      // this.state.longitude === "" ||
+      // this.state.region === null ||
+      // this.state.coordinator === null ||
+      // this.state.name === "" ||
+      // this.state.capacity === "" || 
+      // this.state.tree_type === "" || 
+      // this.state.location === "" || 
+      // this.state.number_planted === ""
     ) {
       alert("Looks like you forgot one!");
       return;
@@ -198,17 +207,53 @@ class UpdateSiteForm extends React.Component {
         location: this.state.location,
         number_planted: this.state.number_planted,
       },
-      notes: this.state.notes
+      notes: this.state.notes,
+      profileImage: this.state.profileImageFile.name ? "" : this.state.profileImage,
+      document: this.state.documentFile.name ? "" : this.state.document,
+      contract: this.state.contractFile.name ? "" : this.state.contract,
+      additionalImages: this.state.additionalImagesFile.length ? [] : this.state.additionalImages
     };
 
     try {
-      await API.updateSite(siteData);
+      var formData = new FormData();
+
+      if (this.state.profileImageFile.name !== undefined)
+        formData.append('profileImage', this.state.profileImageFile);
+
+      if (this.state.documentFile.name !== undefined)
+        formData.append('document', this.state.documentFile);
+
+      if (this.state.contractFile.name !== undefined)
+        formData.append('contract', this.state.contractFile);
+
+      if (this.state.additionalImagesFile.length) {
+        let length = this.state.additionalImagesFile.length;
+        for (let i = 0; i < length; i++) {
+          formData.append('additionalImages', this.state.additionalImagesFile[i]);
+        }
+      }
+
+
+      formData.append('siteData', JSON.stringify(siteData));
+
+      await API.updateSite(formData);
       alert("Site Updated");
       this.props.history.goBack();
     } catch (err) {
       alert(err.message);
     }
   };
+
+  fileChangedHandler = (event) => {
+    if (
+      event.target.name === 'profileImageFile' ||
+      event.target.name === 'documentFile' ||
+      event.target.name === 'contractFile') {
+      this.setState({ [event.target.name]: event.target.files[0] })
+    } else {
+      this.setState({ [event.target.name]: event.target.files })
+    }
+  }
 
   render() {
 
@@ -239,10 +284,11 @@ class UpdateSiteForm extends React.Component {
                 >
                   <option>none</option>
                   {this.regions.map((region, index) => (
-                    <option key={index} value={region._id}>
-                      {region.name}
-                    </option>
-                  ))}
+                    region.name && region.name !== "" && (
+                      <option key={index} value={region._id}>
+                        {region.name}
+                      </option>
+                    )))}
                 </Form.Control>
               </Form.Group>
               <Form.Group as={Col} xs={12} md={4} controlId="formSiteOwner">
@@ -311,9 +357,9 @@ class UpdateSiteForm extends React.Component {
               </Form.Group>
             </Form.Row>
 
-            <Form.Row>              
-              <Form.Group as={Col} xs={12} md={12} controlId="formMainText" style={{margin: 0}}>
-                <Form.Label style={{textDecoration: "underline"}}>Planting Target:</Form.Label>
+            <Form.Row>
+              <Form.Group as={Col} xs={12} md={12} controlId="formMainText" style={{ margin: 0 }}>
+                <Form.Label style={{ textDecoration: "underline" }}>Planting Target:</Form.Label>
               </Form.Group>
 
               <Form.Group as={Col} xs={12} md={3} controlId="formGridCity">
@@ -325,7 +371,7 @@ class UpdateSiteForm extends React.Component {
                   value={this.state.capacity}
                 />
               </Form.Group>
-              
+
               <Form.Group as={Col} xs={12} md={3} controlId="formGridCity">
                 <Form.Label>Tree Type</Form.Label>
                 <Form.Control
@@ -336,7 +382,7 @@ class UpdateSiteForm extends React.Component {
                 />
                 <small>Please use comma(,) to sepereate type</small>
               </Form.Group>
-              
+
               <Form.Group as={Col} xs={12} md={3} controlId="formGridCity">
                 <Form.Label>Location</Form.Label>
                 <Form.Control
@@ -346,7 +392,7 @@ class UpdateSiteForm extends React.Component {
                   value={this.state.location}
                 />
               </Form.Group>
-              
+
               <Form.Group as={Col} xs={12} md={3} controlId="formGridCity">
                 <Form.Label>Number Planted</Form.Label>
                 <Form.Control
@@ -355,7 +401,7 @@ class UpdateSiteForm extends React.Component {
                   onChange={this.handleChange}
                   value={this.state.number_planted}
                 />
-              </Form.Group>              
+              </Form.Group>
             </Form.Row>
 
             <Form.Row>
@@ -425,37 +471,104 @@ class UpdateSiteForm extends React.Component {
               </Form.Group>
             </Form.Row>
 
-            <Form.Group>
-              <Form.File
-                id="profileImageSiteForm"
-                label="Profile Image"
-                custom
-                name=""
-              />
+            <Form.Group as={Row}>
+              <Form.Label column sm={1}>
+                {
+                  this.state.profileImage.length || this.state.profileImageFile.name ?
+                    (
+                      <button type="button" class="close" aria-label="Close" onClick={() => this.setState({ profileImage: '', profileImageFile: {} })}>
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    )
+                    :
+                    null
+                }
+              </Form.Label>
+
+              <Col sm={11}>
+                <Form.File
+                  id="profileImageSiteForm"
+                  label={this.state.profileImage.length || this.state.profileImageFile.name ? this.state.profileImageFile.name || this.state.profileImage : "Profile Image"}
+                  custom
+                  name="profileImageFile"
+                  accept="image/*"
+                  onChange={this.fileChangedHandler}
+                />
+              </Col>
             </Form.Group>
-            <Form.Group>
-              <Form.File
-                id="contractSiteForm"
-                label="Contract"
-                custom
-                name=""
-              />
+
+            <Form.Group as={Row}>
+              <Form.Label column sm={1}>
+                {
+                  this.state.contract.length || this.state.contractFile.name ?
+                    (
+                      <button type="button" class="close" aria-label="Close" onClick={() => this.setState({ contract: '', contractFile: {} })}>
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    )
+                    :
+                    null
+                }
+              </Form.Label>
+              <Col sm={11}>
+                <Form.File
+                  id="contractSiteForm"
+                  label={this.state.contract.length || this.state.contractFile.name ? this.state.contract || this.state.contractFile.name : "Contract"}
+                  custom
+                  name="contractFile"
+                  accept="image/*"
+                  onChange={this.fileChangedHandler}
+                />
+              </Col>
             </Form.Group>
-            <Form.Group>
-              <Form.File
-                id="imagesSiteForm"
-                label="Additional Images"
-                custom
-                name=""
-              />
+            <Form.Group as={Row}>
+              <Form.Label column sm={1}>
+                {
+                  this.state.additionalImages.length || this.state.additionalImagesFile.length ?
+                    (
+                      <button type="button" class="close" aria-label="Close" onClick={() => this.setState({ additionalImages: [], additionalImagesFile: [] })}>
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    )
+                    :
+                    null
+                }
+              </Form.Label>
+              <Col sm={11}>
+                <Form.File
+                  id="imagesSiteForm"
+                  label={this.state.additionalImages.length ? `${this.state.additionalImagesFile.length} Additional Images` : "Additional Images"}
+                  custom
+                  name="additionalImagesFile"
+                  accept="image/*"
+                  onChange={this.fileChangedHandler}
+                />
+              </Col>
             </Form.Group>
-            <Form.Group>
-              <Form.File
-                id="documentsSiteForm"
-                label="Addition Documents"
-                custom
-                name=""
-              />
+            <Form.Group as={Row}>
+              <Form.Label column sm={1}>
+                {
+                  this.state.document.length || this.state.documentFile.length ?
+                    (
+                      <button type="button" class="close" aria-label="Close" onClick={() => this.setState({ document: '', documentFile: {} })}>
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    )
+                    :
+                    null
+                }
+              </Form.Label>
+              <Col sm={11}>
+                <Form.File
+                  id="documentsSiteForm"
+                  label={this.state.document.length || this.state.documentFile.name ? this.state.document || this.state.documentFile.name : "Additional Document"}
+                  custom
+                  name="documentFile"
+                  accept=".pdf"
+                  onChange={this.fileChangedHandler}
+                />
+
+              </Col>
             </Form.Group>
 
             <Form.Group
@@ -472,14 +585,14 @@ class UpdateSiteForm extends React.Component {
             </Form.Group>
           </>
         ) : (
-          <Row>
-            <Col sm={12} className="text-center">
-              <Spinner animation="border" role="status" variant="dark">
-                <span className="sr-only">Loading...</span>
-              </Spinner>
-            </Col>
-          </Row>
-        )}
+            <Row>
+              <Col sm={12} className="text-center">
+                <Spinner animation="border" role="status" variant="dark">
+                  <span className="sr-only">Loading...</span>
+                </Spinner>
+              </Col>
+            </Row>
+          )}
       </Form>
     );
   }

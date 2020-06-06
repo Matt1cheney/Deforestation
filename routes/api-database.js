@@ -5,6 +5,10 @@ const RegionModel = require("../model/Region")
 const SiteModel = require("../model/Site")
 const SourceModel = require("../model/Source")
 const EventModel = require("../model/Event")
+const multer = require("multer");
+const path = require("path");
+const fs = require('fs');
+const mongoose = require('mongoose');
 
 //--------------------------- Person Controller -------------------------
 
@@ -189,12 +193,124 @@ async function updateRegion(req, res) {
 
 //-------------------------------- Site Controller ------------------------------
 
-async function createSite(req, res) {
-    console.log(req.body)
-    let newSite = new SiteModel(req.body);
-    let savedSite = await newSite.save();
-    res.json(savedSite);
+//set storage engine with respect to server.js
+const storage = multer.diskStorage({
+    //Location where your uploaded files will reside relative to server.js file
+    destination: "./client/upload",
+    //Filename is the name of the file after uploaded Date.now() will generate unique timestamp
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname));
+    }
+});
+
+
+//Init Upload Multer
+const upload = multer({
+    //Using storage location same as storage: storage
+    storage,
+    //Set the limit for file size in bytes
+    limits: { fileSize: 3000000 },
+
+}).fields([{
+    name: "profileImage",
+    maxCount: 1 //max count will set the number of files you can upload
+}, {
+    name: "contract",
+    maxCount: 1
+}, {
+    name: "document",
+    maxCount: 1
+}, {
+    name: "additionalImages",
+    maxCount: 5 //max number of files that can be uploaded is 5
+}]);
+
+//whenever post request is made to "/api/sites" end point from front end
+function createSite(req, res) {
+    upload(req, res, (err) => {
+        if (err) {
+            //log any error that occured during uploading files
+            console.log(err);
+            return;
+        } else {
+            //creatng new document from SiteModel
+
+            let siteData = JSON.parse(req.body.siteData)
+
+            let i = 0, addImages = [];
+
+            // extracting additional images
+            // don't use req.files["additionalImages"].path as it is creating slash problems while getting the file name
+            while (req.files["additionalImages"] != undefined && req.files["additionalImages"][i] != undefined) {
+                addImages.push('client/upload/' + req.files["additionalImages"][i].filename);
+                i++;
+            }
+
+
+            let newSite = new SiteModel({
+                //Please set the enctype in front end to <form action="" method="" enctype="multipart/form-data">
+                //Please refer https://www.npmjs.com/package/multer for additional information
+
+                //req.body.name get from data from input field with <input type="text" name="name">
+                name: siteData.name,
+
+                region: siteData.region,
+                owner: siteData.owner,
+                coordinator: siteData.coordinator,
+
+                //req.body.address get from data from input field with <input type="text" name="address">
+                address: siteData.address,
+                //req.body.latitude get from data from input field with <input type="text/number" name="latitude">
+                latitude: siteData.latitude,
+                //req.body.longitude get from data from input field with <input type="text/number" name="longitude">
+                longitude: siteData.longitude,
+                //req.body.status get from data from input field with <input type="text" name="status">
+                status: siteData.status,
+                //req.body.notes get from data from input field with <input type="text" name="notes">
+                notes: siteData.notes,
+                /*
+                    <input type="file" id="" name="profileImage">
+                    req.files is the object that return information regarding uploaded files in key value pair
+                    .path is the property of req.files object under profileImage key
+                    Storing image and document in the database is not recommended option so we are storing path
+                    ------storing files in separate folder and path in database to acces them using file system module----
+                */
+
+                /*
+                    <input type="file" id="" name="contract">
+                */
+                //<input type="file" id="" name="document">
+
+                plantingTarget: siteData.plantingTarget,
+                profileImage: 'client/upload/' + req.files["profileImage"][0].filename,
+                document: req.files["document"] ? 'client/upload/' + req.files["document"][0].filename : '',
+                contract: 'client/upload/' + req.files["contract"][0].filename,
+                additionalImages: addImages
+            });
+
+            /*
+                Since additional image store multiple image make sure to set your field
+                <input type="file" name="additionalImages" multiple> !important
+                logic to store multiple path in additionalImages
+            */
+
+            //Saving document to the database
+            newSite.save((err, docs) => {
+                if (err || !docs) {
+                    //If any error occur
+                    console.log(err);
+                    return res.status(400).json({
+                        err: "Not able to save user in DB",
+                    });
+
+                }
+                //once document is successfully stored in database json response is sent to the client as a feedback
+                res.json(newSite);
+            });
+        }
+    });
 }
+
 
 async function getAllSite(req, res) {
     const id = req.params.id;
@@ -257,20 +373,70 @@ async function deleteSite(req, res) {
     }
 }
 
-async function updateSite(req, res) {
-    if (!req.body)
-        return res.status(400).json({ message: "Site to update can not be empty!" });
+function updateSite(req, res) {
+    upload(req, res, async (err) => {
+        if (err) {
+            //log any error that occured during uploading files
+            console.log(err);
+            return;
+        } else {
+            //creatng new document from SiteModel
+            
 
-    const id = req.body._id;
+            let siteData = JSON.parse(req.body.siteData)
+            const id = siteData._id;
+            let i = 0, addImages = [];
 
-    try {
-        const data = await SiteModel.findOneAndUpdate({ _id: id }, req.body, { useFindAndModify: false })
-        if (!data)
-            res.status(404).json({ message: `Cannot update Site with name=${id}. Maybe Site was not found!` });
-        else res.json(data);
-    } catch (err) {
-        res.status(500).json({ message: "Error updating Site with name=" + id });
-    }
+            // extracting additional images
+            // don't use req.files["additionalImages"].path as it is creating slash problems while getting the file name
+            while (req.files["additionalImages"] != undefined && req.files["additionalImages"][i] != undefined) {
+                addImages.push('client/upload/' + req.files["additionalImages"][i].filename);
+                i++;
+            }
+
+            
+
+            let newSite = new SiteModel({
+                //Please set the enctype in front end to <form action="" method="" enctype="multipart/form-data">
+                //Please refer https://www.npmjs.com/package/multer for additional information
+
+                //req.body.name get from data from input field with <input type="text" name="name">
+                _id:id,
+                name: siteData.name,
+
+                region: siteData.region,
+                owner: siteData.owner,
+                coordinator: siteData.coordinator,
+
+                //req.body.address get from data from input field with <input type="text" name="address">
+                address: siteData.address,
+                //req.body.latitude get from data from input field with <input type="text/number" name="latitude">
+                latitude: siteData.latitude,
+                //req.body.longitude get from data from input field with <input type="text/number" name="longitude">
+                longitude: siteData.longitude,
+                //req.body.status get from data from input field with <input type="text" name="status">
+                status: siteData.status,
+                notes: siteData.notes,
+                plantingTarget: siteData.plantingTarget,
+                profileImage: req.files["profileImage"] ? 'client/upload/' + req.files["profileImage"][0].filename : siteData.profileImage,
+                document: req.files["document"] ? 'client/upload/' + req.files["document"][0].filename : siteData.document,
+                contract: req.files["contract"] ? 'client/upload/' + req.files["contract"][0].filename : siteData.contract,
+                additionalImages: addImages.length ? addImages : siteData.additionalImages
+            });
+
+            try {
+                console.log(id);
+                const data = await SiteModel.findOneAndUpdate({ _id: mongoose.Types.ObjectId(id) }, {$set:newSite}, { useFindAndModify: false })
+                console.log(data);
+                if (!data)
+                    res.status(404).json({ message: `Cannot update Site with name=${id}. Maybe Site was not found!` });
+                else res.json(data);
+            } catch (err) {
+                res.status(500).json({ message: "Error updating Site with name=" + id });
+            }
+        }
+    });
+
 }
 
 //--------------------------------- Source Controller ------------------------------
@@ -512,6 +678,23 @@ async function searchSource(req, res) {
         res.status(500).json({ message: "Error updating Source" });
     }
 }
+async function getFile(req, res) {
+    //last indexOf to extract file extension and based on that to send writeHead
+    // one can add more file extension for uploading files
+    const index = req.params.name.lastIndexOf('.');
+    const extension = req.params.name.substr(index)
+
+    // res.writeHead for setting content-type of document to be sent
+    if (extension === '.jpg' || extension === '.jpeg' || extension === '.png')
+        res.writeHead(200, { 'content-type': 'image/' + req.params.name.substr(index + 1) });
+    else if (extension === '.pdf')
+        res.writeHead(200, { 'content-type': 'application/' + req.params.name.substr(index + 1) });
+
+    // fs to read and stream file
+    fs.createReadStream('./client/upload/' + req.params.name).pipe(res);
+}
+
+
 
 //--------------------------------- API Routes ----------------------------------
 
@@ -571,5 +754,7 @@ router.post("/api/addVolunteer", (req, res) => {
 
 })
 
+//----------------------- Get File routes -----------------------
+router.get("/api/get-file/client/upload/:name", getFile);
 // Export router
 module.exports = router;
