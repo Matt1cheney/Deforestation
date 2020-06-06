@@ -39,7 +39,7 @@ async function findPerson(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await PersonModel.findOne({ name: id }).populate("region", "name")
+        const data = await PersonModel.findOne({ "_id": id }).populate("region", "name")
         if (!data)
             res.status(404).json({ message: `Cannot FIND Person with name=${id}. Maybe Person was not found!` });
         else res.json(data);
@@ -341,7 +341,7 @@ async function findEvent(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await EventModel.findOne({ name: id }).populate("site", "name").populate("volunteer", "name");
+        const data = await EventModel.findOne({ "_id": id }).populate("site", "name").populate("volunteer", "name");
         if (!data)
             res.status(404).json({ message: `Cannot FIND Event with name=${id}. Maybe Event was not found!` });
         else res.json(data);

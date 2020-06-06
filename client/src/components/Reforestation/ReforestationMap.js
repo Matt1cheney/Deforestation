@@ -90,9 +90,10 @@ export default class ReforestationMap extends React.Component {
 
     render() {
         return <>
-            <h1>U.S. Reforestation Map and Statistics</h1>
+            
 
             <div className="pageContent">
+                <h1 style={{"text-align": "center"}}>U.S. Reforestation Map and Statistics</h1>
                 <div className="mapdiv">
                     <svg version="1.2" viewBox="0 0 1100 1000" xmlns="http://www.w3.org/2000/svg">
                         {Object.keys(MapGeometry).map(stateId => this.renderState(stateId, MapGeometry[stateId]))}

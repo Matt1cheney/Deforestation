@@ -8,11 +8,10 @@
 }
 
 .info h1 {
-    font-size: 3rem;
-    font-style: italic;
-    font-family: "Montserrat", sans-serif;
-    font-weight: bold;
-
+  font-size: 3rem;
+  font-style: italic;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
 }
 
 .headerDiv {
@@ -65,7 +64,6 @@
   padding-bottom: 6em;
 }
 .div1 {
-
   background-image: url("../../images/Xmas.jpeg");
   grid-area: 1 / 4 / 7 / 7;
 }
@@ -86,7 +84,6 @@
   font-size: 20px;
   padding-left: 4em;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-
 }
 
 .bar {
@@ -103,11 +100,32 @@
 
 @media (max-width: 700px) {
   .info {
-    
-    background-color: #3f4749;
+    display: flex;
+    flex-flow: column;
   }
+
   .mainGrid {
-    grid-column-end: auto;
+    flex: 1 1 auto;
+    padding-top: 5rem;
+    display: flex;
+    flex-flow: column;
+  }
+
+  .mainGrid .backgroundImage {
+    display: none;
+  }
+
+  .grid2 {
+    flex: 1 1 auto;
+
+    display: flex;
+    flex-flow: column;
+  }
+
+  .grid2 .div4 {
+    padding: 2rem;
+  }
+  .grid2 .div1 {
     display: none;
   }
 
@@ -115,7 +133,8 @@
     grid-area: span 7;
   }
 
-  .headerDiv {
-    display:none;
+  .pageContent {
+    display: none;
   }
 }
+

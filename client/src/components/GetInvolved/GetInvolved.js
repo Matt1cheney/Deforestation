@@ -6,37 +6,34 @@ import { BrowserRouter as Router } from "react-router-dom";
 import UserEventDisplay from "../GetInvolved/UserEvents/UserEventDisplay";
 import API from "../../utils/API";
 import Header from "../Header/Header";
+import "./getInvolved.css";
 
 const GetInvolved = ({ events }) => {
   const [eventState, setEventState] = useState({
     events: [],
-    
   });
 
   useEffect(() => {
     async function fetchData() {
       await API.getEvents().then((res) =>
         setEventState({ ...eventState, events: res.data })
-        
       );
-      console.log(events);
     }
     fetchData();
-    
   }, []);
-  console.log(events);
+
   return (
     <>
-    <Header />
-      <Router>
-        <Container fluid>
-          <Row>
-            <Col xs={6} className="contentView">
+      <div className="getInvolved">
+        <Header />
+        <Router>
+          <Container fluid>
+            <Row className="eventDisplay">
               <UserEventDisplay events={eventState.events} />
-            </Col>
-          </Row>
-        </Container>
-      </Router>
+            </Row>
+          </Container>
+        </Router>
+      </div>
     </>
   );
 };

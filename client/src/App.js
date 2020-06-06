@@ -17,7 +17,7 @@ import { AuthProvider } from "./components/authComponents/userAuth/Auth"
 function App() {
   return (
     <Router>
-      <AuthProvider>
+      {/* <AuthProvider> */}
         <>
           <Switch>
             <Route exact path="/" component={Home} />
@@ -27,11 +27,12 @@ function App() {
             <Route path="/getInvolved" component={GetInvolved} />
             <Route path="/reforestation" component={ReforestationMap} />
             <Route path="/information" component={InformationView}/>
-            <Route exact path="/events/:id" component={EventDetails}/>
+            <Route path="/event/:id" component={EventDetails}/>
+           
             <Route path="/sourceInquire" component={SourceInquire} />
           </Switch>
         </>
-      </AuthProvider>
+      {/* </AuthProvider> */}
     </Router>
   );
 }

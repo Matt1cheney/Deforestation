@@ -30,6 +30,8 @@ export default class Volunteer extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
+    //add volunteer to event doc with evnt id push volunteer object into existing array + 
+
     fetch("/api/persons", {
       method: "POST",
       body: JSON.stringify(this.state),
