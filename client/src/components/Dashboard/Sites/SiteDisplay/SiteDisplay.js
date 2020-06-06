@@ -133,6 +133,10 @@ class SiteDisplay extends React.Component {
     return (
       <>
         <CreateNew obj={this.createObj} />
+        <SearchBar
+          search={this.state.search}
+          handleInputChange={this.handleInputChange}
+          clearSearch={this.clearSearch} />
         {!this.state.loading ? (
           this.state.sites.length > 0 ? (
             <Row>
