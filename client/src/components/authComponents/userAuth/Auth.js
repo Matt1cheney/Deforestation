@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
 
       if (user === null) { 
         setPending(false);
-        return
+        return history.push("/");
       }
         
         API.getPersonByUid(user.uid)
@@ -54,7 +54,6 @@ export const AuthProvider = ({ children }) => {
   if (pending) {
     return <>Loading...</>;
   }
-// change
   return (
     // provides all children wrapped inside this provider tag the user info.
     <AuthContext.Provider value={currentUser}>
