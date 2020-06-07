@@ -12,6 +12,7 @@ import GetInvolved from "./components/GetInvolved/GetInvolved";
 import Login from "./components/authComponents/Login/Login";
 import SourceInquire from "./components/GetInvolved/Source/Source";
 import { AuthProvider } from "./components/authComponents/userAuth/Auth"
+import PrivateRoute from "./components/authComponents/PrivateRoute/PrivateRoute";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
         <>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/dashboard" component={Dashboard} />
+            <PrivateRoute path="/dashboard" component={Dashboard} />
             <Route exact path="/login" component={Login} />
             <Route path="/volunteer" component={Volunteer} />
             <Route path="/getInvolved" component={GetInvolved} />
