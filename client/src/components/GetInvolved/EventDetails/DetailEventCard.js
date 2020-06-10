@@ -16,7 +16,7 @@ const DetailEventCard = ({ event }) => {
     <>
       <Card style={{ width: "100%" }} className="eventCard">
         <Row>
-          <Col className="date">
+          <Col className="date">JOIN US ON<br></br>
             {moment(startDate).format("MM/DD/YYYY")} -{" "}
             {moment(endDate).format("MM/DD/YYYY")}
           </Col>

@@ -55,7 +55,7 @@ const Home = () => {
               human activities. Therefore forest protection and restoration are
               critical to slowing climate change. By one estimate, published in
               2015 in the scientific journal Nature, tropical forests alone
-              could meet half the 2050 target for reducing carbon emissions
+              could meet half the 2050 target for reducing carbon emissions.
             </p>
           </div>
         </section>
