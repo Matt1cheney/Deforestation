@@ -1,15 +1,27 @@
 .header {
-  display: grid;
   background-color: transparent;
   color: white;
   justify-items: center;
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
-  padding-top: 20px;
+  padding: 4rem 6rem;
 }
 .header h1 {
   padding: 0 45px;
-  font-family: "Prata", serif;
+  font-family: 'Raleway', sans-serif;
+  text-decoration: none;
+  color: white;
+}
+
+.infoBtn a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+    text-decoration: none;
 }
 
 .header .btn {
@@ -19,14 +31,51 @@
   font-family: "Montserrat", sans-serif;
 }
 
-.log {
+.loginButton {
   float: right;
   background: transparent;
   border: none;
   color: gray;
   position: absolute;
-  top: 35px;
+  top: 20px;
   right: 20px;
   font-family: "Montserrat", sans-serif;
 }
 
+.log {
+  display: contents;
+}
+
+@media (max-width: 880px) {
+
+
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+  .getBtn {
+    order: 2;
+  }
+  
+  .infoBtn {
+    order: 3;
+  }
+  
+}
+
+@media (max-width: 500px) {
+  .header {
+    padding: 2rem 6rem;
+  }
+  .header h1 {
+    font-size: 28px;
+  }
+
+  .loginButton {
+    top: 10px;
+    right: 10px;
+  }
+}

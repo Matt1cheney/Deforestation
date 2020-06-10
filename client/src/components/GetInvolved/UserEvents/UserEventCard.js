@@ -3,40 +3,39 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import "../style.css";
-
+import Plant from "../../../images/Plant.jpeg";
+import moment from "moment";
+import { Link } from "react-router-dom";
+import "./UserEventCard.css";
 
 const UserEventCard = ({ event }) => {
-
-
-  const {
-    site,
-    date,
-    startTime,
-    endTime,
-    coordinator,
-    description,
-    volunteers
-  } = event;
+  const { site, startDate, endDate, description, _id, region } = event;
 
   return (
-    <Card className="dashboardCard">
-      <Card.Body>
-        <Row>
-          <Col>
-            <Card.Title><h3>{site && site.name}</h3></Card.Title>
-          </Col>
-          <Col>
-            <Button className="btn align-right" variant="dark">View Event</Button>
-          </Col>
-        </Row>
-        <Card.Subtitle className="mb-2 text-muted">{date}</Card.Subtitle>
-        <Card.Subtitle className="mb-2 text-muted">{startTime}-{endTime}</Card.Subtitle>
-        <Card.Subtitle className="mb-2 text-muted">Coordinator: {coordinator && coordinator.name}</Card.Subtitle>
-        <Card.Text>{description}</Card.Text>
-      </Card.Body>
-    </Card>
-  )
-}
+    <>
+      <Col>
+        <div>
+          <Card href={`/event/${_id}`} className="userEventCard">
+            <Card.Img variant="top" />
+            <Card.Body>
+              <Card.Title className="card-title">
+                <h3>{site && site.name}</h3>
+              </Card.Title>
+              <Card.Subtitle className="mb-2 text-muted">
+                Event Date: <br></br>
+                {moment(startDate).format("MM/DD/YYYY")} -{" "}
+                {moment(endDate).format("MM/DD/YYYY")}
+              </Card.Subtitle>
+              <Card.Text className="description">{description}</Card.Text>
+              {/* <p>{region}</p> */}
+            </Card.Body>
+            <Button href={`/event/${_id}`} className="viewBtn">View Event</Button>
+          </Card>
+        </div>
+      </Col>
 
+     
+    </>
+  );
+};
 export default UserEventCard;

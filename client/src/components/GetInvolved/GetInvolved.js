@@ -3,9 +3,10 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { BrowserRouter as Router } from "react-router-dom";
-import EventDisplay from "../GetInvolved/UserEvents/UserEventDisplay";
+import UserEventDisplay from "../GetInvolved/UserEvents/UserEventDisplay";
 import API from "../../utils/API";
 import Header from "../Header/Header";
+import "./getInvolved.css";
 
 const GetInvolved = ({ events }) => {
   const [eventState, setEventState] = useState({
@@ -14,26 +15,28 @@ const GetInvolved = ({ events }) => {
 
   useEffect(() => {
     async function fetchData() {
-      await API.getEvents().then((res) =>
+      await API.getAllEvents().then((res => {
+        console.log(res);
+        
         setEventState({ ...eventState, events: res.data })
-      );
+      })
+        );
     }
     fetchData();
   }, []);
 
   return (
     <>
-    <Header />
-      <Router>
-        <Container fluid>
-          <Row>
-            
-            <Col className="dashboardContentView">
-              <EventDisplay events={eventState.events} />
-            </Col>
-          </Row>
-        </Container>
-      </Router>
+      <div className="getInvolved">
+        <Header />
+        <Router>
+          <Container fluid>
+            <Row className="eventDisplay">
+              <UserEventDisplay events={eventState.events} />
+            </Row>
+          </Container>
+        </Router>
+      </div>
     </>
   );
 };

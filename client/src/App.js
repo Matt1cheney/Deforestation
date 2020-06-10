@@ -10,6 +10,7 @@ import ReforestationMap from "./components/Reforestation/ReforestationMap";
 import InformationView from "./components/Information/InformationView";
 import GetInvolved from "./components/GetInvolved/GetInvolved";
 import Login from "./components/authComponents/Login/Login";
+import EventDetails from "./components/GetInvolved/EventDetails/EventDetails"
 import SourceInquire from "./components/GetInvolved/Source/Source";
 import { AuthProvider } from "./components/authComponents/userAuth/Auth"
 import PrivateRoute from "./components/authComponents/PrivateRoute/PrivateRoute";
@@ -17,7 +18,7 @@ import PrivateRoute from "./components/authComponents/PrivateRoute/PrivateRoute"
 function App() {
   return (
     <Router>
-      <AuthProvider>
+      {/* <AuthProvider> */}
         <>
           <Switch>
             <Route exact path="/" component={Home} />
@@ -26,11 +27,13 @@ function App() {
             <Route path="/volunteer" component={Volunteer} />
             <Route path="/getInvolved" component={GetInvolved} />
             <Route path="/reforestation" component={ReforestationMap} />
-            <Route path="/information" component={InformationView} />
+            <Route path="/information" component={InformationView}/>
+            <Route path="/event/:id" component={EventDetails}/>
+           
             <Route path="/sourceInquire" component={SourceInquire} />
           </Switch>
         </>
-      </AuthProvider>
+      {/* </AuthProvider> */}
     </Router>
   );
 }
