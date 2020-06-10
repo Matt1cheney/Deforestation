@@ -52,6 +52,22 @@ async function findPerson(req, res) {
     }
 }
 
+async function findPersonByRegion(req, res) {
+    if (!req.params.id)
+        return res.status(400).json({ message: "Site to find can not be empty!" });
+
+    const id = req.params.id;
+
+    try {
+        const data = await PersonModel.find({ region: id }).populate("region", "name");
+        if (!data)
+            res.status(404).json({ message: `Cannot FIND Person with name=${id}. Maybe Person was not found!` });
+        else res.json(data);
+    } catch (err) {
+        res.status(500).json({ message: "Error finding Person with name=" + id });
+    }
+}
+
 async function findFirebasePerson(req, res) {
     if (!req.params.uid) {
         return res.status(400).json({ message: "Person to find can not be empty!" });
