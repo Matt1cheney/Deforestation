@@ -8,11 +8,10 @@
 }
 
 .info h1 {
-    font-size: 3rem;
-    font-style: italic;
-    font-family: "Montserrat", sans-serif;
-    font-weight: bold;
-
+  font-size: 3rem;
+  font-style: italic;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
 }
 
 .headerDiv {
@@ -21,7 +20,7 @@
 
 .backgroundImage {
   grid-area: 1 / 1 / 6 / 4;
-  /* background-image: url("../../images/Ferns.jpeg"); */
+  background-image: url("../../images/wheels.jpeg");
   background-color: lightslategray;
   background-size: cover;
 }
@@ -65,8 +64,7 @@
   padding-bottom: 6em;
 }
 .div1 {
-
-  /* background-image: url("../../images/Xmas.jpeg"); */
+  background-image: url("../../images/Xmas.jpeg");
   grid-area: 1 / 4 / 7 / 7;
 }
 
@@ -86,7 +84,6 @@
   font-size: 20px;
   padding-left: 4em;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-
 }
 
 .bar {
@@ -100,3 +97,50 @@
   background-color: black;
   grid-area: 1 / 2 / 2 / 3;
 }
+
+@media (max-width: 700px) {
+  .info {
+    display: flex;
+    flex-flow: column;
+  }
+
+  .mainGrid {
+    flex: 1 1 auto;
+    padding-top: 5rem;
+    display: flex;
+    flex-flow: column;
+  }
+
+  .mainGrid .backgroundImage {
+    display: none;
+  }
+
+  .grid2 {
+    flex: 1 1 auto;
+
+    display: flex;
+    flex-flow: column;
+  }
+
+  .grid2 .div4 {
+    padding: 2rem;
+  }
+  .grid2 .div1 {
+    display: none;
+  }
+
+  .backgroundImage {
+    grid-area: span 7;
+  }
+
+  .pageContent {
+    display: none;
+  }
+}
+
+@media (max-width: 1080px) {
+  .div2 {
+    grid-area: 2 / 3 / 3 / 6;
+  }
+}
+

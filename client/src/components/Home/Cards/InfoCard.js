@@ -5,26 +5,25 @@ import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 import City from "../../../images/City.jpeg";
 import Road from "../../../images/Road.jpeg";
-import { Link } from "react-router-dom";
 
-import "./Photo.css";
+import "./InfoCard.css";
 
 export class InfoCard extends React.Component {
   render() {
     return (
       <Container>
-        <Row>
-          <Col xs={6} md={6}>
-            <Link href="/information">
-              <Image src={City} />
+        <Row className="bottom">
+          <Col xs={12} md={6}>
+            <a href="/information">
+              <Image className="infoLinks" src={City} />
               <p className="centered">About Us</p>
-            </Link>
+            </a>
           </Col>
-          <Col xs={6} md={6}>
-            <Link href="/information">
-              <Image src={Road} />
+          <Col xs={12} md={6}>
+            <a href="/information">
+              <Image className="infoLinks" src={Road} />
               <p className="centered">Reforestation</p>
-            </Link>
+            </a>
           </Col>
         </Row>
       </Container>
@@ -33,3 +32,4 @@ export class InfoCard extends React.Component {
 }
 
 export default InfoCard;
+

@@ -43,23 +43,7 @@ async function findPerson(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await PersonModel.findOne({ name: id }).populate("region")
-        if (!data)
-            res.status(404).json({ message: `Cannot FIND Person with name=${id}. Maybe Person was not found!` });
-        else res.json(data);
-    } catch (err) {
-        res.status(500).json({ message: "Error finding Person with name=" + id });
-    }
-}
-
-async function findPersonByRegion(req, res) {
-    if (!req.params.id)
-        return res.status(400).json({ message: "Person to find can not be empty!" });
-
-    const id = req.params.id;
-
-    try {
-        const data = await PersonModel.find({ region: id }).populate("region")
+        const data = await PersonModel.findOne({ "_id": id }).populate("region", "name")
         if (!data)
             res.status(404).json({ message: `Cannot FIND Person with name=${id}. Maybe Person was not found!` });
         else res.json(data);
@@ -535,7 +519,7 @@ async function createEvent(req, res) {
     res.json(savedEvent);
 }
 
-async function getAllEvent(req, res) {
+async function getAllEvents(req, res) {
     const id = req.params.id;
 
     try {
@@ -555,7 +539,7 @@ async function findEvent(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await EventModel.findOne({ name: id }).populate("site", "name").populate("volunteer", "name");
+        const data = await EventModel.findOne({ "_id": id }).populate("site", "name").populate("volunteer", "name");
         if (!data)
             res.status(404).json({ message: `Cannot FIND Event with name=${id}. Maybe Event was not found!` });
         else res.json(data);
@@ -740,7 +724,7 @@ router.delete("/api/region/:id", deleteRegion);
 
 //----------------------- Event routes -------------------
 
-router.get("/api/events", getAllEvent);
+router.get("/api/events", getAllEvents);
 router.get(`/api/matchevent?:keyword`, searchEvent);
 router.post("/api/events", createEvent);
 router.get("/api/event/:id", findEvent);

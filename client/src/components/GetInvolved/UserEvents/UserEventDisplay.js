@@ -5,20 +5,20 @@ import UserEventCard from "../UserEvents/UserEventCard";
 
 
 
-function EventDisplay( {events} ) {
+function UserEventDisplay( {events} ) {
 
   return (
 
     <>
-    <Row>
+    
       {events.map((event, index) => (
-        <Col sm={12} key={index}>
+        <Col className="displayCol" xs={12} md={6} lg={4} key={index}>
           <UserEventCard event={event} />
         </Col>
       ))}
-    </Row>
+    
     </>
   )
 }
 
-export default EventDisplay;
+export default UserEventDisplay;
