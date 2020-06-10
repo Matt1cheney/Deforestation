@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import app from "./baseAuth";
+import app from "./baseAuth.js";
 import API from "../../../utils/API";
 
 export const AuthContext = React.createContext();
@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
 
       if (user === null) { 
         setPending(false);
-        return
+        return history.push("/");
       }
         
         API.getPersonByUid(user.uid)
@@ -54,7 +54,6 @@ export const AuthProvider = ({ children }) => {
   if (pending) {
     return <>Loading...</>;
   }
-
   return (
     // provides all children wrapped inside this provider tag the user info.
     <AuthContext.Provider value={currentUser}>

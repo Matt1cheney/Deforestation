@@ -1,9 +1,10 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const htmlRoutes = require("./routes/htmlRoutes");
 
 const data_routes = require("./routes/api-database.js");
-const mongoURI = "mongodb+srv://reforestration:reforestration@cluster0-f774a.mongodb.net/test?retryWrites=true&w=majority";
+const mongoURI = process.env.MONGO_DATABASE;
 const app = express();
 const PORT = process.env.PORT || 4000;
 
@@ -16,6 +17,7 @@ if (process.env.NODE_ENV === "production") {
 }
 // Add routes, both API and view
 app.use(data_routes);
+app.use(htmlRoutes);
 
 // // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || mongoURI, {

@@ -5,8 +5,6 @@ import SiteCard from "../SiteCard/SiteCard";
 import CreateNew from "../../CreateNew/CreateNew";
 import Spinner from "react-bootstrap/Spinner";
 import API from "../../../../utils/API";
-import SearchBar from "../../SearchBar/Search";
-import debounce from "lodash.debounce";
 
 class SiteDisplay extends React.Component {
   constructor() {
@@ -19,7 +17,6 @@ class SiteDisplay extends React.Component {
       path: "/dashboard/newSite",
     };
     this.state = {
-      search: "",
       sites: [],
       loading: false,
     };
@@ -48,54 +45,10 @@ class SiteDisplay extends React.Component {
     }
   };
 
-  clearSearch = () => {
-    this.setState({ loading: true });
-    document.getElementById("searchInput").value = "";
-
-    API.getSites().then((data) => {
-      this.setState({ sites: data.data, loading: false });
-    });
-
-    this.setState({
-      search: ""
-    })
-  }
-
-  handleSearch = async () => {
-
-    try {
-      this.setState({ loading: true });
-      await API.searchSites(this.state.search).then(data => {
-        this.setState({ sites: data.data, loading: false })
-      });
-    } catch (err) {
-      alert(err.message);
-    }
-  }
-
-
-  handleInputChange = debounce((search) => {
-    this.setState({ search });
-
-    if (this.state.search === "") {
-      API.getSites().then((data) => {
-        this.setState({ sites: data.data, loading: false });
-      });
-      return
-    } else {
-      this.handleSearch()
-    } 
-
-  }, 1000);
-
   render() {
     return (
       <>
         <CreateNew obj={this.createObj} />
-        <SearchBar
-          search={this.state.search}
-          handleInputChange={this.handleInputChange}
-          clearSearch={this.clearSearch} />
         {!this.state.loading ? (
           this.state.sites.length > 0 ? (
             <Row>

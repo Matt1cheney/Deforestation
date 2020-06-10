@@ -84,6 +84,10 @@ class SiteForm extends React.Component {
       location: "",
       number_planted: "",
       notes: "",
+      profile: {},
+      document: {},
+      contract: {},
+      additionalImages: []
     };
   }
 
@@ -121,6 +125,18 @@ class SiteForm extends React.Component {
       [name]: value,
     });
   };
+
+  fileChangedHandler = (event) => {
+    if (
+      event.target.name === 'profile' ||
+      event.target.name === 'document' ||
+      event.target.name === 'contract') {
+      this.setState({ [event.target.name]: event.target.files[0] })
+    } else {
+      this.setState({ [event.target.name]: event.target.files })
+    }
+  }
+
 
   handleSubmit = async (event) => {
     event.preventDefault();
@@ -168,18 +184,40 @@ class SiteForm extends React.Component {
     };
 
     try {
-      await API.createSite(siteData);
+      var formData = new FormData();
+
+      if (this.state.profile)
+        formData.append('profileImage', this.state.profile);
+
+      if (this.state.document)
+        formData.append('document', this.state.document);
+
+      if (this.state.contract)
+        formData.append('contract', this.state.contract);
+
+      if (this.state.additionalImages) {
+        let length = this.state.additionalImages.length;
+        for (let i = 0; i < length; i++) {
+          formData.append('additionalImages', this.state.additionalImages[i]);
+        }
+      }
+
+
+      formData.append('siteData', JSON.stringify(siteData));
+
+      await API.createSite(formData);
       alert("Site Added");
       this.props.history.goBack();
     } catch (err) {
       alert(err.message);
     }
-    
+
   };
 
   render() {
+
     return (
-      <Form className="formContainer" onSubmit={this.handleSubmit}>
+      <Form className="formContainer" onSubmit={this.handleSubmit} encType="multipart/form-data">
         <h1>New Site</h1>
         {!this.state.loading ? (
           <>
@@ -204,10 +242,11 @@ class SiteForm extends React.Component {
                 >
                   <option>none</option>
                   {this.regions.map((region, index) => (
-                    <option key={index} value={region._id}>
-                      {region.name}
-                    </option>
-                  ))}
+                    region.name && region.name !== "" && (
+                      <option key={index} value={region._id}>
+                        {region.name}
+                      </option>
+                    )))}
                 </Form.Control>
               </Form.Group>
               <Form.Group as={Col} xs={12} md={4} controlId="formSiteOwner">
@@ -274,9 +313,9 @@ class SiteForm extends React.Component {
               </Form.Group>
             </Form.Row>
 
-            <Form.Row>              
-              <Form.Group as={Col} xs={12} md={12} controlId="formMainText" style={{margin: 0}}>
-                <Form.Label style={{textDecoration: "underline"}}>Planting Target:</Form.Label>
+            <Form.Row>
+              <Form.Group as={Col} xs={12} md={12} controlId="formMainText" style={{ margin: 0 }}>
+                <Form.Label style={{ textDecoration: "underline" }}>Planting Target:</Form.Label>
               </Form.Group>
 
               <Form.Group as={Col} xs={12} md={3} controlId="formGridCity">
@@ -288,7 +327,7 @@ class SiteForm extends React.Component {
                   value={this.state.capacity}
                 />
               </Form.Group>
-              
+
               <Form.Group as={Col} xs={12} md={3} controlId="formGridCity">
                 <Form.Label>Tree Type</Form.Label>
                 <Form.Control
@@ -299,7 +338,7 @@ class SiteForm extends React.Component {
                 />
                 <small>Please use comma(,) to sepereate type</small>
               </Form.Group>
-              
+
               <Form.Group as={Col} xs={12} md={3} controlId="formGridCity">
                 <Form.Label>Location</Form.Label>
                 <Form.Control
@@ -309,7 +348,7 @@ class SiteForm extends React.Component {
                   value={this.state.location}
                 />
               </Form.Group>
-              
+
               <Form.Group as={Col} xs={12} md={3} controlId="formGridCity">
                 <Form.Label>Number Planted</Form.Label>
                 <Form.Control
@@ -318,7 +357,7 @@ class SiteForm extends React.Component {
                   onChange={this.handleChange}
                   value={this.state.number_planted}
                 />
-              </Form.Group>              
+              </Form.Group>
             </Form.Row>
 
             <Form.Row>
@@ -389,33 +428,41 @@ class SiteForm extends React.Component {
             <Form.Group>
               <Form.File
                 id="profileImageSiteForm"
-                label="Profile Image"
+                label={this.state.profile.name ? this.state.profile.name : "Profile Image"}
+                name="profile"
                 custom
-                name=""
+                accept="image/*"
+                onChange={this.fileChangedHandler}
               />
             </Form.Group>
             <Form.Group>
               <Form.File
                 id="contractSiteForm"
-                label="Contract"
+                label={this.state.contract.name ? this.state.contract.name : "Contract Image"}
                 custom
-                name=""
+                accept="image/*"
+                name="contract"
+                onChange={this.fileChangedHandler}
               />
             </Form.Group>
             <Form.Group>
               <Form.File
                 id="imagesSiteForm"
-                label="Additional Images"
+                label={this.state.additionalImages.length ? `${this.state.additionalImages.length} Additional Images` : "Additional Images"}
                 custom
-                name=""
+                accept="image/*"
+                name="additionalImages"
+                onChange={this.fileChangedHandler}
+                multiple
               />
             </Form.Group>
             <Form.Group>
               <Form.File
                 id="documentsSiteForm"
-                label="Addition Documents"
+                label={this.state.document.name ? this.state.document.name : "Additional Document"}
                 custom
-                name=""
+                name="document"
+                onChange={this.fileChangedHandler}
               />
             </Form.Group>
 
@@ -433,14 +480,14 @@ class SiteForm extends React.Component {
             </Form.Group>
           </>
         ) : (
-          <Row>
-            <Col sm={12} className="text-center">
-              <Spinner animation="border" role="status" variant="dark">
-                <span className="sr-only">Loading...</span>
-              </Spinner>
-            </Col>
-          </Row>
-        )}
+            <Row>
+              <Col sm={12} className="text-center">
+                <Spinner animation="border" role="status" variant="dark">
+                  <span className="sr-only">Loading...</span>
+                </Spinner>
+              </Col>
+            </Row>
+          )}
       </Form>
     );
   }

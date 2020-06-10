@@ -3,6 +3,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from "react-bootstrap/Nav";
 import app from "../authComponents/userAuth/baseAuth";
+import { Link } from "react-router-dom";
 // import DropdownButton from "react-bootstrap/DropdownButton";
 // import Dropdown from 'react-bootstrap/Dropdown';
 // import SplitButton from 'react-bootstrap/SplitButton';
@@ -13,7 +14,7 @@ const NavComp = () => {
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg="light" >
-        <Navbar.Brand href="/">ReforestNation</Navbar.Brand>
+        <Navbar.Brand ><Link to="/">ReforestNation</Link></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
