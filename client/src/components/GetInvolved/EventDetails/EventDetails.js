@@ -38,9 +38,11 @@ const EventDetails = ({ events }) => {
 
   return (
       <>
+      <div className="detailBackground">
       <Row>
+        
         <Col sm={12}>
-          <h1 style={{'text-align': "center"}}>Event Details</h1>
+          <h1 className="eventTitle">Event Details</h1>
         </Col>
       </Row>
       <Row>
@@ -49,11 +51,12 @@ const EventDetails = ({ events }) => {
             
             <DetailEventCard event={detailState.event} />
             
-            <Link to="/getInvolved">return</Link>
+            <Link className="return" to="/getInvolved">Return To Events Page</Link>
             
           </div>
         </Col>
       </Row>
+      </div>
     </>
   );
 };

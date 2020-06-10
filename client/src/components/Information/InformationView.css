@@ -20,7 +20,7 @@
 
 .backgroundImage {
   grid-area: 1 / 1 / 6 / 4;
-  background-image: url("../../images/Ferns.jpeg");
+  background-image: url("../../images/wheels.jpeg");
   background-color: lightslategray;
   background-size: cover;
 }

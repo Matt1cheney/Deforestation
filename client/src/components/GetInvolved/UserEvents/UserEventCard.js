@@ -27,7 +27,7 @@ const UserEventCard = ({ event }) => {
                 {moment(endDate).format("MM/DD/YYYY")}
               </Card.Subtitle>
               <Card.Text className="description">{description}</Card.Text>
-              <p>{region}</p>
+              {/* <p>{region}</p> */}
             </Card.Body>
             <Button href={`/event/${_id}`} className="viewBtn">View Event</Button>
           </Card>
