@@ -6,45 +6,34 @@ import Col from "react-bootstrap/Col";
 import Plant from "../../../images/Plant.jpeg";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import "./EventDetail.css";
 
 const DetailEventCard = ({ event }) => {
-  
-
   const { site, startDate, endDate, description, _id, coordinator } = event;
   console.log(event);
 
   return (
     <>
-
-      <Card style={{ width: '100%' }} className="eventCard">
-        <Card.Img variant="top" src={Plant} />
-        <Card.Body>
-          <Row>
-            <Col sm={6}>
-              <Row>
-                  <Col>
-                {description}
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                Event Date: <br></br>
+      <Card style={{ width: "100%" }} className="eventCard">
+        <Row>
+          <Col className="date">
             {moment(startDate).format("MM/DD/YYYY")} -{" "}
             {moment(endDate).format("MM/DD/YYYY")}
-                </Col>
-              </Row>
-            </Col>
-            <Col sm={6}>
-              <Row>
-                {coordinator && coordinator.name}
-              </Row>
+          </Col>
+        </Row>
+        <Col className="cardImage">
+          <Card.Img className="cardImage" variant="top" src={Plant} />
+                  <Card className="descriptionCard">{description}</Card>
+        </Col>
+        <Card.Body>
+          <Row>
+            
+            <Col >
+              <Row className="coordinator">Thank you to the coordinator of this event -{coordinator && coordinator.name}!</Row>
             </Col>
           </Row>
-          
-            <h3>{site && site.name}</h3>
-          
-       
-          
+
+          <h3>{site && site.name}</h3>
         </Card.Body>
       </Card>
     </>

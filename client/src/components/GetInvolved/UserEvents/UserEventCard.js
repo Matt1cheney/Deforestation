@@ -13,28 +13,28 @@ const UserEventCard = ({ event }) => {
 
   return (
     <>
-    <Col>
+      <Col>
+        <div>
+          <Card href={`/event/${_id}`} className="userEventCard">
+            <Card.Img variant="top" />
+            <Card.Body>
+              <Card.Title className="card-title">
+                <h3>{site && site.name}</h3>
+              </Card.Title>
+              <Card.Subtitle className="mb-2 text-muted">
+                Event Date: <br></br>
+                {moment(startDate).format("MM/DD/YYYY")} -{" "}
+                {moment(endDate).format("MM/DD/YYYY")}
+              </Card.Subtitle>
+              <Card.Text className="description">{description}</Card.Text>
+            </Card.Body>
+            <Button href={`/event/${_id}`} className="viewBtn">View Event</Button>
+          </Card>
+        </div>
+      </Col>
 
-      <Card className="userEventCard">
-        <Card.Img variant="top" />
-        <Card.Body>
-          <Card.Title>
-            <h3>{site && site.name}</h3>
-          </Card.Title>
-          <Card.Text>{description}</Card.Text>
-
-          <Card.Subtitle className="mb-2 text-muted">
-            Event Date: <br></br>
-            {moment(startDate).format("MM/DD/YYYY")} -{" "}
-            {moment(endDate).format("MM/DD/YYYY")}
-          </Card.Subtitle>
-
-          <Button href={`/event/${_id}`}>View Event</Button>
-        </Card.Body>
-      </Card>
-    </Col>
+     
     </>
   );
 };
-
 export default UserEventCard;

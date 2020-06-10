@@ -1,0 +1,25 @@
+.top {
+    height: 60vh;
+}
+
+.cardImage {
+    height: 65vh;
+    object-fit: cover;
+}
+
+.descriptionCard {
+    position: absolute;
+    background-color:rgb(252, 252, 252, .7);
+    top: 30%;
+    right: 0;
+    padding: 2rem;
+    width: 100%;
+
+}
+
+.coordinator {
+    justify-content: center;
+}
+.date {
+    justify-content: center;
+}

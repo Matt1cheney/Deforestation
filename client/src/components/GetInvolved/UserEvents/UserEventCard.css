@@ -1,3 +1,146 @@
-.userEventCard {
-    
+.card-title {
+    text-align: center;
 }
+
+.description {
+    padding-top: 20px;
+}
+
+.viewBtn {
+    background-color: #9e9e9e;
+    border-color: #9e9e9e;
+   
+    z-index: 2;
+}
+
+.viewBtn:hover {
+    background-color: #59615f;
+}
+.userEventCard {
+    min-height: 35vh;
+    
+   
+}
+
+.zoom:hover {
+    transform: scale(1.1);
+    background-color: white;
+}
+
+.zoom {
+    transition: transform .6s;
+}
+
+.zoom:after {
+    content: '\A';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 1);
+    opacity: 0;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+  }
+  
+  .zoom:hover:after {
+    opacity: .5;
+  }
+
+  .zoom:hover + .viewBtn {
+      display: block;
+  }
+  
+
+/* .userEventCard ::after {
+    content: "";
+    display: block;
+    width: 0px;
+    height: 0px;
+    background-color: skyblue;
+    top: 0px;
+    right: 0px;
+    border-bottom: 20px solid darken(teal, 5%);
+    border-left: 20px solid darken(teal, 5%);
+    border-right: 20px solid bisque;
+    border-top: 20px solid bisque;
+    position: absolute;
+    filter: drop-shadow(-5px 5px 3px rgba(0,0,0,0.5))
+  }
+
+  .userEventCard ::before {
+    content: "";
+    display: block;
+    width: 0px;
+    height: 0px;
+    border-top: 40px solid darken(teal, 5%);
+    border-right: 40px solid darken(teal, 5%);
+    border-left: 40px solid yellow;
+    border-bottom: 40px solid yellow;
+    bottom: 0px;
+    left: 0px;
+    position: absolute;
+    filter: drop-shadow(7px -7px 5px rgba(0,0,0,0.5));
+    margin-right: 10%;
+  } */
+
+  /* h1{
+    font-family: 'Shrikhand', cursive;
+    font-weight: normal;
+    font-size: 80px;
+    color: #333333;
+  } */
+  /* .userEventCard{
+    background: #9e9e9e;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+    -webkit-transition: opacity 150ms linear;
+    -moz-transition: opacity 150ms linear;
+    -ms-transition: opacity 350ms linear;
+    -o-transition: opacity 350ms linear;
+    transition: opacity 350ms linear;
+  }
+  
+  .userEventCard > * {
+      position: relative;
+      z-index: 2;
+  }
+  
+  .userEventCard::after{
+    content: "";
+    position: absolute;
+    bottom: 1;
+    right: 1;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent transparent #f6f2f2 transparent;
+    border-width: 0 0 400px 400px;
+  }
+  
+  
+  
+  @media(min-width: 768px){
+    .userEventCard:after{
+      border-width: 0 0 1200px 500px;
+    }
+  }
+  
+  @media(min-width: 992px){
+    .userEventCard:after{
+      border-width: 0 0 1200px 700px;
+    }
+  } */
+  
+  
+  .content{
+    background: transparent;
+    text-align: center;
+    padding: 0 4%;
+  }
+  
