@@ -487,7 +487,7 @@ async function createEvent(req, res) {
     res.json(savedEvent);
 }
 
-async function getAllEvent(req, res) {
+async function getAllEvents(req, res) {
     const id = req.params.id;
 
     try {
@@ -673,7 +673,7 @@ router.delete("/api/region/:id", deleteRegion);
 
 //----------------------- Event routes -------------------
 
-router.get("/api/events", getAllEvent);
+router.get("/api/events", getAllEvents);
 router.get(`/api/matchevent?:keyword`, searchEvent);
 router.post("/api/events", createEvent);
 router.get("/api/event/:id", findEvent);

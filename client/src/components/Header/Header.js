@@ -23,8 +23,8 @@ export default class Header extends React.Component {
               <Dropdown.Item><Link to="/sourceInquire">Landowner</Link></Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          <h1>ReforestNation</h1>
-          <Dropdown as={ButtonGroup}>
+          <Link to="/"><h1>ReforestNation</h1></Link>
+          <Dropdown as={ButtonGroup} className="infoBtn">
             <Button variant="success" ><Link to="/information">Get Information</Link></Button>
             <Dropdown.Toggle
               split
@@ -32,15 +32,15 @@ export default class Header extends React.Component {
               id="dropdown-split-basic"
             />
             <Dropdown.Menu>
-              <Dropdown.Item><Link to="#/action-1">About Us</Link></Dropdown.Item>
+              <Dropdown.Item><Link to="/reforestation">About Us</Link></Dropdown.Item>
               <Dropdown.Item><Link to="/reforestation">Reforestation</Link></Dropdown.Item>
-              <Dropdown.Item><Link to="#/action-3">Contact</Link></Dropdown.Item>
+              <Dropdown.Item><Link to="/reforestation">Contact</Link></Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </div>
         <div className="right">
           <Link to="/login">
-            <button className="log">Log In</button>
+            <button className="loginButton">Log In</button>
           </Link>
         </div>
       </>

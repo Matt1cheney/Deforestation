@@ -86,7 +86,7 @@ export default {
     return axios.get(`/api/matchevent?keyword=${search}`)
   },
 
-  getEvents: function() {
+  getAllEvents: function() {
     return axios.get("/api/events")
   },
 
