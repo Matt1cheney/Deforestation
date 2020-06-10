@@ -18,7 +18,7 @@ import PrivateRoute from "./components/authComponents/PrivateRoute/PrivateRoute"
 function App() {
   return (
     <Router>
-      {/* <AuthProvider> */}
+      <AuthProvider>
         <>
           <Switch>
             <Route exact path="/" component={Home} />
@@ -33,7 +33,7 @@ function App() {
             <Route path="/sourceInquire" component={SourceInquire} />
           </Switch>
         </>
-      {/* </AuthProvider> */}
+      </AuthProvider>
     </Router>
   );
 }
