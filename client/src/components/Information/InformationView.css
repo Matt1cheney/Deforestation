@@ -138,3 +138,9 @@
   }
 }
 
+@media (max-width: 1080px) {
+  .div2 {
+    grid-area: 2 / 3 / 3 / 6;
+  }
+}
+

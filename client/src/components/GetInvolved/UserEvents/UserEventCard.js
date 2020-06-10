@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import "./UserEventCard.css";
 
 const UserEventCard = ({ event }) => {
-  const { site, startDate, endDate, description, _id } = event;
+  const { site, startDate, endDate, description, _id, region } = event;
 
   return (
     <>
@@ -27,6 +27,7 @@ const UserEventCard = ({ event }) => {
                 {moment(endDate).format("MM/DD/YYYY")}
               </Card.Subtitle>
               <Card.Text className="description">{description}</Card.Text>
+              <p>{region}</p>
             </Card.Body>
             <Button href={`/event/${_id}`} className="viewBtn">View Event</Button>
           </Card>

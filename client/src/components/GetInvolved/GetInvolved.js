@@ -15,9 +15,12 @@ const GetInvolved = ({ events }) => {
 
   useEffect(() => {
     async function fetchData() {
-      await API.getAllEvents().then((res) =>
+      await API.getAllEvents().then((res => {
+        console.log(res);
+        
         setEventState({ ...eventState, events: res.data })
-      );
+      })
+        );
     }
     fetchData();
   }, []);

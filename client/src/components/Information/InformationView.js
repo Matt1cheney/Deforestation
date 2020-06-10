@@ -24,12 +24,12 @@ const Home = () => {
           <div className="textBlock">
             {" "}
             <p>
-              "hello lorem ipsumn lesdnc the qwuiacj fr[blorem iosum the suick
-              brown foix jumoed over the lig the awuicj broe nfos uuorem ipsumn
-              lesdnc the qwuiacj fr[blorem iosum the suick brown foix jumoed
-              over the lig the awuicj broe nfos uuorem ipsumn lesdnc the qwuiacj
-              fr[blorem iosum the suick brown foix jumoed over the lig the
-              awuicj broe nfos uupmed over the log"{" "}
+              "In collaboration with the Appleseed Initiative, ReforestNation is a non-rofit
+              organization dedicated to pairing landowners, seedling providers, and volunteers 
+              together to plant trees and help restore the health of the climate. Here volunteers 
+              can find when local events are happening and become a part of something we are all 
+              pasionate about. Resource providers can get in touch with event coordinators in their area to 
+              and discuss how they can be an integral part in reforesting where we can."{" "}
             </p>
           </div>
         </section>
@@ -44,16 +44,18 @@ const Home = () => {
           <div className="div3"></div>
           <div className="div4">
             <p>
-              Al contrario del pensamiento popular, el texto de Lorem Ipsum no
-              es simplemente texto aleatorio. Tiene sus raices en una pieza
-              cl´sica de la literatura del Latin, que data del año 45 antes de
-              Cristo, haciendo que este adquiera mas de 2000 años de antiguedad.
-              Richard McClintock, un profesor de Latin de la Universidad de
-              Hampden-Sydney en Virginia, encontró una de las palabras más
-              oscuras de la lengua del latín, "consecteur", en un pasaje de
-              Lorem Ipsum, y al seguir leyendo distintos textos del latín,
-              descubrió la fuente indudable. Lorem Ipsum viene de las secciones
-              1.10.32 y 1.10.33 de "de Finnibus Bonorum et Malorum"{" "}
+              When plants grow they sequester atmospheric carbon in their
+              tissues via the process of photosynthesis. Because forests are
+              full of large trees and other plants, they store massive amounts
+              of carbon. But when they are burned or chopped down, much of that
+              carbon is released into the atmosphere as carbon dioxide and other
+              greenhouse gases (nitrous oxide, methane, and other nitrogen
+              oxides). The clearing and burning of tropical forests and
+              peatlands accounts for about ten percent of greenhouse gases from
+              human activities. Therefore forest protection and restoration are
+              critical to slowing climate change. By one estimate, published in
+              2015 in the scientific journal Nature, tropical forests alone
+              could meet half the 2050 target for reducing carbon emissions
             </p>
           </div>
         </section>
