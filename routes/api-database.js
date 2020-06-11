@@ -282,9 +282,9 @@ function createSite(req, res) {
                 //<input type="file" id="" name="document">
 
                 plantingTarget: siteData.plantingTarget,
-                profileImage: 'client/upload/' + req.files["profileImage"][0].filename,
-                document: req.files["document"] ? 'client/upload/' + req.files["document"][0].filename : '',
-                contract: 'client/upload/' + req.files["contract"][0].filename,
+                profileImage: req.files["profileImage"] !== undefined ? 'client/upload/' + req.files["profileImage"][0].filename : "",
+                document: req.files["document"] !== undefined ? 'client/upload/' + req.files["document"][0].filename : '',
+                contract: req.files["contract"] !== undefined ? 'client/upload/' + req.files["contract"][0].filename : "",
                 additionalImages: addImages
             });
 
@@ -364,12 +364,30 @@ async function deleteSite(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await SiteModel.findOneAndDelete({ _id: id })
-        if (!data)
+        const previous = await SiteModel.findOneAndDelete({ _id: mongoose.Types.ObjectId(id) });
+        if (previous['profileImage'].length) {
+            fs.unlinkSync(previous.profileImage)
+        }
+        if (previous['contract'].length) {
+            fs.unlinkSync(previous.contract)
+        }
+        if (previous['document'].length) {
+            fs.unlinkSync(previous.document)
+        }
+        if (previous['additionalImages'].length) {
+            let length = previous.additionalImages.length;
+            let i = 0;
+            while (i < length) {
+                fs.unlinkSync(previous.additionalImages[i]);
+                i++;
+            }
+        }
+        if (!previous)
             res.status(404).json({ message: `Cannot DELETE Site with name=${id}. Maybe Site was not found!` });
-        else res.json(data);
+        else
+            res.json(previous);
     } catch (err) {
-        res.status(500).json({ message: "Error updating Site with name=" + id });
+        res.status(500).json({ message: "Error deleting Site with name=" + id });
     }
 }
 
@@ -381,12 +399,42 @@ function updateSite(req, res) {
             return;
         } else {
             //creatng new document from SiteModel
-            
+
 
             let siteData = JSON.parse(req.body.siteData)
             const id = siteData._id;
             let i = 0, addImages = [];
 
+
+            // fetched previous data from database to delete the images
+            const previous = await SiteModel.findOne({ _id: mongoose.Types.ObjectId(id) });
+
+            if (req.files['profileImage'] !== undefined || siteData.profileImage === '') {
+                console.log("Profile Image");
+                if (previous.profileImage !== '') {
+                    console.log("Fs Unlink Profile Image");
+                    fs.unlinkSync(previous.profileImage)
+                }
+
+            }
+            if (req.files['contract'] !== undefined || siteData.contract === '') {
+                if (previous.contract !== '')
+                    fs.unlinkSync(previous.contract)
+            }
+            if (req.files['document'] !== undefined || siteData.document === '') {
+                if (previous.document !== '')
+                    fs.unlinkSync(previous.document)
+            }
+            if (req.files['additionalImages'] !== undefined || siteData.additionalImages.length === 0) {
+                if (previous.additionalImages.length !== 0) {
+                    let length = previous.additionalImages.length;
+                    let i = 0;
+                    while (i < length) {
+                        fs.unlinkSync(previous.additionalImages[i])
+                        i++
+                    }
+                }
+            }
             // extracting additional images
             // don't use req.files["additionalImages"].path as it is creating slash problems while getting the file name
             while (req.files["additionalImages"] != undefined && req.files["additionalImages"][i] != undefined) {
@@ -612,6 +660,21 @@ async function updateEvent(req, res) {
     }
 }
 
+async function getFile(req, res) {
+    //last indexOf to extract file extension and based on that to send writeHead
+    // one can add more file extension for uploading files
+    const index = req.params.name.lastIndexOf('.');
+    const extension = req.params.name.substr(index)
+
+    // res.writeHead for setting content-type of document to be sent
+    if (extension === '.jpg' || extension === '.jpeg' || extension === '.png')
+        res.writeHead(200, { 'content-type': 'image/' + req.params.name.substr(index + 1) });
+    else if (extension === '.pdf')
+        res.writeHead(200, { 'content-type': 'application/' + req.params.name.substr(index + 1) });
+
+    // fs to read and stream file
+    fs.createReadStream('./client/upload/' + req.params.name).pipe(res);
+}
 //---------------------------------- Search Routes ------------------------------
 
 async function searchPerson(req, res) {

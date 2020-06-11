@@ -84,8 +84,8 @@ const SiteCard = ({ site, onDelete, this3 }) => {
           </Col>
         </Row>
         <Row>
-          <Col md={2} lg={2} xl={2}>
-            <img src={profileImage && `/api/get-file/${profileImage}`}></img>
+        <Col md={2} lg={2} xl={2}>
+            <img src={profileImage && `http://localhost:4000/api/get-file/${profileImage}`} alt="profileImage"></img>
           </Col>
           <Col md={7} lg={8} xl={9}>
             <Row>
@@ -143,7 +143,7 @@ const SiteCard = ({ site, onDelete, this3 }) => {
                     <h6>
                       <b>Document Link: </b>
                       
-                      <a href={`/api/get-file/${document}`} target="_blank" rel="noreferrer">Pdf</a>
+                      <a href={`http://localhost:4000/api/get-file/${document}`} target="_blank" rel="noreferrer">Pdf</a>
                     </h6>
                   : null
                 }
@@ -167,18 +167,22 @@ const SiteCard = ({ site, onDelete, this3 }) => {
           </Col>
         </Row>
         <Row>
-          {additionalImages &&
+        {additionalImages &&
             additionalImages.map(
               (image, index) =>
                 image && (
-                  <Col xs={5} sm={4} lg={3} key={index}>
-                    <img src={`/api/get-file/${image}`} alt=""></img>
+                  <Col xs={5} sm={4} lg={3} key={index} className="pb-5">
+                    <img src={`http://localhost:4000/api/get-file/${image}`} alt="additional Images"></img>
                   </Col>
                 )
             )}
-          <Col xs={5} sm={4} lg={3}>
-            <img src={contract && `/api/get-file/${contract}`} alt=""></img>
-          </Col>
+          {
+            contract &&
+            <Col xs={5} sm={4} lg={3} className="pb-5">
+              <img src={`http://localhost:4000/api/get-file/${contract}`} alt="contract"></img>
+            </Col>
+          }
+
         </Row>
         <br></br>
       </Card.Body>

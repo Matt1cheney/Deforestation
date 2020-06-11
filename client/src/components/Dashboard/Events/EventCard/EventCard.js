@@ -14,10 +14,14 @@ const EventCard = ({ event, onDelete, onVolunteerDelete, this3 }) => {
     startDate,
     endDate,
     coordinator,
+    region,
     description,
     volunteers,
   } = event;
 
+  let formatterStartDate = startDate ? moment(startDate).format("MM/DD/YYYY") : "N/A"
+  let formatterEndDate = endDate ? moment(endDate).format("MM/DD/YYYY") : "N/A"
+  
   return (
     <Card className="dashboardCard">
       <Card.Body>
@@ -53,17 +57,19 @@ const EventCard = ({ event, onDelete, onVolunteerDelete, this3 }) => {
             </Button>
           </Col>
         </Row>
-        <Card.Subtitle className="mb-2 text-muted">
-          {moment(startDate).format("MM/DD/YYYY")} -{" "}
-          {moment(endDate).format("MM/DD/YYYY")}
+         <Card.Subtitle className="mb-2 text-muted">
+          {formatterStartDate} - {formatterEndDate}
         </Card.Subtitle>
         <Card.Subtitle className="mb-2 text-muted">
-          <b>Coordinator: </b> {coordinator ? coordinator.name : ""}
+          <b>Coordinator: </b> {coordinator ? coordinator.name : "N/A"}
+        </Card.Subtitle>
+        <Card.Subtitle className="mb-2 text-muted">
+          <b>Region: </b> {region ? region.name : "N/A"}
         </Card.Subtitle>
         {description && (
           <Card.Text>
             <b>Description: </b>
-            {description}
+            {description ? description : "N/A"}
           </Card.Text>
         )}
         <Card.Subtitle className="mb-2">
@@ -75,12 +81,12 @@ const EventCard = ({ event, onDelete, onVolunteerDelete, this3 }) => {
               <Col lg={4} s={6} xs={12} key={index}>
                 <Card className="volunteerCard">
                   <Card.Body>
-                    <h5>{person.name}</h5>
+                    <h5>{person.name ? person.name : "N/A"}</h5>
                     <i className="fas fa-phone"></i>
-                    <span>{`${person.phone}`}</span>
+                    <span>{person.phone ? person.phone : "N/A"}</span>
                     <br></br>
                     <i className="fas fa-envelope-square"></i>
-                    <span>{`${person.email}`}</span>
+                    <span>{person.email ? person.email : "N/A"}</span>
                     <br></br>
                     <Button 
                       className="btn eventBtn" 
