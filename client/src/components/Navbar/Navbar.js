@@ -19,14 +19,13 @@ const NavComp = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
             <NavDropdown title="Get Involved" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="/volunteer">Volunteer</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Seedlings</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Landowner</NavDropdown.Item>
+              <NavDropdown.Item href="/getInvolved">Volunteer</NavDropdown.Item>
+              <NavDropdown.Item href="/resource">Resources</NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Get Info" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">About Us</NavDropdown.Item>
+              <NavDropdown.Item href="/reforestation">About Us</NavDropdown.Item>
               <NavDropdown.Item href="/reforestation">Reforestation</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Contact</NavDropdown.Item>
+              <NavDropdown.Item href="/reforestation">Contact</NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Nav>

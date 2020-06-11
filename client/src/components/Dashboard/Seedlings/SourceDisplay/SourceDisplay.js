@@ -7,10 +7,12 @@ import CreateNew from "../../CreateNew/CreateNew";
 import API from "../../../../utils/API";
 import SearchBar from "../../SearchBar/Search";
 import debounce from "lodash.debounce";
+import { AuthContext } from "../../../authComponents/userAuth/Auth";
 
 
 
-class SourceDisplay extends React.Component{
+class SourceDisplay extends React.Component {
+  static contextType = AuthContext
 
   constructor() {
     super();
@@ -22,6 +24,9 @@ class SourceDisplay extends React.Component{
       path: "/dashboard/newSource"
     }
     this.state = {
+      _id: "",
+      region: "",
+      role: "",
       search: "",
       sources: [],
       loading: false,
@@ -29,10 +34,22 @@ class SourceDisplay extends React.Component{
   }
 
   componentWillMount() {
+    const currentUser = this.context
+    const { _id, role, region } = currentUser.dbUser;
+
     this.setState({ loading: true });
-    API.getSources().then(data => {
-      this.setState({ sources: data.data, loading: false })
-    })
+
+    if (role === "Coordinator") {
+      API.getSourceByRegion(region._id).then((data) => {
+        this.setState({ _id: _id, role: role, region: region })
+        this.setState({ sources: data.data, loading: false });
+      });
+    } else {
+      API.getSources().then(data => {
+        this.setState({ sources: data.data, loading: false })
+      })
+    }
+
   }
 
   async onDelete(_id, this4) {
@@ -54,9 +71,15 @@ class SourceDisplay extends React.Component{
     this.setState({ loading: true });
     document.getElementById("searchInput").value = "";
 
-    API.getSources().then((data) => {
-      this.setState({ sources: data.data, loading: false });
-    });
+    if (this.state.role === "Coordinator") {
+      API.getSourceByRegion(this.state.region._id).then((data) => {
+        this.setState({ sources: data.data, loading: false });
+      });
+    } else {
+      API.getSources().then((data) => {
+        this.setState({ sources: data.data, loading: false });
+      });
+    }
 
     this.setState({
       search: ""
@@ -67,9 +90,19 @@ class SourceDisplay extends React.Component{
 
     try {
       this.setState({ loading: true });
-      await API.searchSources(this.state.search).then(data => {
-        this.setState({ sources: data.data, loading: false })
-      });
+
+      if (this.state.role === "Coordinator") {
+        await API.searchSources(this.state.search).then(data => {
+          const filter = data.data.filter(item => item.region !== null)
+          const sources = filter.filter(item => item.region._id === this.state.region._id)
+          this.setState({ sources: sources, loading: false })
+        });
+      } else {
+        await API.searchSources(this.state.search).then(data => {
+          this.setState({ sources: data.data, loading: false })
+        });
+      }
+      
     } catch (err) {
       alert(err.message);
     }
@@ -80,49 +113,55 @@ class SourceDisplay extends React.Component{
     this.setState({ search });
 
     if (this.state.search === "") {
-      API.getSources().then((data) => {
-        this.setState({ sources: data.data, loading: false });
-      });
+      if (this.state.role === "Coordinator") {
+        API.getSourceByRegion(this.state.region._id).then((data) => {
+          this.setState({ sources: data.data, loading: false });
+        });
+      } else {
+        API.getSources().then((data) => {
+          this.setState({ sources: data.data, loading: false });
+        });
+      }
       return
     } else {
       this.handleSearch()
-    } 
+    }
 
   }, 1000);
 
   render() {
     return (
       <>
-      <CreateNew obj={this.createObj}/>
-      <SearchBar
+        <CreateNew obj={this.createObj} />
+        <SearchBar
           search={this.state.search}
           handleInputChange={this.handleInputChange}
           clearSearch={this.clearSearch} />
-      {!this.state.loading ? (
+        {!this.state.loading ? (
           this.state.sources.length > 0 ? (
-          <Row>
-            {this.state.sources.map((source, index) => (
-              <Col sm={12} key={index}>
-                <SourceCard source={source} onDelete={this.onDelete} this3={this}/>
-              </Col>
-            ))}
-          </Row>
+            <Row>
+              {this.state.sources.map((source, index) => (
+                <Col sm={12} key={index}>
+                  <SourceCard source={source} onDelete={this.onDelete} this3={this} />
+                </Col>
+              ))}
+            </Row>
+          ) : (
+              <Row>
+                <Col sm={12}>
+                  <h6 className="color-white">No Record Founds</h6>
+                </Col>
+              </Row>
+            )
         ) : (
             <Row>
               <Col sm={12}>
-                <h6 className="color-white">No Record Founds</h6>
+                <Spinner animation="border" role="status" variant="light">
+                  <span className="sr-only">Loading...</span>
+                </Spinner>
               </Col>
             </Row>
-          )          
-        ) : (
-          <Row>
-            <Col sm={12}>
-              <Spinner animation="border" role="status" variant="light">
-                <span className="sr-only">Loading...</span>
-              </Spinner>
-            </Col>
-          </Row>
-        )}
+          )}
       </>
     )
   }

@@ -18,7 +18,7 @@ const UserEventCard = ({ event }) => {
           <Card href={`/event/${_id}`} className="userEventCard">
             <Card.Img variant="top" />
             <Card.Body>
-              <Card.Title className="card-title">
+              <Card.Title className="Eventcard-title">
                 <h3>{site && site.name}</h3>
               </Card.Title>
               <Card.Subtitle className="mb-2 text-muted">

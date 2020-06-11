@@ -13,7 +13,7 @@ const mongoose = require('mongoose');
 //--------------------------- Person Controller -------------------------
 
 async function createPerson(req, res) {
-    // console.log(req.body)
+
     let newPerson = new PersonModel(req.body);
     let savedPerson = await newPerson.save();
 
@@ -27,7 +27,7 @@ async function getAllPerson(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await PersonModel.find().populate();
+        const data = await PersonModel.find().populate("region");
         if (!data)
             res.status(404).json({ message: `Cannot FIND Person with name=${id}. Maybe Person was not found!` });
         else res.json(data);
@@ -52,6 +52,22 @@ async function findPerson(req, res) {
     }
 }
 
+async function findPersonByRegion(req, res) {
+    if (!req.params.id)
+        return res.status(400).json({ message: "Site to find can not be empty!" });
+
+    const id = req.params.id;
+
+    try {
+        const data = await PersonModel.find({ region: id }).populate("region", "name");
+        if (!data)
+            res.status(404).json({ message: `Cannot FIND Person with name=${id}. Maybe Person was not found!` });
+        else res.json(data);
+    } catch (err) {
+        res.status(500).json({ message: "Error finding Person with name=" + id });
+    }
+}
+
 async function findFirebasePerson(req, res) {
     if (!req.params.uid) {
         return res.status(400).json({ message: "Person to find can not be empty!" });
@@ -59,7 +75,7 @@ async function findFirebasePerson(req, res) {
     const id = req.params.uid;
 
     try {
-        const data = await PersonModel.findOne({ firebaseUid: id }).populate("region", "name")
+        const data = await PersonModel.findOne({ firebaseUid: id }).populate("region")
         if (!data)
             res.status(404).json({ message: `Looks like this user is not linked to our servers...` });
         else res.json(data);
@@ -266,9 +282,9 @@ function createSite(req, res) {
                 //<input type="file" id="" name="document">
 
                 plantingTarget: siteData.plantingTarget,
-                profileImage: 'client/upload/' + req.files["profileImage"][0].filename,
-                document: req.files["document"] ? 'client/upload/' + req.files["document"][0].filename : '',
-                contract: 'client/upload/' + req.files["contract"][0].filename,
+                profileImage: req.files["profileImage"] !== undefined ? 'client/upload/' + req.files["profileImage"][0].filename : "",
+                document: req.files["document"] !== undefined ? 'client/upload/' + req.files["document"][0].filename : '',
+                contract: req.files["contract"] !== undefined ? 'client/upload/' + req.files["contract"][0].filename : "",
                 additionalImages: addImages
             });
 
@@ -325,6 +341,22 @@ async function findSite(req, res) {
     }
 }
 
+async function findSiteByRegion(req, res) {
+    if (!req.params.id)
+        return res.status(400).json({ message: "Site to find can not be empty!" });
+
+    const id = req.params.id;
+
+    try {
+        const data = await SiteModel.find({ region: id }).populate("region", "name").populate("coordinator", "name");
+        if (!data)
+            res.status(404).json({ message: `Cannot FIND Site with name=${id}. Maybe Site was not found!` });
+        else res.json(data);
+    } catch (err) {
+        res.status(500).json({ message: "Error finding Site with name=" + id });
+    }
+}
+
 async function deleteSite(req, res) {
     if (!req.params.id)
         return res.status(400).json({ message: "Site to delete can not be empty!" });
@@ -332,12 +364,30 @@ async function deleteSite(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await SiteModel.findOneAndDelete({ _id: id })
-        if (!data)
+        const previous = await SiteModel.findOneAndDelete({ _id: mongoose.Types.ObjectId(id) });
+        if (previous['profileImage'].length) {
+            fs.unlinkSync(previous.profileImage)
+        }
+        if (previous['contract'].length) {
+            fs.unlinkSync(previous.contract)
+        }
+        if (previous['document'].length) {
+            fs.unlinkSync(previous.document)
+        }
+        if (previous['additionalImages'].length) {
+            let length = previous.additionalImages.length;
+            let i = 0;
+            while (i < length) {
+                fs.unlinkSync(previous.additionalImages[i]);
+                i++;
+            }
+        }
+        if (!previous)
             res.status(404).json({ message: `Cannot DELETE Site with name=${id}. Maybe Site was not found!` });
-        else res.json(data);
+        else
+            res.json(previous);
     } catch (err) {
-        res.status(500).json({ message: "Error updating Site with name=" + id });
+        res.status(500).json({ message: "Error deleting Site with name=" + id });
     }
 }
 
@@ -349,12 +399,42 @@ function updateSite(req, res) {
             return;
         } else {
             //creatng new document from SiteModel
-            
+
 
             let siteData = JSON.parse(req.body.siteData)
             const id = siteData._id;
             let i = 0, addImages = [];
 
+
+            // fetched previous data from database to delete the images
+            const previous = await SiteModel.findOne({ _id: mongoose.Types.ObjectId(id) });
+
+            if (req.files['profileImage'] !== undefined || siteData.profileImage === '') {
+                console.log("Profile Image");
+                if (previous.profileImage !== '') {
+                    console.log("Fs Unlink Profile Image");
+                    fs.unlinkSync(previous.profileImage)
+                }
+
+            }
+            if (req.files['contract'] !== undefined || siteData.contract === '') {
+                if (previous.contract !== '')
+                    fs.unlinkSync(previous.contract)
+            }
+            if (req.files['document'] !== undefined || siteData.document === '') {
+                if (previous.document !== '')
+                    fs.unlinkSync(previous.document)
+            }
+            if (req.files['additionalImages'] !== undefined || siteData.additionalImages.length === 0) {
+                if (previous.additionalImages.length !== 0) {
+                    let length = previous.additionalImages.length;
+                    let i = 0;
+                    while (i < length) {
+                        fs.unlinkSync(previous.additionalImages[i])
+                        i++
+                    }
+                }
+            }
             // extracting additional images
             // don't use req.files["additionalImages"].path as it is creating slash problems while getting the file name
             while (req.files["additionalImages"] != undefined && req.files["additionalImages"][i] != undefined) {
@@ -445,6 +525,22 @@ async function findSource(req, res) {
     }
 }
 
+async function findSourceByRegion(req, res) {
+    if (!req.params.id)
+        return res.status(400).json({ message: "Source to find can not be empty!" });
+
+    const id = req.params.id;
+
+    try {
+        const data = await SourceModel.find({ region: id }).populate("region", "name").populate("intendSite", "name");
+        if (!data)
+            res.status(404).json({ message: `Cannot FIND Source with name=${id}. Maybe Source was not found!` });
+        else res.json(data);
+    } catch (err) {
+        res.status(500).json({ message: "Error finding Source with name=" + id });
+    }
+}
+
 async function deleteSource(req, res) {
     if (!req.params.id)
         return res.status(400).json({ message: "Source to delete can not be empty!" });
@@ -516,6 +612,22 @@ async function findEvent(req, res) {
     }
 }
 
+async function findEventByCoord(req, res) {
+    if (!req.params.id)
+        return res.status(400).json({ message: "Event to find can not be empty!" });
+
+    const id = req.params.id;
+
+    try {
+        const data = await EventModel.find({ coordinator: id }).populate("site", "name").populate("coordinator", "name").populate("volunteers");
+        if (!data)
+            res.status(404).json({ message: `Cannot FIND Event with name=${id}. Maybe Event was not found!` });
+        else res.json(data);
+    } catch (err) {
+        res.status(500).json({ message: "Error finding Event with name=" + id });
+    }
+}
+
 async function deleteEvent(req, res) {
     if (!req.params.id)
         return res.status(400).json({ message: "Event to delete can not be empty!" });
@@ -548,6 +660,21 @@ async function updateEvent(req, res) {
     }
 }
 
+async function getFile(req, res) {
+    //last indexOf to extract file extension and based on that to send writeHead
+    // one can add more file extension for uploading files
+    const index = req.params.name.lastIndexOf('.');
+    const extension = req.params.name.substr(index)
+
+    // res.writeHead for setting content-type of document to be sent
+    if (extension === '.jpg' || extension === '.jpeg' || extension === '.png')
+        res.writeHead(200, { 'content-type': 'image/' + req.params.name.substr(index + 1) });
+    else if (extension === '.pdf')
+        res.writeHead(200, { 'content-type': 'application/' + req.params.name.substr(index + 1) });
+
+    // fs to read and stream file
+    fs.createReadStream('./client/upload/' + req.params.name).pipe(res);
+}
 //---------------------------------- Search Routes ------------------------------
 
 async function searchPerson(req, res) {
@@ -639,6 +766,7 @@ async function getFile(req, res) {
 router.get("/api/persons", getAllPerson);
 router.post("/api/persons", createPerson);
 router.get("/api/person/:id", findPerson);
+router.get("/api/personregion/:id", findPersonByRegion);
 router.get("/api/firebaseperson/:uid", findFirebasePerson);
 router.get(`/api/matchperson?:keyword`, searchPerson);
 router.put("/api/person/:id", updatePerson);
@@ -650,6 +778,7 @@ router.get("/api/sites", getAllSite);
 router.get(`/api/matchsite?:keyword`, searchSite);
 router.post("/api/sites", createSite);
 router.get("/api/site/:id", findSite);
+router.get("/api/siteregion/:id", findSiteByRegion);
 router.put("/api/site", updateSite);
 router.delete("/api/site/:id", deleteSite);
 
@@ -659,6 +788,7 @@ router.get("/api/sources", getAllSource);
 router.get(`/api/matchsource?:keyword`, searchSource);
 router.post("/api/sources", createSource);
 router.get("/api/source/:id", findSource);
+router.get("/api/sourceregion/:id", findSourceByRegion);
 router.put("/api/source", updateSource);
 router.delete("/api/source/:id", deleteSource);
 
@@ -677,6 +807,7 @@ router.get("/api/events", getAllEvents);
 router.get(`/api/matchevent?:keyword`, searchEvent);
 router.post("/api/events", createEvent);
 router.get("/api/event/:id", findEvent);
+router.get("/api/eventcoordinator/:id", findEventByCoord);
 router.put("/api/event", updateEvent);
 router.delete("/api/event/:id", deleteEvent);
 

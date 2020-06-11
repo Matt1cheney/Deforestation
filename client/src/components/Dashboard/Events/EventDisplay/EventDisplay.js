@@ -7,8 +7,12 @@ import Spinner from "react-bootstrap/Spinner";
 import API from "../../../../utils/API";
 import SearchBar from "../../SearchBar/Search";
 import debounce from "lodash.debounce";
+import { AuthContext } from "../../../authComponents/userAuth/Auth";
+
 
 class EventDisplay extends React.Component {
+  static contextType = AuthContext
+
   constructor() {
     super();
     this.admin = true;
@@ -19,18 +23,32 @@ class EventDisplay extends React.Component {
       path: "/dashboard/newEvent",
     };
     this.state = {
+      _id: "",
+      role: "",
       search: "",
       events: [],
       loading: false,
     };
   }
 
+
   componentWillMount() {
+    const currentUser = this.context
+    const { _id, role } = currentUser.dbUser;
+
     this.setState({ loading: true });
-    API.getEvents().then((data) => {
-      this.setState({ events: data.data, loading: false });
-    });
+    if (role === "Coordinator") {
+      API.getEventByCoord(_id).then((data) => {
+        this.setState({ _id: _id, role: role })
+        this.setState({ events: data.data, loading: false });
+      });
+    } else {
+      API.getEvents().then((data) => {
+        this.setState({ events: data.data, loading: false });
+      });
+    }
   }
+
 
   async onDelete(_id, this4) {
     try {
@@ -58,7 +76,7 @@ class EventDisplay extends React.Component {
       let new_arr = filter_volunteers.map((v) => {
         return v._id;
       });
-    
+
       let eventData = {
         _id: event._id,
         site: event.site,
@@ -68,11 +86,11 @@ class EventDisplay extends React.Component {
         endDate: event.endDate,
         volunteers: new_arr
       };
-  
+
       try {
         await API.updateEvent(eventData);
         alert("Volunteer Deleted");
-        
+
         let updated_events = this4.state.events
         updated_events.volunteers = filter_volunteers
         this4.setState({ events: updated_events });
@@ -90,9 +108,15 @@ class EventDisplay extends React.Component {
     this.setState({ loading: true });
     document.getElementById("searchInput").value = "";
 
-    API.getEvents().then((data) => {
-      this.setState({ events: data.data, loading: false });
-    });
+    if (this.state.role === "Coordinator") {
+      API.getEventByCoord(this.state._id).then((data) => {
+        this.setState({ events: data.data, loading: false });
+      });
+    } else {
+      API.getEvents().then(data => {
+        this.setState({ events: data.data, loading: false })
+      });
+    }
 
     this.setState({
       search: ""
@@ -103,9 +127,17 @@ class EventDisplay extends React.Component {
 
     try {
       this.setState({ loading: true });
-      await API.searchEvents(this.state.search).then(data => {
-        this.setState({ events: data.data, loading: false })
-      });
+      if (this.state.role === "Coordinator") {
+        await API.searchEvents(this.state.search).then(data => {
+          const filter = data.data.filter(item => item.coordinator !== null)
+          const events = filter.filter(item => item.coordinator._id === this.state._id)
+          this.setState({ events: events, loading: false })
+        });
+      } else {
+        await API.searchEvents(this.state.search).then(data => {
+          this.setState({ events: data.data, loading: false })
+        });
+      }
     } catch (err) {
       alert(err.message);
     }
@@ -116,49 +148,55 @@ class EventDisplay extends React.Component {
     this.setState({ search });
 
     if (this.state.search === "") {
-      API.getEvents().then((data) => {
-        this.setState({ events: data.data, loading: false });
-      });
+      if (this.state.role === "Coordinator") {
+        API.getEventByCoord(this.state._id).then((data) => {
+          this.setState({ events: data.data, loading: false });
+        });
+      } else {
+        API.getEvents().then(data => {
+          this.setState({ events: data.data, loading: false })
+        });
+      }
       return
     } else {
       this.handleSearch()
-    } 
+    }
 
   }, 1000);
 
   render() {
     return (
       <>
-        {this.admin && <CreateNew obj={this.createObj} />}
+        <CreateNew obj={this.createObj} />
         <SearchBar
-          search={this.state.search}
-          handleInputChange={this.handleInputChange}
-          clearSearch={this.clearSearch} />
+        search={this.state.search}
+        handleInputChange={this.handleInputChange}
+        clearSearch={this.clearSearch} />
         {!this.state.loading ? (
           this.state.events.length > 0 ? (
-            <Row>
+            <Row className="evntRow">
               {this.state.events.map((event, index) => (
                 <Col sm={12} key={index}>
-                  <EventCard event={event} onDelete={this.onDelete} onVolunteerDelete={this.onVolunteerDelete} this3={this}/>
+                  <EventCard event={event} onDelete={this.onDelete} onVolunteerDelete={this.onVolunteerDelete} this3={this} />
                 </Col>
               ))}
             </Row>
           ) : (
+              <Row>
+                <Col sm={12}>
+                  <h6 className="color-white">No Record Founds</h6>
+                </Col>
+              </Row>
+            )
+        ) : (
             <Row>
               <Col sm={12}>
-                <h6 className="color-white">No Record Founds</h6>
+                <Spinner animation="border" role="status" variant="light">
+                  <span className="sr-only">Loading...</span>
+                </Spinner>
               </Col>
             </Row>
-          )
-        ) : (
-          <Row>
-            <Col sm={12}>
-              <Spinner animation="border" role="status" variant="light">
-                <span className="sr-only">Loading...</span>
-              </Spinner>
-            </Col>
-          </Row>
-        )}
+          )}
       </>
     );
   }

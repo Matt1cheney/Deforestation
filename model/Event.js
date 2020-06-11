@@ -7,6 +7,11 @@ const EventSchema = new Schema({
         ref: "Site",
         default: null
     },
+    region: {
+        type: Schema.Types.ObjectId,
+        ref: "Region",
+        default: null
+    },
     startDate: {
         type: Date,
         default: Date.now
