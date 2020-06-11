@@ -30,7 +30,7 @@ function App() {
             <Route path="/information" component={InformationView}/>
             <Route path="/event/:id" component={EventDetails}/>
            
-            <Route path="/sourceInquire" component={SourceInquire} />
+            <Route path="/resource" component={SourceInquire} />
           </Switch>
         </>
       </AuthProvider>
