@@ -25,16 +25,16 @@ export default class Header extends React.Component {
           <Link to="/"><h1>ReforestNation</h1></Link>
           <Dropdown as={ButtonGroup} className="infoBtn">
             <Button variant="success" ><Link to="/information">Get Information</Link></Button>
-            <Dropdown.Toggle
+            {/* <Dropdown.Toggle
               split
               variant="success"
               id="dropdown-split-basic"
-            />
-            <Dropdown.Menu>
-              <Dropdown.Item><Link to="/reforestation">About Us</Link></Dropdown.Item>
-              <Dropdown.Item><Link to="/reforestation">Reforestation</Link></Dropdown.Item>
-              <Dropdown.Item><Link to="/reforestation">Contact</Link></Dropdown.Item>
-            </Dropdown.Menu>
+            /> */}
+            {/* <Dropdown.Menu>
+              <Dropdown.Item><Link to="/information">About Us</Link></Dropdown.Item>
+              <Dropdown.Item><Link to="/information">Reforestation</Link></Dropdown.Item>
+              <Dropdown.Item><Link to="/information">Contact</Link></Dropdown.Item>
+            </Dropdown.Menu> */}
           </Dropdown>
         </div>
         <div className="right">
