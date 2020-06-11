@@ -29,19 +29,6 @@ import Login from "../authComponents/Login/Login";
 
 const Dashboard = () => {
 
-  const [regionState, setRegionState] = useState({
-    regions: []
-  });
-  const [personsState, setPersonsState] = useState({
-    persons: []
-  });
-  const [sitesState, setSitesState] = useState({
-    sites: []
-  });
-  const [eventState, setEventState] = useState({
-    events: []
-  });
-
   return (
     <>
       <Navbar />
@@ -82,9 +69,9 @@ const Dashboard = () => {
 
                   <Route exact path="/dashboard/updateSite" component={UpdateSiteForm} />
 
-                  <Route exact path="/dashboard/updateAdmin/:id" component={UpdateAdminForm} />
+                  {/* <Route exact path="/dashboard/updateAdmin/:id" component={UpdateAdminForm} />
 
-                  <Route exact path="/dashboard/updatePerson/:id" component={UpdateUserForm} />
+                  <Route exact path="/dashboard/updatePerson/:id" component={UpdateUserForm} /> */}
 
                   <Route exact path="/dashboard/updateEvent" component={UpdateEventForm} />
 

@@ -31,7 +31,8 @@ export const AuthProvider = ({ children }) => {
 
       if (user === null) { 
         setPending(false);
-        return history.push("/");
+        // return history.push("/");
+        return;
       }
         
         API.getPersonByUid(user.uid)

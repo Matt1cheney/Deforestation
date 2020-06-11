@@ -5,8 +5,13 @@ import SiteCard from "../SiteCard/SiteCard";
 import CreateNew from "../../CreateNew/CreateNew";
 import Spinner from "react-bootstrap/Spinner";
 import API from "../../../../utils/API";
+import SearchBar from "../../SearchBar/Search";
+import debounce from "lodash.debounce";
+import { AuthContext } from "../../../authComponents/userAuth/Auth";
 
 class SiteDisplay extends React.Component {
+  static contextType = AuthContext
+
   constructor() {
     super();
     this.admin = true;
@@ -17,17 +22,33 @@ class SiteDisplay extends React.Component {
       path: "/dashboard/newSite",
     };
     this.state = {
+      _id: "",
+      role: "",
+      region: "",
+      search: "",
       sites: [],
       loading: false,
     };
   }
 
   componentWillMount() {
+    const currentUser = this.context
+    const { _id, role, region } = currentUser.dbUser;
+
     this.setState({ loading: true });
-    API.getSites().then((data) => {
-      this.setState({sites: data.data});
-      this.setState({ loading: false });
-    });
+
+    if (role === "Coordinator") {
+      API.getSiteByRegion(region._id).then((data) => {
+        console.log(data)
+        this.setState({ _id: _id, role: role, region: region })
+        this.setState({ sites: data.data, loading: false });
+      });
+    } else {
+      API.getSites().then((data) => {
+        this.setState({sites: data.data});
+        this.setState({ loading: false });
+      });
+    }
   }
 
   async onDelete(_id, this4) {
@@ -45,10 +66,77 @@ class SiteDisplay extends React.Component {
     }
   };
 
+  clearSearch = () => {
+    this.setState({ loading: true });
+    document.getElementById("searchInput").value = "";
+
+    if (this.state.role === "Coordinator") {
+      API.getSiteByRegion(this.state.region._id).then((data) => {
+        this.setState({ sites: data.data, loading: false });
+      });
+    } else {
+      API.getSites().then((data) => {
+        this.setState({ sites: data.data, loading: false });
+      });
+    }
+
+    this.setState({
+      search: ""
+    })
+  }
+
+  handleSearch = async () => {
+
+    try {
+      this.setState({ loading: true });
+
+      if (this.state.role === "Coordinator") {
+        await API.searchSites(this.state.search).then(data => {
+          const filter = data.data.filter(item => item.region !== null)
+          const sites = filter.filter(item => item.region._id === this.state.region._id)
+          this.setState({ sites: sites, loading: false })
+        });
+      } else {     
+        await API.searchSites(this.state.search).then(data => {
+          this.setState({ sites: data.data, loading: false })
+        });
+      }
+    } catch (err) {
+      alert(err.message);
+    }
+  }
+
+
+  handleInputChange = debounce((search) => {
+    this.setState({ search });
+
+    if (this.state.search === "") {
+
+      if (this.state.role === "Coordinator") {
+        API.getSiteByRegion(this.state.region._id).then((data) => {
+          this.setState({ sites: data.data, loading: false });
+        });
+      } else {
+        API.getSites().then((data) => {
+          this.setState({ sites: data.data, loading: false });
+        });
+      }
+
+      return
+    } else {
+      this.handleSearch()
+    } 
+
+  }, 1000);
+
   render() {
     return (
       <>
         <CreateNew obj={this.createObj} />
+        <SearchBar
+          search={this.state.search}
+          handleInputChange={this.handleInputChange}
+          clearSearch={this.clearSearch} />
         {!this.state.loading ? (
           this.state.sites.length > 0 ? (
             <Row>

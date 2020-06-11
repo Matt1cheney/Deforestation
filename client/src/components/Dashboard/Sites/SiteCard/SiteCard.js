@@ -85,7 +85,7 @@ const SiteCard = ({ site, onDelete, this3 }) => {
         </Row>
         <Row>
         <Col md={2} lg={2} xl={2}>
-            <img src={profileImage && `http://localhost:4000/api/get-file/${profileImage}`} alt="profileImage"></img>
+            <img className="siteImg" src={profileImage && `http://localhost:4000/api/get-file/${profileImage}`} alt="profileImage"></img>
           </Col>
           <Col md={7} lg={8} xl={9}>
             <Row>
@@ -172,14 +172,14 @@ const SiteCard = ({ site, onDelete, this3 }) => {
               (image, index) =>
                 image && (
                   <Col xs={5} sm={4} lg={3} key={index} className="pb-5">
-                    <img src={`http://localhost:4000/api/get-file/${image}`} alt="additional Images"></img>
+                    <img className="siteImg" src={`http://localhost:4000/api/get-file/${image}`} alt="additional Images"></img>
                   </Col>
                 )
             )}
           {
             contract &&
             <Col xs={5} sm={4} lg={3} className="pb-5">
-              <img src={`http://localhost:4000/api/get-file/${contract}`} alt="contract"></img>
+              <img className="siteImg" src={`http://localhost:4000/api/get-file/${contract}`} alt="contract"></img>
             </Col>
           }
 

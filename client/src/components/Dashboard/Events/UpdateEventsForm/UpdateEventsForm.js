@@ -26,7 +26,7 @@ class EventForm extends React.Component {
       date: "",
       startDate: null,
       endDate: null,
-      volunteers: []
+      volunteers: null
     };
   }
 
@@ -253,7 +253,7 @@ class EventForm extends React.Component {
               <Form.Group as={Col} controlId="formDate">
                 <Form.Label>Start Date</Form.Label>
                 <DatePicker
-                  autoComplete={false}
+                  autoComplete="false"
                   className="form-control"
                   placeholder="MM/DD/YYYY"
                   onChange={this.setStartDate}
