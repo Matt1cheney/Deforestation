@@ -20,7 +20,7 @@ const SearchBar = ({ search, handleInputChange, clearSearch }) => {
           placeholder="Search something..."
           onChange={e => handleInputChange(e.target.value)}
           name="search"
-          autocomplete="off"
+          autoComplete="off"
         />
       </Form.Group>
       {search.length > 0 && (
