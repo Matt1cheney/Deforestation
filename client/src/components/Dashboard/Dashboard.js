@@ -82,9 +82,9 @@ const Dashboard = () => {
 
                   <Route exact path="/dashboard/updateSite" component={UpdateSiteForm} />
 
-                  <Route exact path="/dashboard/updateAdmin/:id" component={UpdateAdminForm} />
+                  {/* <Route exact path="/dashboard/updateAdmin/:id" component={UpdateAdminForm} />
 
-                  <Route exact path="/dashboard/updatePerson/:id" component={UpdateUserForm} />
+                  <Route exact path="/dashboard/updatePerson/:id" component={UpdateUserForm} /> */}
 
                   <Route exact path="/dashboard/updateEvent" component={UpdateEventForm} />
 
