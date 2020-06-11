@@ -179,7 +179,7 @@ const SiteCard = ({ site, onDelete, this3 }) => {
           {
             contract &&
             <Col xs={5} sm={4} lg={3} className="pb-5">
-              <img src={`http://localhost:4000/api/get-file/${contract}`} alt="contract"></img>
+              <img className="siteImg" src={`http://localhost:4000/api/get-file/${contract}`} alt="contract"></img>
             </Col>
           }
 
