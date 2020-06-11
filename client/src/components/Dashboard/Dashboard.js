@@ -29,19 +29,6 @@ import Login from "../authComponents/Login/Login";
 
 const Dashboard = () => {
 
-  const [regionState, setRegionState] = useState({
-    regions: []
-  });
-  const [personsState, setPersonsState] = useState({
-    persons: []
-  });
-  const [sitesState, setSitesState] = useState({
-    sites: []
-  });
-  const [eventState, setEventState] = useState({
-    events: []
-  });
-
   return (
     <>
       <Navbar />
