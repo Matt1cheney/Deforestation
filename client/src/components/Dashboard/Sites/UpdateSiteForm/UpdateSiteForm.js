@@ -7,6 +7,7 @@ import Spinner from "react-bootstrap/Spinner";
 import API from "../../../../utils/API";
 
 class UpdateSiteForm extends React.Component {
+
   constructor(props) {
     super(props);
     this.owners = [];
@@ -167,20 +168,20 @@ class UpdateSiteForm extends React.Component {
   handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (false
-      // this.state.street === "" ||
-      // this.state.city === "" ||
-      // this.state.state === "" ||
-      // this.state.zip === "" ||
-      // this.state.latitude === "" ||
-      // this.state.longitude === "" ||
-      // this.state.region === null ||
-      // this.state.coordinator === null ||
-      // this.state.name === "" ||
-      // this.state.capacity === "" || 
-      // this.state.tree_type === "" || 
-      // this.state.location === "" || 
-      // this.state.number_planted === ""
+    if (
+      this.state.street === "" ||
+      this.state.city === "" ||
+      this.state.state === "" ||
+      this.state.zip === "" ||
+      this.state.latitude === "" ||
+      this.state.longitude === "" ||
+      this.state.region === null ||
+      this.state.coordinator === null ||
+      this.state.name === "" ||
+      this.state.capacity === "" || 
+      this.state.tree_type === "" || 
+      this.state.location === "" || 
+      this.state.number_planted === ""
     ) {
       alert("Looks like you forgot one!");
       return;
@@ -535,13 +536,14 @@ class UpdateSiteForm extends React.Component {
                 }
               </Form.Label>
               <Col sm={11}>
-                <Form.File
+              <Form.File
                   id="imagesSiteForm"
-                  label={this.state.additionalImages.length ? `${this.state.additionalImagesFile.length} Additional Images` : "Additional Images"}
+                  label={this.state.additionalImages.length || this.state.additionalImagesFile.length ? `${this.state.additionalImagesFile.length || this.state.additionalImages.length} Additional Images` : "Additional Images"}
                   custom
                   name="additionalImagesFile"
                   accept="image/*"
                   onChange={this.fileChangedHandler}
+                  multiple
                 />
               </Col>
             </Form.Group>

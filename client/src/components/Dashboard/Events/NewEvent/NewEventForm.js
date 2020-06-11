@@ -18,8 +18,10 @@ class EventForm extends React.Component {
       loader: false,
       persons: [],
       sites: [],
+      regions: [],
       site: null,
       coordinator: null,
+      region: null,
       description: "",
       startDate: null,
       endDate: null,
@@ -41,8 +43,7 @@ class EventForm extends React.Component {
         this.setState({ sites: result.data });
 
         API.getPersons().then((result) => {
-          this.setState({ persons: result.data });
-          this.setState({ loader: false });
+          this.setState({ persons: result.data, loader: false });
         });
       });
     });
@@ -82,14 +83,20 @@ class EventForm extends React.Component {
   handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (this.state.site === null || this.state.coordinator === null || this.state.coordinator === null) {
+    if (
+      this.state.site === null ||
+      this.state.coordinator === null ||
+      this.state.regions === null
+    ) {
       alert("Looks like you forgot one!");
       return;
     }
 
+
     let eventData = {
       site: this.state.site,
       coordinator: this.state.coordinator,
+      region: this.state.region,
       description: this.state.description,
       startDate: this.state.startDate,
       endDate: this.state.endDate,
@@ -165,7 +172,7 @@ class EventForm extends React.Component {
         {!this.state.loader ? (
           <div>
             <Form.Row>
-              <Form.Group as={Col} xs={12} md={6} controlId="formSite">
+              <Form.Group as={Col} xs={12} md={4} controlId="formSite">
                 <Form.Label>Site</Form.Label>
                 <Select
                   name="site"
@@ -178,7 +185,7 @@ class EventForm extends React.Component {
                 />
               </Form.Group>
 
-              <Form.Group as={Col} xs={12} md={6} controlId="formCoordinator">
+              <Form.Group as={Col} xs={12} md={4} controlId="formCoordinator">
                 <Form.Label>Coordinator</Form.Label>
                 <Select
                   name="coordinator"
@@ -189,6 +196,26 @@ class EventForm extends React.Component {
                   )}
                   onChange={this.handleCoordinatorChange}
                 />
+              </Form.Group>
+
+              <Form.Group as={Col} xs={12} md={4} controlId="formRegion">
+                <Form.Label>Regions</Form.Label>
+                <Form.Control
+                  as="select"
+                  name="region"
+                  onChange={this.handleChange}
+                >
+                  <option>none</option>
+                  {this.state.regions.map(
+                    (region, index) =>
+                      region.name &&
+                      region.name !== "" && (
+                        <option key={index} value={region._id}>
+                          {region.name}
+                        </option>
+                      )
+                  )}
+                </Form.Control>
               </Form.Group>
             </Form.Row>
 

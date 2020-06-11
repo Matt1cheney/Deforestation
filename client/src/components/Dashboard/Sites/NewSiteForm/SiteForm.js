@@ -461,6 +461,7 @@ class SiteForm extends React.Component {
                 id="documentsSiteForm"
                 label={this.state.document.name ? this.state.document.name : "Additional Document"}
                 custom
+                accept=".pdf"
                 name="document"
                 onChange={this.fileChangedHandler}
               />
