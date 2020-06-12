@@ -7,10 +7,11 @@ import Plant from "../../../images/Plant.jpeg";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import "./EventDetail.css";
+import VolunteerForm from "../VolunteerForm/volunteer";
 
 const DetailEventCard = ({ event }) => {
-  const { site, startDate, endDate, description, _id, coordinator } = event;
-  console.log(event);
+  const { site, startDate, endDate, description, _id, coordinator, region } = event;
+  console.log(region);
 
   return (
     <>
@@ -35,7 +36,9 @@ const DetailEventCard = ({ event }) => {
 
           <h3>{site && site.name}</h3>
         </Card.Body>
+        <Link as="button" className="btn return" style={{color: "white"}} to="/getInvolved">Return To Events Page</Link>
       </Card>
+      <VolunteerForm event={region}/>
     </>
   );
 };
