@@ -50,3 +50,7 @@
 .return {
     color: #000;
 }
+
+.eventCard {
+  padding: 1.5em
+}

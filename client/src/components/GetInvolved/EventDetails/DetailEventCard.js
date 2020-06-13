@@ -16,7 +16,8 @@ const DetailEventCard = ({ event }) => {
   return (
     <>
       <Card style={{ width: "100%" }} className="eventCard">
-        <Row>
+      <Card.Title><h3>{site && site.name}</h3></Card.Title>
+        <Row className="justify-content-center">
           <Col className="date">
             {moment(startDate).format("MM/DD/YYYY")} -{" "}
             {moment(endDate).format("MM/DD/YYYY")}
@@ -34,7 +35,6 @@ const DetailEventCard = ({ event }) => {
             </Col>
           </Row>
 
-          <h3>{site && site.name}</h3>
         </Card.Body>
         <Link as="button" className="btn return" style={{color: "white"}} to="/getInvolved">Return To Events Page</Link>
       </Card>
