@@ -82,7 +82,7 @@ export default class Volunteer extends React.Component {
   render() {
     return (
       <Container className="volunteerForm">
-        <h3>{this.props.event}</h3>
+        <h3>Volunteer for this event!</h3>
         <Form onSubmit={this.handleSubmit.bind(this)}>
           <Form.Row>
             <Col>
