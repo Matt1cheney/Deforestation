@@ -17,8 +17,8 @@ async function createPerson(req, res) {
     let newPerson = new PersonModel(req.body);
     let savedPerson = await newPerson.save();
 
-    // if (savedPerson.role == "Volunteer")
-    //     await sendMail(savedPerson.email, savedPerson.notes)
+    if (savedPerson.role == "Volunteer")
+        await sendMail(savedPerson.email, savedPerson.notes)
 
     res.json(savedPerson);
 }
