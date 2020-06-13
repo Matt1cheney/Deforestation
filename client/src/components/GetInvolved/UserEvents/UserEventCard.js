@@ -14,7 +14,6 @@ const UserEventCard = ({ event }) => {
   return (
     <>
       <Col>
-        <div>
           <Card href={`/event/${_id}`} className="userEventCard">
             <Card.Img variant="top" />
             <Card.Body>
@@ -31,10 +30,7 @@ const UserEventCard = ({ event }) => {
             </Card.Body>
             <Button href={`/event/${_id}`} className="viewBtn">View Event</Button>
           </Card>
-        </div>
       </Col>
-
-     
     </>
   );
 };

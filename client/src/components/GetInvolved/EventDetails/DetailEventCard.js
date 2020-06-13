@@ -38,7 +38,7 @@ const DetailEventCard = ({ event }) => {
         </Card.Body>
         <Link as="button" className="btn return" style={{color: "white"}} to="/getInvolved">Return To Events Page</Link>
       </Card>
-      <VolunteerForm event={region}/>
+      <VolunteerForm region={region && region._id} event={_id}/>
     </>
   );
 };
