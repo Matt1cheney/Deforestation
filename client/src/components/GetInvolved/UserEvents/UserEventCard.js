@@ -14,7 +14,7 @@ const UserEventCard = ({ event }) => {
   return (
     <>
       <Col>
-          <Card href={`/event/${_id}`} className="userEventCard">
+          <Card className="userEventCard">
             <Card.Img variant="top" />
             <Card.Body>
               <Card.Title className="Eventcard-title">
@@ -28,7 +28,7 @@ const UserEventCard = ({ event }) => {
               <Card.Text className="description">{description}</Card.Text>
               {/* <p>{region}</p> */}
             </Card.Body>
-            <Button href={`/event/${_id}`} className="viewBtn">View Event</Button>
+            <Link as="button" className="btn return" style={{color: "white"}} to={`/event/${_id}`} >View Event</Link>
           </Card>
       </Col>
     </>
