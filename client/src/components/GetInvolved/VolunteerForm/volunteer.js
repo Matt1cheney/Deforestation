@@ -17,11 +17,6 @@ export default class Volunteer extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   const { region } = this.props
-  //   this.setState({ region })
-  // }
-
   onNameChange(event) {
     this.setState({ region: this.props.region })
     this.setState({ name: event.target.value });
@@ -41,15 +36,33 @@ export default class Volunteer extends React.Component {
 
     //add volunteer to event doc with evnt id push volunteer object into existing array + 
 
-    API.createPerson(this.state).then((res) => {
+    API.createPerson(this.state)
+    .then((res) => {
       console.log(res.data)
       const obj = {
         userId: res.data._id,
         eventId: this.props.event
       }
       console.log(obj)
-      API.updateEventVolunteer(obj).then(res => console.log(res))
-    }).catch(err => console.log(err))
+      API.updateEventVolunteer(obj)
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+    })
+
+    // TRYING TO REFACTOR NODEMAILER CODE 
+
+    // .then((res) => {
+    //   if (res.status === "success") {
+    //     alert("Message Sent.");
+    //     this.resetForm();
+    //   } else if (res.status === "fail") {
+    //     alert("Message failed to send.");
+    //   }
+    // })
+    // .catch(err => console.log(err))
+
+    // ORIGINAL NODEMAILER CODE
+    
     // fetch("/api/persons", {
     //   method: "POST",
     //   body: JSON.stringify(this.state),
