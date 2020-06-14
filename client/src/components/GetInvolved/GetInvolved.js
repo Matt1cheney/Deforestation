@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import { BrowserRouter as Router } from "react-router-dom";
 import UserEventDisplay from "../GetInvolved/UserEvents/UserEventDisplay";
 import API from "../../utils/API";
 import Header from "../Header/Header";
@@ -29,13 +28,11 @@ const GetInvolved = ({ events }) => {
     <>
       <div className="getInvolved">
         <Header />
-        <Router>
           <Container fluid>
             <Row className="eventDisplay">
               <UserEventDisplay events={eventState.events} />
             </Row>
           </Container>
-        </Router>
       </div>
     </>
   );
