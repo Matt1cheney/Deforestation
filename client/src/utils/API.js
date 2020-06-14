@@ -114,6 +114,10 @@ export default {
     return axios.put(`/api/event`, eventData)
   },
 
+  updateEventVolunteer: function(eventData) {
+    return axios.put(`/api/eventvolunteer`, eventData)
+  },
+
   createSource: function(sourceData) {
     return axios.post("/api/sources", sourceData)
   },
