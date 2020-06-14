@@ -22,11 +22,7 @@ const NavComp = () => {
               <NavDropdown.Item href="/getInvolved">Volunteer</NavDropdown.Item>
               <NavDropdown.Item href="/resource">Resources</NavDropdown.Item>
             </NavDropdown>
-            <NavDropdown title="Get Info" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="/reforestation">About Us</NavDropdown.Item>
-              <NavDropdown.Item href="/reforestation">Reforestation</NavDropdown.Item>
-              <NavDropdown.Item href="/reforestation">Contact</NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link><Link to="/information">Get Information</Link></Nav.Link>
           </Nav>
           <Nav>
             <Nav.Link href="/" onClick={() => app.auth().signOut()}>Logout</Nav.Link>

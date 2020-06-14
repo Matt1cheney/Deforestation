@@ -47,6 +47,13 @@ class EventForm extends React.Component {
         });
       });
     });
+
+    API.getRegions().then((res) => {
+      this.setState({
+        regions: res.data
+      })
+    })
+    
   }
 
   handleSiteChange = (data) => {

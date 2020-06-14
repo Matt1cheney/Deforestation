@@ -7,16 +7,18 @@ import Plant from "../../../images/Plant.jpeg";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import "./EventDetail.css";
+import VolunteerForm from "../VolunteerForm/volunteer";
 
 const DetailEventCard = ({ event }) => {
-  const { site, startDate, endDate, description, _id, coordinator } = event;
-  console.log(event);
+  const { site, startDate, endDate, description, _id, coordinator, region } = event;
+  console.log(region);
 
   return (
     <>
       <Card style={{ width: "100%" }} className="eventCard">
-        <Row>
-          <Col className="date">JOIN US ON<br></br>
+      <Card.Title><h3>{site && site.name}</h3></Card.Title>
+        <Row className="justify-content-center">
+          <Col className="date">
             {moment(startDate).format("MM/DD/YYYY")} -{" "}
             {moment(endDate).format("MM/DD/YYYY")}
           </Col>
@@ -33,9 +35,10 @@ const DetailEventCard = ({ event }) => {
             </Col>
           </Row>
 
-          <h3>{site && site.name}</h3>
         </Card.Body>
+        <Link as="button" className="btn return" style={{color: "white"}} to="/getInvolved">Return To Events Page</Link>
       </Card>
+      <VolunteerForm region={region && region._id} event={_id}/>
     </>
   );
 };

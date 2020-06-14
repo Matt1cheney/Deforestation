@@ -587,7 +587,7 @@ async function getAllEvents(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await EventModel.find().populate("site", "name").populate("coordinator", "name").populate("volunteers");
+        const data = await EventModel.find().populate("site", "name").populate("coordinator", "name").populate("volunteers").populate("region", "name");
         if (!data)
             res.status(404).json({ message: `Cannot FIND Event with name=${id}. Maybe Event was not found!` });
         else res.json(data);
@@ -603,7 +603,7 @@ async function findEvent(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await EventModel.findOne({ "_id": id }).populate("site", "name").populate("volunteer", "name");
+        const data = await EventModel.findOne({ "_id": id }).populate("site", "name").populate("volunteer", "name").populate("region", "name").populate("coordinator", "name");
         if (!data)
             res.status(404).json({ message: `Cannot FIND Event with name=${id}. Maybe Event was not found!` });
         else res.json(data);
@@ -619,7 +619,7 @@ async function findEventByCoord(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await EventModel.find({ coordinator: id }).populate("site", "name").populate("coordinator", "name").populate("volunteers");
+        const data = await EventModel.find({ coordinator: id }).populate("site", "name").populate("coordinator", "name").populate("volunteers").populate("region", "name");
         if (!data)
             res.status(404).json({ message: `Cannot FIND Event with name=${id}. Maybe Event was not found!` });
         else res.json(data);
@@ -657,6 +657,24 @@ async function updateEvent(req, res) {
         else res.json(data);
     } catch (err) {
         res.status(500).json({ message: "Error updating Event with name=" + id });
+    }
+}
+
+async function updateEventVolunteer(req, res) {
+    if (!req.body)
+        return res.status(400).json({ message: "Event to update can not be empty!" });
+    
+    console.log(req.body)
+
+    const {userId, eventId} = req.body
+
+    try {
+        const data = await EventModel.findOneAndUpdate({ "_id": eventId }, { $push: {volunteers: userId}}, { useFindAndModify: false })
+        if (!data)
+            res.status(404).json({ message: `Cannot update Event with name=${eventId}. Maybe Event was not found!` });
+        else res.json(data);
+    } catch (err) {
+        res.status(500).json({ message: "Error updating Event with name=" + eventId });
     }
 }
 
@@ -809,6 +827,7 @@ router.post("/api/events", createEvent);
 router.get("/api/event/:id", findEvent);
 router.get("/api/eventcoordinator/:id", findEventByCoord);
 router.put("/api/event", updateEvent);
+router.put("/api/eventvolunteer", updateEventVolunteer);
 router.delete("/api/event/:id", deleteEvent);
 
 //----------------------- Additional (Non Database) Routes -----------------------
