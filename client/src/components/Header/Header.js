@@ -11,20 +11,20 @@ export default class Header extends React.Component {
       <>
         <div className="header">
           <Dropdown as={ButtonGroup} className="getBtn">
-            <Button variant="success"><Link className="getBtn" to="/getInvolved">Get Involved</Link></Button>
+          <Link to="/getInvolved"><Button variant="success">Get Involved</Button></Link>
             <Dropdown.Toggle
               split
               variant="success"
               id="dropdown-split-basic"
             />
             <Dropdown.Menu>
-              <Dropdown.Item><Link to="/getInvolved">Volunteer</Link></Dropdown.Item>
-              <Dropdown.Item><Link to="/resource">Resources</Link></Dropdown.Item>
+            {/* <Dropdown.Item><Link to="/getInvolved">Volunteer</Link></Dropdown.Item> */}
+            <Dropdown.Item variant="success"><Link to="/resource">Resources</Link></Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
           <Link to="/"><h1>ReforestNation</h1></Link>
           <Dropdown as={ButtonGroup} className="infoBtn">
-            <Button variant="success" ><Link to="/information">Get Information</Link></Button>
+          <Link to="/information"><Button variant="success">Get Information</Button></Link>
             {/* <Dropdown.Toggle
               split
               variant="success"
