@@ -7,6 +7,10 @@ const URL = require('url');
 
 async function removeBlob(uri) {
     if (!isMulterS3Enabled()) {
+        if (uri.startsWith("http")) {
+            console.error("Attempting to remove a blob with an absolute URI, but local storage is used.", uri);
+            return
+        }
         fs.unlinkSync(uri)
         return
     }
