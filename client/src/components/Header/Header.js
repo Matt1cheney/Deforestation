@@ -11,7 +11,7 @@ export default class Header extends React.Component {
       <>
         <div className="header">
           <Dropdown as={ButtonGroup} className="getBtn">
-            <Button href="/getInvolved" variant="success">Get Involved</Button>
+            <Button variant="success"><Link to="/getInvoled">Get Involved</Link></Button>
             <Dropdown.Toggle
               split
               variant="success"
