@@ -71,9 +71,9 @@ export default class ReforestationMap extends React.Component {
         const {stateName, treeCoverLoss, co2Emissions, biomassLoss} = stateInformation;
 
         const dataSeries = [
-            { name: "Tree Cover Loss", data: treeCoverLoss },
-            { name: "CO2 Emissions", data: co2Emissions },
-            { name: "Biomass Loss", data: biomassLoss },
+            { name: "Tree Cover Loss (Hectares)", data: treeCoverLoss },
+            { name: "CO2 Emissions (Metric tonnes)", data: co2Emissions },
+            { name: "Biomass Loss (Metric tonnes)", data: biomassLoss },
         ];
 
         const availableDataSeries = dataSeries.filter(d => d.data);

@@ -9,6 +9,7 @@ const multer = require("multer");
 const path = require("path");
 const fs = require('fs');
 const mongoose = require('mongoose');
+const { createMulterStorage, isMulterS3Enabled, removeBlob } = require("../services/s3MulterUploadService");
 
 //--------------------------- Person Controller -------------------------
 
@@ -193,16 +194,7 @@ async function updateRegion(req, res) {
 
 //-------------------------------- Site Controller ------------------------------
 
-//set storage engine with respect to server.js
-const storage = multer.diskStorage({
-    //Location where your uploaded files will reside relative to server.js file
-    destination: "./client/upload",
-    //Filename is the name of the file after uploaded Date.now() will generate unique timestamp
-    filename: function (req, file, cb) {
-        cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname));
-    }
-});
-
+const storage = createMulterStorage();
 
 //Init Upload Multer
 const upload = multer({
@@ -225,6 +217,14 @@ const upload = multer({
     maxCount: 5 //max number of files that can be uploaded is 5
 }]);
 
+function getNewBlobAttachmentURI({fieldName, req, fileIndex}) {
+    if(isMulterS3Enabled()) {
+        return req.files[fieldName][0].location;
+    } else {
+        return 'client/upload/' + req.files["profileImage"][fileIndex || 0].filename;
+    }
+}
+
 //whenever post request is made to "/api/sites" end point from front end
 function createSite(req, res) {
     upload(req, res, (err) => {
@@ -242,7 +242,7 @@ function createSite(req, res) {
             // extracting additional images
             // don't use req.files["additionalImages"].path as it is creating slash problems while getting the file name
             while (req.files["additionalImages"] != undefined && req.files["additionalImages"][i] != undefined) {
-                addImages.push('client/upload/' + req.files["additionalImages"][i].filename);
+                addImages.push(getNewBlobAttachmentURI({fileIndex: i, fieldName: "additionalImages", req: req }));
                 i++;
             }
 
@@ -282,9 +282,9 @@ function createSite(req, res) {
                 //<input type="file" id="" name="document">
 
                 plantingTarget: siteData.plantingTarget,
-                profileImage: req.files["profileImage"] !== undefined ? 'client/upload/' + req.files["profileImage"][0].filename : "",
-                document: req.files["document"] !== undefined ? 'client/upload/' + req.files["document"][0].filename : '',
-                contract: req.files["contract"] !== undefined ? 'client/upload/' + req.files["contract"][0].filename : "",
+                profileImage: req.files["profileImage"] !== undefined ? getNewBlobAttachmentURI({ fieldName: "profileImage", req: req}) : "",
+                document: req.files["document"] !== undefined ? getNewBlobAttachmentURI({ fieldName: "document", req: req}) : '',
+                contract: req.files["contract"] !== undefined ? getNewBlobAttachmentURI({ fieldName: "contract", req: req}) : "",
                 additionalImages: addImages
             });
 
@@ -332,7 +332,7 @@ async function findSite(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await SiteModel.findOne({ name: id }).populate("region", "name").populate("coordinator", "name");
+        const data = await SiteModel.findOne({ name: id }).populate("region", "name").populate("coordinator", "name").populate("owner", "name");
         if (!data)
             res.status(404).json({ message: `Cannot FIND Site with name=${id}. Maybe Site was not found!` });
         else res.json(data);
@@ -348,7 +348,7 @@ async function findSiteByRegion(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await SiteModel.find({ region: id }).populate("region", "name").populate("coordinator", "name");
+        const data = await SiteModel.find({ region: id }).populate("region", "name").populate("coordinator", "name").populate("owner", "name");
         if (!data)
             res.status(404).json({ message: `Cannot FIND Site with name=${id}. Maybe Site was not found!` });
         else res.json(data);
@@ -366,19 +366,19 @@ async function deleteSite(req, res) {
     try {
         const previous = await SiteModel.findOneAndDelete({ _id: mongoose.Types.ObjectId(id) });
         if (previous['profileImage'].length) {
-            fs.unlinkSync(previous.profileImage)
+            await removeBlob(previous.profileImage)
         }
         if (previous['contract'].length) {
-            fs.unlinkSync(previous.contract)
+            await removeBlob(previous.contract)
         }
         if (previous['document'].length) {
-            fs.unlinkSync(previous.document)
+            await removeBlob(previous.document)
         }
         if (previous['additionalImages'].length) {
             let length = previous.additionalImages.length;
             let i = 0;
             while (i < length) {
-                fs.unlinkSync(previous.additionalImages[i]);
+                await removeBlob(previous.additionalImages[i]);
                 i++;
             }
         }
@@ -413,24 +413,24 @@ function updateSite(req, res) {
                 console.log("Profile Image");
                 if (previous.profileImage !== '') {
                     console.log("Fs Unlink Profile Image");
-                    fs.unlinkSync(previous.profileImage)
+                    await removeBlob(previous.profileImage)
                 }
 
             }
             if (req.files['contract'] !== undefined || siteData.contract === '') {
                 if (previous.contract !== '')
-                    fs.unlinkSync(previous.contract)
+                    await removeBlob(previous.contract)
             }
             if (req.files['document'] !== undefined || siteData.document === '') {
                 if (previous.document !== '')
-                    fs.unlinkSync(previous.document)
+                    await removeBlob(previous.document)
             }
             if (req.files['additionalImages'] !== undefined || siteData.additionalImages.length === 0) {
                 if (previous.additionalImages.length !== 0) {
                     let length = previous.additionalImages.length;
                     let i = 0;
                     while (i < length) {
-                        fs.unlinkSync(previous.additionalImages[i])
+                        await removeBlob(previous.additionalImages[i])
                         i++
                     }
                 }
@@ -438,11 +438,11 @@ function updateSite(req, res) {
             // extracting additional images
             // don't use req.files["additionalImages"].path as it is creating slash problems while getting the file name
             while (req.files["additionalImages"] != undefined && req.files["additionalImages"][i] != undefined) {
-                addImages.push('client/upload/' + req.files["additionalImages"][i].filename);
+                addImages.push(getNewBlobAttachmentURI({fileIndex: i, fieldName: "additionalImages", req: req }));
                 i++;
             }
 
-            
+
 
             let newSite = new SiteModel({
                 //Please set the enctype in front end to <form action="" method="" enctype="multipart/form-data">
@@ -466,9 +466,9 @@ function updateSite(req, res) {
                 status: siteData.status,
                 notes: siteData.notes,
                 plantingTarget: siteData.plantingTarget,
-                profileImage: req.files["profileImage"] ? 'client/upload/' + req.files["profileImage"][0].filename : siteData.profileImage,
-                document: req.files["document"] ? 'client/upload/' + req.files["document"][0].filename : siteData.document,
-                contract: req.files["contract"] ? 'client/upload/' + req.files["contract"][0].filename : siteData.contract,
+                profileImage: req.files["profileImage"] ? getNewBlobAttachmentURI({ fieldName: "profileImage", req: req}): siteData.profileImage,
+                document: req.files["document"] ? getNewBlobAttachmentURI({ fieldName: "document", req: req}) : siteData.document,
+                contract: req.files["contract"] ? getNewBlobAttachmentURI({ fieldName: "contract", req: req}) : siteData.contract,
                 additionalImages: addImages.length ? addImages : siteData.additionalImages
             });
 
@@ -516,7 +516,7 @@ async function findSource(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await SourceModel.findOne({ name: id }).populate("region", "name").populate("intendSite", "name");
+        const data = await SourceModel.findOne({ name: id }).populate("region", "name").populate("coordinator", "name").populate("owner", "name").populate("seedlings.intendSite", "name");
         if (!data)
             res.status(404).json({ message: `Cannot FIND Source with name=${id}. Maybe Source was not found!` });
         else res.json(data);
@@ -532,7 +532,7 @@ async function findSourceByRegion(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await SourceModel.find({ region: id }).populate("region", "name").populate("intendSite", "name");
+        const data = await SourceModel.find({ region: id }).populate("region", "name").populate("coordinator", "name").populate("owner", "name").populate("seedlings.intendSite", "name");
         if (!data)
             res.status(404).json({ message: `Cannot FIND Source with name=${id}. Maybe Source was not found!` });
         else res.json(data);
@@ -663,7 +663,7 @@ async function updateEvent(req, res) {
 async function updateEventVolunteer(req, res) {
     if (!req.body)
         return res.status(400).json({ message: "Event to update can not be empty!" });
-    
+
     console.log(req.body)
 
     const {userId, eventId} = req.body

@@ -31,7 +31,6 @@ export const AuthProvider = ({ children }) => {
 
       if (user === null) { 
         setPending(false);
-        // return history.push("/");
         return;
       }
         
@@ -58,7 +57,7 @@ export const AuthProvider = ({ children }) => {
   return (
     // provides all children wrapped inside this provider tag the user info.
     <AuthContext.Provider value={currentUser}>
-      {children} {console.log(currentUser)}
+      {children}
     </AuthContext.Provider>
   );
 };

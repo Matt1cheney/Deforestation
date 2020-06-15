@@ -3,55 +3,2631 @@
     "treeCoverLoss": [
       {
         "year": 2015,
-        "value": 100
+        "value": 15481000
       },
       {
         "year": 2016,
-        "value": 90.5
+        "value": 12006900
       },
       {
         "year": 2017,
-        "value": 101
+        "value": 13768000
       },
       {
         "year": 2018,
-        "value": 120.7
+        "value": 12272000
       }
     ],
     "co2Emissions": [
       {
         "year": 2015,
-        "value": 150
+        "value": 0
       },
       {
         "year": 2016,
-        "value": 790.5
+        "value": 0
       },
       {
         "year": 2017,
-        "value": 501
+        "value": 19917836
       },
       {
         "year": 2018,
-        "value": 1233
+        "value": 22291888
       }
     ],
     "biomassLoss": [
       {
         "year": 2015,
-        "value": 500
+        "value": 0
       },
       {
         "year": 2016,
-        "value": 690.5
+        "value": 0
       },
       {
         "year": 2017,
-        "value": 701
+        "value": 62957035
       },
       {
         "year": 2018,
-        "value": 820.7
+        "value": 56550936
+      }
+    ]
+  },
+  "US-AL": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 1227200
+      },
+      {
+        "year": 2016,
+        "value": 1450230
+      },
+      {
+        "year": 2017,
+        "value": 1554790
+      },
+      {
+        "year": 2018,
+        "value": 1217330
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 7888200
+      },
+      {
+        "year": 2018,
+        "value": 7196450
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 9600146
+      },
+      {
+        "year": 2018,
+        "value": 9223176
+      }
+    ]
+  },
+  "US-AR": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 1027000
+      },
+      {
+        "year": 2016,
+        "value": 2386000
+      },
+      {
+        "year": 2017,
+        "value": 3272000
+      },
+      {
+        "year": 2018,
+        "value": 1530000
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 5111810
+      },
+      {
+        "year": 2018,
+        "value": 1674980
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 2921332
+      },
+      {
+        "year": 2018,
+        "value": 1738957
+      }
+    ]
+  },
+  "US-AZ": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 7582500
+      },
+      {
+        "year": 2016,
+        "value": 9313600
+      },
+      {
+        "year": 2017,
+        "value": 9539500
+      },
+      {
+        "year": 2018,
+        "value": 8547200
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 8138438
+      },
+      {
+        "year": 2018,
+        "value": 7614077
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 6650427
+      },
+      {
+        "year": 2018,
+        "value": 5738405
+      }
+    ]
+  },
+  "US-CA": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 10766400
+      },
+      {
+        "year": 2016,
+        "value": 19998700
+      },
+      {
+        "year": 2017,
+        "value": 21566800
+      },
+      {
+        "year": 2018,
+        "value": 24775800
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 12864976
+      },
+      {
+        "year": 2018,
+        "value": 12017201
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 62851160
+      },
+      {
+        "year": 2018,
+        "value": 63677090
+      }
+    ]
+  },
+  "US-CO": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 3571000
+      },
+      {
+        "year": 2016,
+        "value": 4767000
+      },
+      {
+        "year": 2017,
+        "value": 5430000
+      },
+      {
+        "year": 2018,
+        "value": 1905400
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 6065690
+      },
+      {
+        "year": 2018,
+        "value": 5014474
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 2535838
+      },
+      {
+        "year": 2018,
+        "value": 1331794
+      }
+    ]
+  },
+  "US-CT": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 7980000
+      },
+      {
+        "year": 2016,
+        "value": 1769000
+      },
+      {
+        "year": 2017,
+        "value": 2157000
+      },
+      {
+        "year": 2018,
+        "value": 1443000
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 8198290
+      },
+      {
+        "year": 2018,
+        "value": 8322890
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 1068158
+      },
+      {
+        "year": 2018,
+        "value": 1032235
+      }
+    ]
+  },
+  "US-DC": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 2000
+      },
+      {
+        "year": 2016,
+        "value": 6000
+      },
+      {
+        "year": 2017,
+        "value": 3000
+      },
+      {
+        "year": 2018,
+        "value": 1000
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 1852
+      },
+      {
+        "year": 2018,
+        "value": 1692
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 5492
+      },
+      {
+        "year": 2018,
+        "value": 3859
+      }
+    ]
+  },
+  "US-DE": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 564000
+      },
+      {
+        "year": 2016,
+        "value": 762000
+      },
+      {
+        "year": 2017,
+        "value": 616000
+      },
+      {
+        "year": 2018,
+        "value": 505000
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 198406
+      },
+      {
+        "year": 2018,
+        "value": 195967
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 128783
+      },
+      {
+        "year": 2018,
+        "value": 120665
+      }
+    ]
+  },
+  "US-FL": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 5877300
+      },
+      {
+        "year": 2016,
+        "value": 7101300
+      },
+      {
+        "year": 2017,
+        "value": 9483800
+      },
+      {
+        "year": 2018,
+        "value": 9521800
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 7424735
+      },
+      {
+        "year": 2018,
+        "value": 7198023
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 8526790
+      },
+      {
+        "year": 2018,
+        "value": 8206973
+      }
+    ]
+  },
+  "US-GA": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 1241640
+      },
+      {
+        "year": 2016,
+        "value": 1463970
+      },
+      {
+        "year": 2017,
+        "value": 1887150
+      },
+      {
+        "year": 2018,
+        "value": 1282130
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 8216898
+      },
+      {
+        "year": 2018,
+        "value": 6939592
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 1049999
+      },
+      {
+        "year": 2018,
+        "value": 1001567
+      }
+    ]
+  },
+  "US-HI": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 119500
+      },
+      {
+        "year": 2016,
+        "value": 123500
+      },
+      {
+        "year": 2017,
+        "value": 82400
+      },
+      {
+        "year": 2018,
+        "value": 174500
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 460384
+      },
+      {
+        "year": 2018,
+        "value": 483657
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 747927
+      },
+      {
+        "year": 2018,
+        "value": 673022
+      }
+    ]
+  },
+  "US-IA": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 7382945
+      },
+      {
+        "year": 2016,
+        "value": 7284957
+      },
+      {
+        "year": 2017,
+        "value": 3384738
+      },
+      {
+        "year": 2018,
+        "value": 2938482
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3844928
+      },
+      {
+        "year": 2018,
+        "value": 3374920
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 29183844
+      },
+      {
+        "year": 2018,
+        "value": 1838383
+      }
+    ]
+  },
+  "US-ID": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 1822834
+      },
+      {
+        "year": 2016,
+        "value": 1833384
+      },
+      {
+        "year": 2017,
+        "value": 1234598
+      },
+      {
+        "year": 2018,
+        "value": 2848334
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3774334
+      },
+      {
+        "year": 2018,
+        "value": 2673847
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 1732356
+      },
+      {
+        "year": 2018,
+        "value": 1845789
+      }
+    ]
+  },
+  "US-IL": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 1737838
+      },
+      {
+        "year": 2016,
+        "value": 1823833
+      },
+      {
+        "year": 2017,
+        "value": 2837733
+      },
+      {
+        "year": 2018,
+        "value": 3892345
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 4738947
+      },
+      {
+        "year": 2018,
+        "value": 8443345
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 7332134
+      },
+      {
+        "year": 2018,
+        "value": 1235434
+      }
+    ]
+  },
+  "US-IN": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 7334582
+      },
+      {
+        "year": 2016,
+        "value": 3724523
+      },
+      {
+        "year": 2017,
+        "value": 3123544
+      },
+      {
+        "year": 2018,
+        "value": 7322445
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3283454
+      },
+      {
+        "year": 2018,
+        "value": 1234564
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3224533
+      },
+      {
+        "year": 2018,
+        "value": 1236544
+      }
+    ]
+  },
+  "US-KS": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 1437484
+      },
+      {
+        "year": 2016,
+        "value": 2342235
+      },
+      {
+        "year": 2017,
+        "value": 2384923
+      },
+      {
+        "year": 2018,
+        "value": 1274774
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 2348123
+      },
+      {
+        "year": 2018,
+        "value": 1823422
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 1237434
+      },
+      {
+        "year": 2018,
+        "value": 1837427
+      }
+    ]
+  },
+  "US-KY": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 1733472
+      },
+      {
+        "year": 2016,
+        "value": 1543256
+      },
+      {
+        "year": 2017,
+        "value": 1238475
+      },
+      {
+        "year": 2018,
+        "value": 2348734
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 1274662
+      },
+      {
+        "year": 2018,
+        "value": 1732264
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 1283233
+      },
+      {
+        "year": 2018,
+        "value": 1273456
+      }
+    ]
+  },
+  "US-LA": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 2118332
+      },
+      {
+        "year": 2016,
+        "value": 1273332
+      },
+      {
+        "year": 2017,
+        "value": 1163233
+      },
+      {
+        "year": 2018,
+        "value": 2233532
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 1124723
+      },
+      {
+        "year": 2018,
+        "value": 1443344
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 1173233
+      },
+      {
+        "year": 2018,
+        "value": 1223434
+      }
+    ]
+  },
+  "US-MA": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 6338273
+      },
+      {
+        "year": 2016,
+        "value": 1736252
+      },
+      {
+        "year": 2017,
+        "value": 1775243
+      },
+      {
+        "year": 2018,
+        "value": 1762533
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 2273523
+      },
+      {
+        "year": 2018,
+        "value": 1152733
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 1173625
+      },
+      {
+        "year": 2018,
+        "value": 1176255
+      }
+    ]
+  },
+  "US-MD": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 1165244
+      },
+      {
+        "year": 2016,
+        "value": 1223762
+      },
+      {
+        "year": 2017,
+        "value": 1235628
+      },
+      {
+        "year": 2018,
+        "value": 1726652
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 1275243
+      },
+      {
+        "year": 2018,
+        "value": 6252772
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 1762263
+      },
+      {
+        "year": 2018,
+        "value": 1243566
+      }
+    ]
+  },
+  "US-ME": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 6524552
+      },
+      {
+        "year": 2016,
+        "value": 1772533
+      },
+      {
+        "year": 2017,
+        "value": 7735426
+      },
+      {
+        "year": 2018,
+        "value": 2276354
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 6643566
+      },
+      {
+        "year": 2018,
+        "value": 7735422
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 5526377
+      },
+      {
+        "year": 2018,
+        "value": 2263522
+      }
+    ]
+  },
+  "US-MI": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 2273833
+      },
+      {
+        "year": 2016,
+        "value": 1127334
+      },
+      {
+        "year": 2017,
+        "value": 1627633
+      },
+      {
+        "year": 2018,
+        "value": 1237653
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3399092
+      },
+      {
+        "year": 2018,
+        "value": 3329902
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 2299098
+      },
+      {
+        "year": 2018,
+        "value": 2234456
+      }
+    ]
+  },
+  "US-MN": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 1000223
+      },
+      {
+        "year": 2016,
+        "value": 1229909
+      },
+      {
+        "year": 2017,
+        "value": 1222388
+      },
+      {
+        "year": 2018,
+        "value": 2239903
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3300909
+      },
+      {
+        "year": 2018,
+        "value": 2200033
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 4430990
+      },
+      {
+        "year": 2018,
+        "value": 3300989
+      }
+    ]
+  },
+  "US-MO": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 3349902
+      },
+      {
+        "year": 2016,
+        "value": 3329903
+      },
+      {
+        "year": 2017,
+        "value": 3349982
+      },
+      {
+        "year": 2018,
+        "value": 2234599
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 4499098
+      },
+      {
+        "year": 2018,
+        "value": 3449903
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 2342234
+      },
+      {
+        "year": 2018,
+        "value": 3309004
+      }
+    ]
+  },
+  "US-MS": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 3321223
+      },
+      {
+        "year": 2016,
+        "value": 3321123
+      },
+      {
+        "year": 2017,
+        "value": 3328499
+      },
+      {
+        "year": 2018,
+        "value": 3399432
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 1123454
+      },
+      {
+        "year": 2018,
+        "value": 3321223
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3324112
+      },
+      {
+        "year": 2018,
+        "value": 2231123
+      }
+    ]
+  },
+  "US-MT": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 3342344
+      },
+      {
+        "year": 2016,
+        "value": 3322312
+      },
+      {
+        "year": 2017,
+        "value": 1133232
+      },
+      {
+        "year": 2018,
+        "value": 3342344
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3323455
+      },
+      {
+        "year": 2018,
+        "value": 2231123
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3344323
+      },
+      {
+        "year": 2018,
+        "value": 1123434
+      }
+    ]
+  },
+  "US-NC": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 3332112
+      },
+      {
+        "year": 2016,
+        "value": 2234112
+      },
+      {
+        "year": 2017,
+        "value": 2234322
+      },
+      {
+        "year": 2018,
+        "value": 2233212
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3371122
+      },
+      {
+        "year": 2018,
+        "value": 2234322
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3324434
+      },
+      {
+        "year": 2018,
+        "value": 4432112
+      }
+    ]
+  },
+  "US-ND": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 3324432
+      },
+      {
+        "year": 2016,
+        "value": 3321123
+      },
+      {
+        "year": 2017,
+        "value": 3323322
+      },
+      {
+        "year": 2018,
+        "value": 4432211
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 2213343
+      },
+      {
+        "year": 2018,
+        "value": 3376443
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 4453342
+      },
+      {
+        "year": 2018,
+        "value": 3321123
+      }
+    ]
+  },
+  "US-NE": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 3345534
+      },
+      {
+        "year": 2016,
+        "value": 4458773
+      },
+      {
+        "year": 2017,
+        "value": 3347223
+      },
+      {
+        "year": 2018,
+        "value": 3324322
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 4458832
+      },
+      {
+        "year": 2018,
+        "value": 3348778
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3348778
+      },
+      {
+        "year": 2018,
+        "value": 4438875
+      }
+    ]
+  },
+  "US-NH": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 4453443
+      },
+      {
+        "year": 2016,
+        "value": 3342334
+      },
+      {
+        "year": 2017,
+        "value": 4438894
+      },
+      {
+        "year": 2018,
+        "value": 3348777
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 4459833
+      },
+      {
+        "year": 2018,
+        "value": 3348788
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 4459334
+      },
+      {
+        "year": 2018,
+        "value": 4458344
+      }
+    ]
+  },
+  "US-NJ": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 3348822
+      },
+      {
+        "year": 2016,
+        "value": 2238443
+      },
+      {
+        "year": 2017,
+        "value": 3348893
+      },
+      {
+        "year": 2018,
+        "value": 3344855
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 2238455
+      },
+      {
+        "year": 2018,
+        "value": 3348288
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3345344
+      },
+      {
+        "year": 2018,
+        "value": 2238455
+      }
+    ]
+  },
+  "US-NM": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 1223434
+      },
+      {
+        "year": 2016,
+        "value": 4335434
+      },
+      {
+        "year": 2017,
+        "value": 3342234
+      },
+      {
+        "year": 2018,
+        "value": 1223483
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3345433
+      },
+      {
+        "year": 2018,
+        "value": 2234521
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3342234
+      },
+      {
+        "year": 2018,
+        "value": 3348233
+      }
+    ]
+  },
+  "US-NV": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 4493233
+      },
+      {
+        "year": 2016,
+        "value": 2334432
+      },
+      {
+        "year": 2017,
+        "value": 2234322
+      },
+      {
+        "year": 2018,
+        "value": 2238433
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3343322
+      },
+      {
+        "year": 2018,
+        "value": 1123444
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3342234
+      },
+      {
+        "year": 2018,
+        "value": 2234344
+      }
+    ]
+  },
+  "US-NY": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 1223433
+      },
+      {
+        "year": 2016,
+        "value": 1223454
+      },
+      {
+        "year": 2017,
+        "value": 1123445
+      },
+      {
+        "year": 2018,
+        "value": 2234533
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3323445
+      },
+      {
+        "year": 2018,
+        "value": 3342334
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 7733432
+      },
+      {
+        "year": 2018,
+        "value": 1233233
+      }
+    ]
+  },
+  "US-OH": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 3347266
+      },
+      {
+        "year": 2016,
+        "value": 2235465
+      },
+      {
+        "year": 2017,
+        "value": 3324456
+      },
+      {
+        "year": 2018,
+        "value": 4435434
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 2245673
+      },
+      {
+        "year": 2018,
+        "value": 2234822
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 6627763
+      },
+      {
+        "year": 2018,
+        "value": 6635562
+      }
+    ]
+  },
+  "US-OK": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 2231123
+      },
+      {
+        "year": 2016,
+        "value": 3345342
+      },
+      {
+        "year": 2017,
+        "value": 2235486
+      },
+      {
+        "year": 2018,
+        "value": 4456455
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3342112
+      },
+      {
+        "year": 2018,
+        "value": 3324324
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3324434
+      },
+      {
+        "year": 2018,
+        "value": 3298455
+      }
+    ]
+  },
+  "US-OR": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 2231123
+      },
+      {
+        "year": 2016,
+        "value": 3345342
+      },
+      {
+        "year": 2017,
+        "value": 2235486
+      },
+      {
+        "year": 2018,
+        "value": 4456455
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3342112
+      },
+      {
+        "year": 2018,
+        "value": 3324324
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3324434
+      },
+      {
+        "year": 2018,
+        "value": 3298455
+      }
+    ]
+  },
+  "US-PA": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 2332212
+      },
+      {
+        "year": 2016,
+        "value": 2234543
+      },
+      {
+        "year": 2017,
+        "value": 2345433
+      },
+      {
+        "year": 2018,
+        "value": 2231234
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 1232234
+      },
+      {
+        "year": 2018,
+        "value": 2234323
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3324322
+      },
+      {
+        "year": 2018,
+        "value": 2123323
+      }
+    ]
+  },
+  "US-RI": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 2311234
+      },
+      {
+        "year": 2016,
+        "value": 3223412
+      },
+      {
+        "year": 2017,
+        "value": 2323443
+      },
+      {
+        "year": 2018,
+        "value": 1232231
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3342122
+      },
+      {
+        "year": 2018,
+        "value": 3321123
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 4453234
+      },
+      {
+        "year": 2018,
+        "value": 2334523
+      }
+    ]
+  },
+  "US-SC": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 1124355
+      },
+      {
+        "year": 2016,
+        "value": 1223483
+      },
+      {
+        "year": 2017,
+        "value": 3452355
+      },
+      {
+        "year": 2018,
+        "value": 2334523
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 1124344
+      },
+      {
+        "year": 2018,
+        "value": 1443345
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 2234532
+      },
+      {
+        "year": 2018,
+        "value": 1334567
+      }
+    ]
+  },
+  "US-SD": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 4432345
+      },
+      {
+        "year": 2016,
+        "value": 1123233
+      },
+      {
+        "year": 2017,
+        "value": 3321123
+      },
+      {
+        "year": 2018,
+        "value": 1223459
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3224567
+      },
+      {
+        "year": 2018,
+        "value": 3324566
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3324554
+      },
+      {
+        "year": 2018,
+        "value": 2213345
+      }
+    ]
+  },
+  "US-TN": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 1332455
+      },
+      {
+        "year": 2016,
+        "value": 1332456
+      },
+      {
+        "year": 2017,
+        "value": 3424554
+      },
+      {
+        "year": 2018,
+        "value": 2132245
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 2234523
+      },
+      {
+        "year": 2018,
+        "value": 1332456
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3372234
+      },
+      {
+        "year": 2018,
+        "value": 4431223
+      }
+    ]
+  },
+  "US-TX": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 3345311
+      },
+      {
+        "year": 2016,
+        "value": 1334234
+      },
+      {
+        "year": 2017,
+        "value": 4432283
+      },
+      {
+        "year": 2018,
+        "value": 3347233
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 2213459
+      },
+      {
+        "year": 2018,
+        "value": 2213433
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 1223421
+      },
+      {
+        "year": 2018,
+        "value": 3324432
+      }
+    ]
+  },
+  "US-UT": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 3342133
+      },
+      {
+        "year": 2016,
+        "value": 1443254
+      },
+      {
+        "year": 2017,
+        "value": 1127342
+      },
+      {
+        "year": 2018,
+        "value": 3342113
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 2234532
+      },
+      {
+        "year": 2018,
+        "value": 2334521
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 1224563
+      },
+      {
+        "year": 2018,
+        "value": 3321123
+      }
+    ]
+  },
+  "US-VA": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 3348223
+      },
+      {
+        "year": 2016,
+        "value": 1223453
+      },
+      {
+        "year": 2017,
+        "value": 2234554
+      },
+      {
+        "year": 2018,
+        "value": 2234533
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3324435
+      },
+      {
+        "year": 2018,
+        "value": 2234213
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 3324565
+      },
+      {
+        "year": 2018,
+        "value": 3324123
+      }
+    ]
+  },
+  "US-VT": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 2234521
+      },
+      {
+        "year": 2016,
+        "value": 3324532
+      },
+      {
+        "year": 2017,
+        "value": 3324564
+      },
+      {
+        "year": 2018,
+        "value": 1223453
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 2234521
+      },
+      {
+        "year": 2018,
+        "value": 1223454
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 1223843
+      },
+      {
+        "year": 2018,
+        "value": 1123482
       }
     ]
   },
@@ -59,55 +2635,223 @@
     "treeCoverLoss": [
       {
         "year": 2015,
-        "value": 110
+        "value": 1125435
       },
       {
         "year": 2016,
-        "value": 190.5
+        "value": 1223531
       },
       {
         "year": 2017,
-        "value": 141
+        "value": 1127342
       },
       {
         "year": 2018,
-        "value": 170.7
+        "value": 1221234
       }
     ],
     "co2Emissions": [
       {
         "year": 2015,
-        "value": 250
+        "value": 0
       },
       {
         "year": 2016,
-        "value": 720.5
+        "value": 0
       },
       {
         "year": 2017,
-        "value": 901
+        "value": 1132445
       },
       {
         "year": 2018,
-        "value": 1533
+        "value": 1223411
       }
     ],
     "biomassLoss": [
       {
         "year": 2015,
-        "value": 700
+        "value": 0
       },
       {
         "year": 2016,
-        "value": 390.5
+        "value": 0
       },
       {
         "year": 2017,
-        "value": 601
+        "value": 1332453
       },
       {
         "year": 2018,
-        "value": 890.7
+        "value": 3324563
+      }
+    ]
+  },
+  "US-WT": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 1223482
+      },
+      {
+        "year": 2016,
+        "value": 3327456
+      },
+      {
+        "year": 2017,
+        "value": 2322334
+      },
+      {
+        "year": 2018,
+        "value": 1222832
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 2232122
+      },
+      {
+        "year": 2018,
+        "value": 2283342
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 1235434
+      },
+      {
+        "year": 2018,
+        "value": 3342123
+      }
+    ]
+  },
+  "US-WV": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 2113454
+      },
+      {
+        "year": 2016,
+        "value": 2234567
+      },
+      {
+        "year": 2017,
+        "value": 1652253
+      },
+      {
+        "year": 2018,
+        "value": 1223843
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 1443242
+      },
+      {
+        "year": 2018,
+        "value": 1223482
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 1332843
+      },
+      {
+        "year": 2018,
+        "value": 1273277
+      }
+    ]
+  },
+  "US-WY": {
+    "treeCoverLoss": [
+      {
+        "year": 2015,
+        "value": 7332322
+      },
+      {
+        "year": 2016,
+        "value": 1237277
+      },
+      {
+        "year": 2017,
+        "value": 1237283
+      },
+      {
+        "year": 2018,
+        "value": 2347123
+      }
+    ],
+    "co2Emissions": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 1283833
+      },
+      {
+        "year": 2018,
+        "value": 1342232
+      }
+    ],
+    "biomassLoss": [
+      {
+        "year": 2015,
+        "value": 0
+      },
+      {
+        "year": 2016,
+        "value": 0
+      },
+      {
+        "year": 2017,
+        "value": 6253555
+      },
+      {
+        "year": 2018,
+        "value": 1736333
       }
     ]
   }
