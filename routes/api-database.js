@@ -516,7 +516,7 @@ async function findSource(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await SourceModel.findOne({ name: id }).populate("region", "name").populate("intendSite", "name");
+        const data = await SourceModel.findOne({ name: id }).populate("region", "name").populate("coordinator", "name").populate("owner", "name").populate("seedlings.intendSite", "name");
         if (!data)
             res.status(404).json({ message: `Cannot FIND Source with name=${id}. Maybe Source was not found!` });
         else res.json(data);
@@ -532,7 +532,7 @@ async function findSourceByRegion(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await SourceModel.find({ region: id }).populate("region", "name").populate("intendSite", "name");
+        const data = await SourceModel.find({ region: id }).populate("region", "name").populate("coordinator", "name").populate("owner", "name").populate("seedlings.intendSite", "name");
         if (!data)
             res.status(404).json({ message: `Cannot FIND Source with name=${id}. Maybe Source was not found!` });
         else res.json(data);
