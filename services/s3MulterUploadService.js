@@ -20,7 +20,7 @@ async function removeBlob(uri) {
     const s3 = createS3Client();
     const parsedURI = URL.parse(uri);
 
-    const s3ObjectKey = parsedURI.pathname.substring(1); // Removes leading slash
+    const s3ObjectKey = parsedURI.pathname.substring(1).replace(new RegExp("^"+ bucketName.replace(/\./g, "\\.") + "\\/"), ""); // Removes leading slash
 
     console.log("Remove blob from S3: ", {bucketName: bucketName, s3ObjectKey: s3ObjectKey});
     const result = await s3.deleteObject({
