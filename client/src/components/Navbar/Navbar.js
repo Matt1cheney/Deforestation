@@ -14,7 +14,7 @@ const NavComp = () => {
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg="light" >
-        <Navbar.Brand ><Link to="/">ReforestNation</Link></Navbar.Brand>
+        <Navbar.Brand href="/">ReforestNation</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
