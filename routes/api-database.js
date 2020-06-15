@@ -332,7 +332,7 @@ async function findSite(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await SiteModel.findOne({ name: id }).populate("region", "name").populate("coordinator", "name");
+        const data = await SiteModel.findOne({ name: id }).populate("region", "name").populate("coordinator", "name").populate("owner", "name");
         if (!data)
             res.status(404).json({ message: `Cannot FIND Site with name=${id}. Maybe Site was not found!` });
         else res.json(data);
@@ -348,7 +348,7 @@ async function findSiteByRegion(req, res) {
     const id = req.params.id;
 
     try {
-        const data = await SiteModel.find({ region: id }).populate("region", "name").populate("coordinator", "name");
+        const data = await SiteModel.find({ region: id }).populate("region", "name").populate("coordinator", "name").populate("owner", "name");
         if (!data)
             res.status(404).json({ message: `Cannot FIND Site with name=${id}. Maybe Site was not found!` });
         else res.json(data);
