@@ -14,15 +14,15 @@ const NavComp = () => {
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg="light" >
-        <Navbar.Brand ><Link to="/">ReforestNation</Link></Navbar.Brand>
+        <Navbar.Brand as={Link} to="/">ReforestNation</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
             <NavDropdown title="Get Involved" id="collasible-nav-dropdown">
-              <NavDropdown.Item ><Link to="/getInvolved">Volunteer</Link></NavDropdown.Item>
-              <NavDropdown.Item ><Link to="/resource">Resources</Link></NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/getInvolved">Volunteer</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/resource">Resources</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link><Link to="/information">Get Information</Link></Nav.Link>
+            <Nav.Link as={Link} to="/information">Get Information</Nav.Link>
           </Nav>
           <Nav>
             <Nav.Link href="/" onClick={() => app.auth().signOut()}>Logout</Nav.Link>
