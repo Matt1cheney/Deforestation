@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
@@ -14,16 +15,16 @@ export class InfoCard extends React.Component {
       <Container>
         <Row className="bottom">
           <Col xs={12} md={6}>
-            <a href="/information">
+            <Link to="/information">
               <Image className="infoLinks" src={City} />
               <p className="centered">About Us</p>
-            </a>
+            </Link>
           </Col>
           <Col xs={12} md={6}>
-            <a href="/information">
+            <Link to="/information">
               <Image className="infoLinks" src={Road} />
               <p className="centered">Reforestation</p>
-            </a>
+            </Link>
           </Col>
         </Row>
       </Container>
