@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "../style.css";
+import {getFullBlobStorageURL} from "../../../../utils/ImageURLs";
 
 const SiteCard = ({ site, onDelete, this3 }) => {
   const {
@@ -85,7 +86,7 @@ const SiteCard = ({ site, onDelete, this3 }) => {
         </Row>
         <Row>
         <Col md={2} lg={2} xl={2}>
-            <img className="siteImg" src={profileImage && `http://localhost:4000/api/get-file/${profileImage}`} alt="profileImage"></img>
+            <img className="siteImg" src={profileImage && getFullBlobStorageURL(profileImage)} alt="profileImage"></img>
           </Col>
           <Col md={7} lg={8} xl={9}>
             <Row>
@@ -142,8 +143,8 @@ const SiteCard = ({ site, onDelete, this3 }) => {
                   document ?
                     <h6>
                       <b>Document Link: </b>
-                      
-                      <a href={`http://localhost:4000/api/get-file/${document}`} target="_blank" rel="noreferrer">Pdf</a>
+
+                      <a href={getFullBlobStorageURL(document)} target="_blank" rel="noreferrer">Pdf</a>
                     </h6>
                   : null
                 }
@@ -172,14 +173,14 @@ const SiteCard = ({ site, onDelete, this3 }) => {
               (image, index) =>
                 image && (
                   <Col xs={5} sm={4} lg={3} key={index} className="pb-5">
-                    <img className="siteImg" src={`http://localhost:4000/api/get-file/${image}`} alt="additional Images"></img>
+                    <img className="siteImg" src={getFullBlobStorageURL(image)} alt="additional Images"></img>
                   </Col>
                 )
             )}
           {
             contract &&
             <Col xs={5} sm={4} lg={3} className="pb-5">
-              <img className="siteImg" src={`http://localhost:4000/api/get-file/${contract}`} alt="contract"></img>
+              <img className="siteImg" src={getFullBlobStorageURL(contract)} alt="contract"></img>
             </Col>
           }
 
