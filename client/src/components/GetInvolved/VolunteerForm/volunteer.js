@@ -48,7 +48,7 @@ export default class Volunteer extends React.Component {
       .then(res => console.log(res))
       .catch(err => console.log(err))
     })
-
+    .catch(err => console.log(err))
     // TRYING TO REFACTOR NODEMAILER CODE 
 
     // .then((res) => {
