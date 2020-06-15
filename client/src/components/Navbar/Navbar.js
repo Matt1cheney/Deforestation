@@ -25,7 +25,7 @@ const NavComp = () => {
             <Nav.Link as={Link} to="/information">Get Information</Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link as={Link} to="/" onClick={() => app.auth().signOut()}>Logout</Nav.Link>
+            <Nav.Link href="/" onClick={() => app.auth().signOut()}>Logout</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
