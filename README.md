@@ -8,7 +8,7 @@
 
 
 # Our Site
-![Home Page](README_photos/Home_Page.png "Home Page")
+![Home Page](README_photos/home_page.png "Home Page")
 
 
 ![Dashboard](README_photos/Dashboard_home.png "Dashboard")
@@ -39,15 +39,15 @@ Using Mongoose with MongoDB, we created a system that allows events, regions, si
 
 
 # For the Volunteers
-![](README_photos\Vision_page.png "Resource Page")
+![](README_photos/Vision_page.png "Resource Page")
 
 We aim to really capture their interest and get them inspired to reach out and help!
 
-![](README_photos\event_volunteer.png "Event volunteer")
+![](README_photos/event_volunteer.png "Event volunteer")
 
 The volunteer can look at the events that are happening and can find one that is near where they reside.
 
-![](README_photos\volunteer_this_event.png "Event")
+![](README_photos/volunteer_this_event.png "Event")
 
 Here we allow the volunteer to observe the updates of this event and fill out a simple form to reach out to a coordinator to join the cause!
 
