@@ -27,6 +27,7 @@ const GetInvolved = ({ events }) => {
   return (
     <>
       <div className="getInvolved">
+        {/* Im here */}
         <Header />
           <Container fluid>
             <Row className="eventDisplay">

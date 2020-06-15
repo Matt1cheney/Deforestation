@@ -11,30 +11,30 @@ export default class Header extends React.Component {
       <>
         <div className="header">
           <Dropdown as={ButtonGroup} className="getBtn">
-            <Button href="/getInvolved" variant="success">Get Involved</Button>
+          <Link to="/getInvolved"><Button variant="success">Get Involved</Button>
             <Dropdown.Toggle
               split
               variant="success"
               id="dropdown-split-basic"
-            />
+            /></Link>
             <Dropdown.Menu>
-              <Dropdown.Item><Link to="/getInvolved">Volunteer</Link></Dropdown.Item>
-              <Dropdown.Item><Link to="/resource">Resources</Link></Dropdown.Item>
+            {/* <Dropdown.Item><Link to="/getInvolved">Volunteer</Link></Dropdown.Item> */}
+            <Dropdown.Item variant="success"><Link to="/resource">Resources</Link></Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
           <Link to="/"><h1>ReforestNation</h1></Link>
           <Dropdown as={ButtonGroup} className="infoBtn">
-            <Button variant="success" ><Link to="/information">Get Information</Link></Button>
-            <Dropdown.Toggle
+          <Link to="/information"><Button variant="success">Get Information</Button></Link>
+            {/* <Dropdown.Toggle
               split
               variant="success"
               id="dropdown-split-basic"
-            />
-            <Dropdown.Menu>
-              <Dropdown.Item><Link to="/reforestation">About Us</Link></Dropdown.Item>
-              <Dropdown.Item><Link to="/reforestation">Reforestation</Link></Dropdown.Item>
-              <Dropdown.Item><Link to="/reforestation">Contact</Link></Dropdown.Item>
-            </Dropdown.Menu>
+            /> */}
+            {/* <Dropdown.Menu>
+              <Dropdown.Item><Link to="/information">About Us</Link></Dropdown.Item>
+              <Dropdown.Item><Link to="/information">Reforestation</Link></Dropdown.Item>
+              <Dropdown.Item><Link to="/information">Contact</Link></Dropdown.Item>
+            </Dropdown.Menu> */}
           </Dropdown>
         </div>
         <div className="right">
